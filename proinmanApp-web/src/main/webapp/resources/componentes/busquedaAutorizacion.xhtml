@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:composite="http://java.sun.com/jsf/composite">
+
+		<!-- INTERFACE -->
+
+		<composite:interface componentType="busquedaAutorizacion">
+			<composite:attribute name="rucModificable"
+				type="java.lang.Boolean">
+			</composite:attribute>
+			<composite:attribute name="renderizado"
+				type="java.lang.Boolean">
+			</composite:attribute>
+			<composite:attribute name="seccion"
+				type="java.lang.String">
+			</composite:attribute>
+			<composite:attribute name="tituloBusqueda"
+				type="java.lang.String">
+			</composite:attribute>
+			<composite:attribute name="tituloListaDetalle"
+				type="java.lang.String">
+			</composite:attribute>
+			<composite:attribute
+				name="manageBeanBusquedaAutorizacion">
+			</composite:attribute>
+			<composite:attribute name="tipoDocumentoComprobantes"
+				type="java.lang.Boolean" default="false">
+			</composite:attribute>
+			<composite:attribute name="tipoDocumentoArrendador"
+				type="java.lang.Boolean" default="false">
+			</composite:attribute>
+			<composite:attribute name="tipoDocumentoMercancias"
+				type="java.lang.Boolean" default="false">
+			</composite:attribute>
+			<composite:attribute name="tipoSeccion"
+				type="java.lang.String"></composite:attribute>
+			<composite:attribute name="identificadorObjetoMercancia"
+				type="java.lang.Integer" default="#{null}"></composite:attribute>
+			<composite:attribute name="requerido"
+				type="java.lang.Boolean">
+			</composite:attribute>
+			<composite:attribute name="estadoAutorizacion"
+				type="java.lang.Boolean">
+			</composite:attribute>
+			<composite:attribute name="nombreDocumentoBusqueda"
+				type="java.lang.String">
+			</composite:attribute>
+			<composite:attribute name="listaComprobantes"
+				 type="java.util.List" required="true">
+			</composite:attribute>
+		</composite:interface>
+
+		<!-- IMPLEMENTATION -->
+		<composite:implementation>
+			<h:panelGroup id='pnlTotal'>
+				<h:panelGrid rendered="#{cc.attrs.renderizado}"
+					width="100%">
+					<h:panelGroup>
+						<div class="barraSuperior">
+							<h:outputText
+								value="#{msg.consultasBusqueda}" />
+						</div>
+					</h:panelGroup>
+					
+					<h:inputHidden id="hidBusqueda"
+						value="#{cc.attrs.rucModificable}" />
+						
+					
+					<h:inputHidden id="hidIdentificardorObjetoMercancia"
+						value="#{cc.attrs.identificadorObjetoMercancia}" />
+
+					<div>
+						<h:panelGrid id="pngBuscarPorRuc" columns="2"
+							styleClass="formulario"
+							columnClasses="formulario-label,topped,formulario-label,topped">
+							<h:outputLabel value="#{msg.rciBusquedaRuc}" />
+							<p:selectOneRadio id="rbtBuscarPorRuc" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								value="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.buscarPorRuc}">
+								<f:selectItems
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.enumeracionSiNo}"
+									var="enum" itemValue="#{enum}" itemLabel="#{enum}">
+								</f:selectItems>
+								<p:ajax event="click"
+									listener="#{cc.attrs.manageBeanBusquedaAutorizacion.activarDesactivarBusquedaRuc}"
+									update="pngAutorizacionBuscar">
+								</p:ajax>
+							</p:selectOneRadio>
+						</h:panelGrid>
+						<h:panelGroup id="pnlDatosBusqueda">
+							<h:panelGrid id="pngAutorizacionBuscar"
+								columns="4" styleClass="formulario"
+								columnClasses="formulario-label,topped,formulario-label,topped">
+								<h:panelGroup
+									rendered="#{!cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}">
+									<h:outputText
+										id="lblNumeroAutorizacion" value="#{msg.rciAutorizacion}"/>
+									<h:outputText
+										id="lblINumeroAutorizacionObligatoria"
+										value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+								</h:panelGroup>
+								<p:inputText id="txtNumeroAutorizacion" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+									maxlength="11" styleClass="soloNumeros"
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.numeroAutorizacion}"
+									rendered="#{!cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}" />
+
+								<h:panelGroup
+									rendered="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}">
+									<h:outputText id="lblNumeroRuc"
+										value="#{msg.rciIngreseNumeroRuc}" />
+									<h:outputText
+										id="lblINumeroRucObligatorio" value="#{msg.campoObligatorio}"
+										styleClass="campoObligatorio" />
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}">
+									<p:inputText id="txtNumeroRuc" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+										maxlength="13" styleClass="soloNumeros"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.numeroRuc}"
+										rendered="#{cc.attrs.rucModificable}" />
+									<h:outputText
+										id="lblINumeroRucSoloLectura"
+										value=" #{cc.attrs.manageBeanBusquedaAutorizacion.rciVo.datosContribuyenteVo.sujetoControl.numeroIdentificacion}"
+										styleClass="campoNegrilla"
+										rendered="#{!cc.attrs.rucModificable}" />
+								</h:panelGroup>
+
+								<h:outputText
+									id="lblTipoDocumentoAutorizacion"
+									value="#{msg.rciTipoDocumento}" />
+								<p:selectOneMenu disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+									id="cmbTipoDocumentoAutorizacionComprobante" styleClass="comboRci"
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.tipoDocumento}" rendered="#{cc.attrs.tipoDocumentoComprobantes}">
+									<f:selectItem
+										itemLabel="Seleccione..." itemValue="#{null}" />
+									<f:selectItems var="item" 
+										itemLabel="#{item.tipoDocumentoValido.descripcion}"
+										itemValue="#{item.tipoDocumentoValido.codigoTipoDocumento}"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.componenteBusquedaAutorizacionVo.listaTiposComprobanteSeccionComprobantes}">
+									</f:selectItems>
+								</p:selectOneMenu>
+								<p:selectOneMenu disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+									id="cmbTipoDocumentoAutorizacionArrendador" styleClass="comboRci"
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.tipoDocumento}" rendered="#{cc.attrs.tipoDocumentoArrendador}">
+									<f:selectItem
+										itemLabel="Seleccione..." itemValue="#{null}" />
+									<f:selectItems var="item" 
+										itemLabel="#{item.tipoDocumentoValido.descripcion}"
+										itemValue="#{item.tipoDocumentoValido.codigoTipoDocumento}"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.componenteBusquedaAutorizacionVo.listaTiposComprobanteSeccionArrendador}">
+									</f:selectItems>
+								</p:selectOneMenu>
+								<p:selectOneMenu disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+									id="cmbTipoDocumentoAutorizacionMercancias" styleClass="comboRci"
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.tipoDocumento}" rendered="#{cc.attrs.tipoDocumentoMercancias}">
+									<f:selectItem
+										itemLabel="Seleccione..." itemValue="#{null}" />
+									<f:selectItems var="item" 
+										itemLabel="#{item.tipoDocumentoValido.descripcion}"
+										itemValue="#{item.tipoDocumentoValido.codigoTipoDocumento}"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.componenteBusquedaAutorizacionVo.listaTiposComprobanteSeccionMercancias}">
+									</f:selectItems>
+								</p:selectOneMenu>
+								
+								<h:outputText
+									id="lblEstablecimientoAutorizacion" value="#{msg.rciNumeroComprobante}" />
+								<h:panelGroup>
+									<p:inputText disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+										id="txtEstablecimientoAutorizacion"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.numeroEstablecimiento}"
+										maxlength="3" size="3" styleClass="soloNumeros" />
+									<p:inputText id="txtPuntoEmision" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.numeroPuntoEmision}"
+										size="3" maxlength="3" styleClass="soloNumeros" />
+									<p:inputText id="txtNumComprobante" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.secuencialComprobante}"
+										maxlength="10" size="10" styleClass="soloNumeros" />
+								</h:panelGroup>
+								<h:outputText
+									value="#{msg.rciTipoImpresion}" />
+								<p:selectOneMenu disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+									id="cmbTipoImpresionParaAutorizacion" styleClass="comboRci"
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.datosBusquedaAutorizacion.tipoImpresion}">
+									<f:selectItem
+										itemLabel="Seleccione..." itemValue="#{null}" />
+									<f:selectItems
+										value="#{cc.attrs.manageBeanBusquedaAutorizacion.componenteBusquedaAutorizacionVo.mapaTipoImpresion}">
+									</f:selectItems>
+								</p:selectOneMenu>
+
+								<h:panelGroup
+									rendered="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}">
+									<h:outputText
+										id="lblFechaAutorizacion"
+										value="#{msg.rciBusquedaFechaAutorizacion}" />
+									<h:outputText
+										id="lblFechaAutorizacionObligatorio"
+										value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+								</h:panelGroup>
+
+								<h:panelGrid id="pngFechasAutorizacion"
+									columns="1" styleClass="formulario"
+									columnClasses="topped,topped,topped,topped"
+									rendered="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.busquedaPorAutorizacionHabilitado}"
+									width="100%">
+									<h:panelGroup>
+										<h:outputText
+											id="lblAutorizacionDesde"
+											value="#{msg.rciFechaAutorizacionDesde}  "
+											styleClass="campoNegrilla" />
+										<p:calendar disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+											id="calFechaAutorizacionInicio"
+											value="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.fechaInicioAutorizacion}"
+											showButtonPanel="true" navigator="true" locale="es"
+											pattern="#{msg.formatoSoloFecha}" showOn="button"
+											converterMessage="#{msgVal.filtroBusquedaFechaDesdeIncorrecto}"
+											styleClass="mascaraFecha">
+											<f:convertDateTime
+												for="calFechaAutorizacionInicio"
+												pattern="#{msg.formatoSoloFecha }" />
+										</p:calendar>
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:outputText
+											id="lblAutorizacionHasta"
+											value=" #{msg.rciFechaAutorizacionHasta}  "
+											styleClass="campoNegrilla" />
+										<p:calendar disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+											id="calFechaAutorizacionFin"
+											value="#{cc.attrs.manageBeanBusquedaAutorizacion.formularioBuscarAutorizacionVo.fechaFinAutorizacion}"
+											showButtonPanel="true" navigator="true" locale="es"
+											pattern="#{msg.formatoSoloFecha}" showOn="button"
+											converterMessage="#{msgVal.filtroBusquedaFechaHastaIncorrecto}"
+											styleClass="mascaraFecha">
+											<f:convertDateTime
+												for="calFechaAutorizacionFin"
+												pattern="#{msg.formatoSoloFecha }" />
+										</p:calendar>
+									</h:panelGroup>
+								</h:panelGrid>
+							</h:panelGrid>
+						</h:panelGroup>
+
+
+					</div>
+				</h:panelGrid>
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:panelGrid rendered="#{cc.attrs.renderizado}"
+					width="100%">
+					<h:panelGroup>
+						<div class="barraInferior">
+							<p:commandButton id="btnBuscarAutorizacion" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								value="Buscar" process="pngAutorizacionBuscar, @this"
+								update="pngAutorizacionBuscar, pnlComprobantesAgregados,:#{p:component('dlgListaAutorizaciones')},:#{p:component('dlgListaComprobantesDetalle')},
+								pnlInconsistencias,:frmRegistro:pnlAcordionRci:pnlDatosContribuyenteComprobante"
+								action="#{cc.attrs.manageBeanBusquedaAutorizacion.buscarAutorizacion()}"
+								style=" height : 27px;">
+							</p:commandButton>
+						</div>
+					</h:panelGroup>
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGroup>
+				<h:panelGrid rendered="#{cc.attrs.renderizado}"
+					width="100%">
+					<h:panelGroup
+						id="pnlBarraSuperiorAutorizacionesDetalle" layout="block">
+						<div class="barraSuperior">
+							<h:outputText
+								value="#{msg.rciComprobantesLista}" />
+						</div>
+					</h:panelGroup>
+			<h:panelGroup id="pnlComprobantesAgregados">
+				<h:panelGrid id="grdComprobantesAgregados"
+					rendered="#{cc.attrs.renderizado}" width="100%">
+					<p:dataTable id="tblComprobantesAgregados"
+						value="#{cc.attrs.listaComprobantes}"
+						var="comprobanteVo" rowClasses="impar,par"
+						tableStyleClass="reporte" paginator="true" rows="5" lazy="true"
+						paginatorPosition="bottom" emptyMessage="#{msg.mensajeTablaVacia}">
+						<p:columnGroup type="header">
+							<p:row>
+								<p:column headerText="#{msg.rciAutorizacion}" width="4%" />
+								<p:column headerText="#{msg.rciSerie}" width="5%" />
+								<p:column headerText="#{msg.rciTipoImpresion}" width="5%" />
+								<p:column headerText="#{msg.rciDocumento}" width="5%" />
+								<p:column headerText="#{msg.rciDescripcion}" width="38%" />
+								<p:column headerText="#{msg.rciUltimoComprobante}" width="3%" />
+								<p:column headerText="#{msg.rciFechaEmision}" width="17%" />
+								<p:column headerText="#{msg.rciEstado}" width="9%" />a
+								<p:column headerText="#{msg.rciCumpleRequisitos}" width="5%" />
+								<p:column headerText="Eliminar" width="5%" />
+							</p:row>
+						</p:columnGroup>						
+						<p:column styleClass="celdaWrap"  rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:outputText
+								value="#{comprobanteVo.autorizacion.numeroAutorizacion}" />
+						</p:column>
+						<p:column styleClass="celdaWrap" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:outputText
+								value="#{comprobanteVo.numeroEstablecimientoConFormato}-#{comprobanteVo.autorizacion.puntoEmision}" />
+						</p:column>
+						<p:column styleClass="celdaWrap" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:outputText value="#{comprobanteVo.tipoImpresionDescripcion}" />
+						</p:column>
+						<p:column styleClass="celdaWrap" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:outputText value="#{comprobanteVo.tipoDocumentoDescripcion}" />
+						</p:column>
+						<p:column styleClass="celdaWrapSinJustificar" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:panelGroup id="pnlPreimpreso"
+								rendered="#{comprobanteVo.autorizacion.tipoImpresion == 'P' }">
+								<h:outputText value="#{msg.rciImprentaRuc}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblImpRuc"
+									value="#{comprobanteVo.autorizacionPreimpreso.rucImprenta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciImprentaRazonSocial}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblImpRazonSocial"
+									value="#{comprobanteVo.autorizacionPreimpreso.razonSocialImprenta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciImprentaAutorizacion}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblImpAutorizacion"
+									value="#{comprobanteVo.autorizacionPreimpreso.autorizacionImprenta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciFechaCaducidadAutorizacion}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblFechaCaducidadP"
+									value="#{comprobanteVo.autorizacion.fechaCaducidad}" styleClass="asuntoValor">
+									<f:convertDateTime type="both" pattern="dd/MM/yyyy" />
+								</h:outputText>
+								<br />
+								<h:outputText value="#{msg.rciSecuenciaAutorizada}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblInicialSecuenciaA"
+									value="#{comprobanteVo.autorizacionPreimpreso.secuenciaAutorizadaDesde}" styleClass="asuntoValor" />
+								<h:outputText value=" #{msg.rciSeperadorRangos} " />
+								<h:outputText id="lblFinalSecuenciaA"
+									value="#{comprobanteVo.autorizacionPreimpreso.secuenciaAutorizadaHasta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciSecuenciaInformada}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblInicialSecuenciaI"
+									value="#{comprobanteVo.autorizacionPreimpreso.secuenciaInformadaDesde}" styleClass="asuntoValor" />
+								<h:outputText value="#{msg.rciSeperadorRangos}" />
+								<h:outputText id="lblFinalSecuenciaI"
+									value="#{comprobanteVo.autorizacionPreimpreso.secuenciaInformadaHasta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciConRequisitosFacturaComercial}: "
+									styleClass="asuntoPropiedad"
+									rendered="#{comprobanteVo.autorizacionPreimpreso.requisitosFacturaNegociable == '' }" />
+								<h:outputText id="lblFacturaComercial"
+									value="#{comprobanteVo.autorizacionPreimpreso.requisitosFacturaNegociable}"
+									rendered="#{comprobanteVo.autorizacionPreimpreso.requisitosFacturaNegociable == '' }" styleClass="asuntoValor" />
+							</h:panelGroup>
+
+							<h:panelGroup id="pnlAutoimpreso"
+								rendered="#{comprobanteVo.autorizacion.tipoImpresion == 'A' }">
+								<h:outputText value="#{msg.rciSecuenciaReportada}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblInicialSecuenciaR"
+									value="#{comprobanteVo.autorizacionAutoimpreso.secuenciaReportadaDesde}" styleClass="asuntoValor" />
+								<h:outputText value=" #{msg.rciSeperadorRangos} " />
+								<h:outputText id="lblFinalSecuenciaR"
+									value="#{comprobanteVo.autorizacionAutoimpreso.secuenciaReportadaHasta}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciFechaCaducidadAutorizacion}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblFechaCaducidadA"
+									value="#{comprobanteVo.autorizacion.fechaCaducidad}" styleClass="asuntoValor">
+									<f:convertDateTime type="both" pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</h:panelGroup>
+
+							<h:panelGroup id="pnlMaquinaRegistradora"
+								rendered="#{comprobanteVo.autorizacion.tipoImpresion == 'M' }">
+								<h:outputText value="#{msg.rciMarcaModelo}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblMarcaModelo"
+									value="#{comprobanteVo.autorizacionMaquinaRegistradora.marcaModelo}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciNumeroSerieFabricacion}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblNumeroSerieFabricacion"
+									value="#{comprobanteVo.autorizacionMaquinaRegistradora.numeroSerieFabrica}" styleClass="asuntoValor" />
+								<br />
+								<h:outputText value="#{msg.rciFechaCaducidadAutorizacion}: "
+									styleClass="asuntoPropiedad" />
+								<h:outputText id="lblFechaCaducidadM"
+									value="#{comprobanteVo.autorizacion.fechaCaducidad}" styleClass="asuntoValor">
+									<f:convertDateTime type="both" pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</h:panelGroup>
+						</p:column>
+						
+						<p:column styleClass="celdaWrap" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<p:inputText id="txtNumeroUltimoComprobante" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								value="#{comprobanteVo.autorizacion.comprobanteValidado.numeroComprobanteValidado}"
+								maxlength="10" size="10" styleClass="soloNumeros" required="#{cc.attrs.requerido}" 
+								requiredMessage="#{msgVal.comprobanteCampoRequerido}">
+								<p:ajax event="blur"
+									listener="#{cc.attrs.manageBeanBusquedaAutorizacion.validarMotivosRevisionComprobante(comprobanteVo)}"
+									update="pnlEstadoComprobante"
+									process="@this" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="celdaWrap" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion }">
+							<p:calendar id="fechaEmisionComprobante" showOn="button" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								showButtonPanel="true" navigator="true" locale="es"
+								pattern="#{msg.formatoSoloFecha}"
+								value="#{comprobanteVo.autorizacion.comprobanteValidado.fechaEmision}"
+								converterMessage="#{msg.rciFechaEmision}"
+								styleClass="mascaraFecha" size="10" required="#{cc.attrs.requerido}" 
+								requiredMessage="#{msgVal.comprobanteFechaEmisionRequerida}">
+								<f:convertDateTime for="fechaEmisionComprobante"
+									pattern="#{msg.formatoSoloFecha}" />
+								<p:ajax event="dateSelect"
+									listener="#{cc.attrs.manageBeanBusquedaAutorizacion.validarMotivosRevisionComprobante(comprobanteVo)}"
+									update="pnlEstadoComprobante"
+									process="txtNumeroUltimoComprobante,@this" />
+								<p:ajax event="change"
+									listener="#{cc.attrs.manageBeanBusquedaAutorizacion.validarMotivosRevisionComprobante(comprobanteVo)}"
+									update="pnlEstadoComprobante"
+									process="txtNumeroUltimoComprobante,@this" />
+							</p:calendar>
+						</p:column>
+						<p:column styleClass="celdaWrapSinJustificar" rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<h:panelGroup rendered="#{cc.attrs.estadoAutorizacion}">
+								<h:outputText value="#{msg.rciEstadoAutorizacion}: "
+										styleClass="asuntoPropiedad" />
+								<h:outputText id="lblEstadoAut"
+								value="#{comprobanteVo.autorizacion.estado.nombre}" styleClass="asuntoValor" />
+							</h:panelGroup>
+							<br />
+							<h:panelGroup id="pnlEstadoComprobante">
+								<h:panelGroup rendered="#{comprobanteVo.estadoDescripcion != null}">
+									<h:outputText value="#{msg.rciEstadoComprobante}: "
+									styleClass="asuntoPropiedad" />
+									<h:outputText value="#{comprobanteVo.estadoDescripcion}" styleClass="asuntoValor" />
+								</h:panelGroup>
+							</h:panelGroup>
+						</p:column>
+						<p:column rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<p:selectOneRadio id="rbtCumpleRequisitosComprobante" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								required="true" styleClass="sinBorde"
+								requiredMessage="#{msgVal.VW617} #{msgVal.VW620} #{msgVal.comprobanteAutorizacionNumero} 
+								#{comprobanteVo.autorizacion.numeroAutorizacion}
+								#{msgVal.comprobanteSerie}
+								#{comprobanteVo.numeroEstablecimientoConFormato}-#{comprobanteVo.autorizacion.puntoEmision} 
+								#{comprobanteVo.autorizacion.comprobanteValidado.numeroComprobanteValidado}"
+								value="#{comprobanteVo.autorizacion.comprobanteValidado.cumpleRequisitos}">
+								<f:selectItems
+									value="#{cc.attrs.manageBeanBusquedaAutorizacion.enumeracionSiNo}"
+									var="enum" itemValue="#{enum}" itemLabel="#{enum}">
+								</f:selectItems>
+								<p:ajax
+									update=":#{p:component('dlgRequisitos')},:#{p:component('tlbRequisitosIncumplidos')},:frmRequisitos"
+									event="click"
+									listener="#{cc.attrs.manageBeanBusquedaAutorizacion.seleccionarCumpleRequisitos(comprobanteVo)}">
+								</p:ajax>
+							</p:selectOneRadio>
+							<p:commandLink id="linkVerDetalle" styleClass="formatoLink"
+								rendered="#{comprobanteVo.autorizacion.comprobanteValidado.cumpleRequisitos == 'NO' and registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								update=":#{p:component('dlgRequisitos')},:#{p:component('tlbRequisitosIncumplidos')},:frmRequisitos"
+								event="click"
+								action="#{cc.attrs.manageBeanBusquedaAutorizacion.seleccionarCumpleRequisitos(comprobanteVo)}">
+								#{msg.rciVerDetalle}
+							</p:commandLink>
+						</p:column>
+						<p:column rendered="#{comprobanteVo.autorizacion.comprobanteValidado.tipoUsoComprobante==cc.attrs.tipoSeccion}">
+							<p:commandLink id="btnEliminarAutorizacion" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+								action="#{cc.attrs.manageBeanBusquedaAutorizacion.eliminarAutorizacion(comprobanteVo)}"
+								update="tblComprobantesAgregados,:frmRegistro:pnlAcordionRci:pnlDatosContribuyenteComprobante" immediate="true"
+								process="@this">
+								<h:graphicImage value="/resources/img/eventos/eliminar.gif" />
+							</p:commandLink>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:panelGroup>
+	<h:panelGroup id="pnlInconsistencias">
+	<h:panelGroup rendered="#{not empty cc.attrs.manageBeanBusquedaAutorizacion.rciVo.listaInconsistencias and cc.attrs.identificadorObjetoMercancia == 0}">
+		<h:panelGroup>
+				<div class="barraSuperior">
+					<h:outputText value="Lista Inconsistencias" />
+				</div>
+			</h:panelGroup>
+			<h:panelGroup>
+			<p:dataTable id="tblInconsistencias"
+						value="#{cc.attrs.manageBeanBusquedaAutorizacion.rciVo.listaInconsistencias}"
+						var="inconsistencia" rowClasses="impar,par"
+						tableStyleClass="reporte" paginator="true" rows="5" lazy="true"
+						paginatorPosition="bottom" emptyMessage="#{msg.mensajeTablaVacia}">
+						<p:columnGroup type="header">
+							<p:row>
+								<p:column headerText="#{cc.attrs.nombreDocumentoBusqueda}" width="25%"  />
+								<p:column headerText="#{msg.rciTipoInconsistencia}" width="20%" />
+								<p:column headerText="#{msg.rciDetalleInconsistencia}" width="50%" />
+								<p:column headerText="Eliminar" width="5%" />
+							</p:row>
+						</p:columnGroup>											
+					<p:column styleClass="celdaWrap"
+						rendered="#{inconsistencia.tipoUso==cc.attrs.tipoSeccion and  cc.attrs.identificadorObjetoMercancia == 0}">
+						<h:outputText value=" #{inconsistencia.documentoBusqueda}" />
+					</p:column>
+					<p:column styleClass="celdaWrap"
+						rendered="#{inconsistencia.tipoUso==cc.attrs.tipoSeccion and  cc.attrs.identificadorObjetoMercancia == 0}">
+						<h:outputText value=" #{inconsistencia.tipoInconsistencia.nombre}" />
+					</p:column>
+					<p:column styleClass="celdaWrap"
+						rendered="#{inconsistencia.tipoUso==cc.attrs.tipoSeccion and  cc.attrs.identificadorObjetoMercancia == 0}">
+						<h:outputText value="#{inconsistencia.detalleInconsistencia}" />
+					</p:column>
+					<p:column
+						rendered="#{inconsistencia.tipoUso==cc.attrs.tipoSeccion and  cc.attrs.identificadorObjetoMercancia == 0}">
+						<p:commandLink id="btnEliminarInconsistencia" disabled="#{registroContribuyentesInformadosController.variablesRciVo.esInformacionBloqueada}"
+							action="#{cc.attrs.manageBeanBusquedaAutorizacion.eliminarInconsistencia(inconsistencia)}"
+							update=":#{p:component('pnlGridContenedorTotalComprobantesAutorizados')}"
+							process="@this">
+							<h:graphicImage value="/resources/img/eventos/eliminar.gif" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+					</h:panelGroup>
+				</h:panelGroup>
+	</h:panelGroup>
+
+</composite:implementation>
+</html>

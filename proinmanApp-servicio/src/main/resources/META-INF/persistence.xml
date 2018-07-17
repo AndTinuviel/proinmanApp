@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="proinmanPU"  transaction-type="JTA" >
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/PostgresDS</jta-data-source>
+		
+		<class>proinman.gestion.solicitud.entity.Cliente</class>
+		<class>proinman.gestion.solicitud.entity.ClienteSecuencial</class>
+		<class>proinman.gestion.solicitud.entity.Cotizacion</class>
+		<class>proinman.gestion.solicitud.entity.CotizacionItem</class>
+		<class>proinman.gestion.solicitud.entity.HistoricoTarea</class>
+		<class>proinman.gestion.solicitud.entity.MotorActividad</class>
+		<class>proinman.gestion.solicitud.entity.MotorFlujo</class>
+		<class>proinman.gestion.solicitud.entity.MotorTarea</class>
+		<class>proinman.gestion.solicitud.entity.ReporteFotografia</class>
+		<class>proinman.gestion.solicitud.entity.ReporteTrabajo</class>
+		<class>proinman.gestion.solicitud.entity.SecuencialSolicitud</class>
+		<class>proinman.gestion.solicitud.entity.Solicitud</class>
+		<class>proinman.gestion.solicitud.entity.TrazabilidadSolicitud</class>
+		<class>proinman.gestion.solicitud.entity.UbicacionGeografica</class>
+		<class>proinman.gestion.solicitud.entity.Usuario</class>
+		<class>proinman.gestion.solicitud.entity.Rol</class>
+		<class>proinman.gestion.solicitud.entity.UsuarioRol</class>
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+		</properties>
+	</persistence-unit>
+</persistence>

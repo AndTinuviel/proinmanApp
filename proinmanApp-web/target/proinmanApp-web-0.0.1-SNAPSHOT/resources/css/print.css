@@ -1,0 +1,20 @@
+a{
+  color: #000;	
+}
+
+#cabecera, #toptabs, #breadcrumbs, #menuAplicacion, #topmodule, #tabs label{
+	display: none;	
+}
+
+#tabs .actual{
+	display:block;
+	margin: 0px;
+}
+ 
+#contenedorCentro{
+	margin: 0px;	
+}
+
+.reporte{
+	width: 100%;
+}

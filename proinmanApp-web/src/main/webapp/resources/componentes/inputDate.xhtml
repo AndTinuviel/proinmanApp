@@ -1,0 +1,35 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:composite="http://java.sun.com/jsf/composite"
+		xmlns:p="http://primefaces.org/ui" >
+		<composite:interface componentType="inputDate">
+			<composite:attribute name="value" type="java.util.Date"
+				shortDescription="The selected Date. Defaults to today." />
+			<composite:attribute name="maxyear" type="java.lang.Integer"
+				shortDescription="The maximum year. Defaults to current year." />
+			<composite:attribute name="minyear" type="java.lang.Integer"
+				shortDescription="The minimum year. Defaults to maxyear minus 100." />
+		</composite:interface>
+		<composite:implementation>
+
+				<p:selectOneMenu id="day" binding="#{cc.day}"
+					converter="javax.faces.Integer">
+					<f:selectItems value="#{cc.days}" />
+				</p:selectOneMenu>
+				<p:selectOneMenu id="month" binding="#{cc.month}"
+					converter="javax.faces.Integer">
+					<f:selectItems value="#{cc.months}" />
+					<f:ajax execute="day month"
+						listener="#{cc.updateDaysIfNecessary}" />
+				</p:selectOneMenu>
+				<p:selectOneMenu id="year" binding="#{cc.year}"
+					converter="javax.faces.Integer">
+					<f:selectItems value="#{cc.years}" />
+					<f:ajax execute="day year"
+						listener="#{cc.updateDaysIfNecessary}" />
+				</p:selectOneMenu>
+
+		</composite:implementation>
+</ui:component>

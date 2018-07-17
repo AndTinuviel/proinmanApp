@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="elementosDocumentReady">
+
+	</ui:define>
+	<ui:define name="body">
+		<p:outputPanel id="tituloPaginaActual" layout="block">
+			<h:outputText id="titulo" value="Administración de Usuarios" />
+		</p:outputPanel>
+		<h:panelGroup id="contenido" layout="block">
+
+			<div class="barraSuperior">&#160;</div>
+			<h:form id="frmRegistro">
+				<p:growl id="msgs" showDetail="true" />
+
+				<p:dataTable id="dtbUsuarios" var="usuario"
+					value="#{usuarioAdministracionController.listaUsuarios}">
+					<p:column headerText="Nombre">
+						<h:outputText value="#{usuario.nombre}" />
+					</p:column>
+					<p:column headerText="Apellido">
+						<h:outputText value="#{usuario.apellido}" />
+					</p:column>
+					<p:column headerText="Identificacion">
+						<h:outputText value="#{usuario.cedula}" />
+					</p:column>
+					<p:column headerText="Username">
+						<h:outputText value="#{usuario.username}" />
+					</p:column>
+					<p:column headerText="Editar" style="text-align: center">
+						<h:commandLink id="btnEditar">
+							<h:graphicImage value="/resources/img/eventos/modificar.gif" />
+							<p:ajax immediate="true" event="click"
+								listener="#{usuarioAdministracionController.actualizarUsuario(usuario)}"
+								update=":#{p:component('dtbUsuarios')}" />
+						</h:commandLink>
+					</p:column>
+					<p:column headerText="Eliminar" style="text-align: center">
+						<h:commandLink id="btnEliminar">
+							<h:graphicImage value="/resources/img/eventos/eliminar.gif" />
+							<p:ajax immediate="true" event="click"
+								listener="#{usuarioAdministracionController.eliminarUsuario(usuario)}"
+								update=":#{p:component('dtbUsuarios')}" />
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+
+
+			<div class="barraInferior">&#160;</div>
+
+		</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

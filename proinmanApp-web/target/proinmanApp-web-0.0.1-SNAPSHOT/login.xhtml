@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+	<h:head>
+		<title><ui:insert name="pageTitle">Proinman Services</ui:insert>
+		</title>
+		<h:outputStylesheet id="sriFedatariosStyle" library="css"
+			name="sriFedatarios.css"></h:outputStylesheet>
+		<h:outputScript id="fedatariosScript" library="js"
+			name="sriFedatarios.js"></h:outputScript>
+	</h:head>
+	<h:body>
+		<p:growl id="mensajes" showDetail="true" life="2000" />
+		<table id="anchoDoc" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="general">
+					<!-- inicio header --> <ui:insert name="pageHeader">
+						<h:panelGroup id="cabecera" layout="block">
+							<h:panelGroup id="logoCabecera" layout="block" />
+							<h:panelGroup id="finCabecera" layout="block">
+								<h:outputText id="usuarioOutputText" value=" "
+									style="display:block" />
+
+							</h:panelGroup>
+							<h:panelGroup id="nombreSistema" layout="block">
+								<h:outputText value="#{msg.nombreProyecto}" />
+							</h:panelGroup>
+						</h:panelGroup>
+					</ui:insert> <!-- fin header --> <!-- inicio body --> <h:panelGroup
+						id="contenedorPrincipal" layout="block">
+						<div class="tabs" id="toptabs"></div>
+						<div id="breadcrumbs">
+							<h:outputText value="Ingreso al Sistema" />
+						</div>
+
+						<!-- inicio contenido -->
+						<div id="panelLogin" align="center">
+							<h:panelGroup id="contenedorCentro" layout="block">
+								<!-- TITULO -->
+								<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
+									<h:outputText value="#{msg.separadorTitulos}#{msg.titulologin}" />
+								</h:panelGroup>
+							   <h:form>
+							      <p:panel header="Login" style="width:300px">
+							        <h:panelGrid columns="2" cellpadding="5">
+							          <h:outputLabel for="username" value="Usuario:" />
+							          <p:inputText value="#{loginBean.nombre}" id="username"
+							             required="true" label="username" />
+							          <h:outputLabel for="password" value="Clave:" />
+							        <p:password value="#{loginBean.clave}" id="password" required="true"
+							           label="password" />
+							        <f:facet name="footer">
+							          <p:commandButton id="loginButton" value="Login"
+							             actionListener="#{loginBean.login}" update=":mensajes"
+							             oncomplete="manejarLogin(xhr, status, args)" />
+							        </f:facet>
+							      </h:panelGrid>
+							    </p:panel>
+							  </h:form>
+							</h:panelGroup>
+						</div>
+						<!-- fin contenido -->
+
+					</h:panelGroup> <!-- fin body --> <!-- inicio footer --> <h:panelGroup id="pie"
+						layout="block">
+						<h:panelGroup id="copyright">
+							<h:outputText id="copyrightText"
+								value="&#160;&#174; Copyright Proinman Services" />
+						</h:panelGroup>
+						<h:panelGroup id="logoInferior" />
+					</h:panelGroup> <!-- fin footer -->
+				</td>
+			</tr>
+		</table>
+
+	</h:body>
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function manejarLogin(xhr, status, args) {
+	    if (!args.validationFailed && args.estaLogeado) {
+	      setTimeout(function() {
+	        window.location = args.view;
+	      }, 500);
+	    }
+	  }
+	//]]>
+	</script>
+</f:view>
+</html>

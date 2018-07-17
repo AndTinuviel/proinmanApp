@@ -1,0 +1,1646 @@
+/* MENSAJES */
+.info,.success,.warning,.error,.fatal,.validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 75px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('informacion.png.jsf?ln=img');
+}
+
+.success {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image: url('exito.png.jsf?ln=img');
+}
+
+.warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('advertencia.gif.jsf?ln=img');
+}
+
+.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('error.png.jsf?ln=img');
+}
+
+.fatal {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('fatal.png.jsf?ln=img');
+}
+
+/* CLASES PERSONALIZADAS */
+
+/* Notificaciones */
+.msgPanel {
+	
+}
+
+.msgPanelFloat {
+	position: fixed;
+	top: 50px;
+	right: 5px;
+	min-width: 113px;
+	max-width: 313px;
+	z-index: 2000;
+	cursor: move;
+}
+
+/*Estilo para campos obligatorios dibuja la etiqueta con color rojo y negrilla*/
+.campoObligatorio {
+	color: #FF0000;
+	font-weight: bold;
+}
+
+/*Estilo para campos con negrilla*/
+.campoNegrilla {
+	color: #000000;
+	font-weight: bold;
+}
+
+/*Estilo para los titulos de las propiedades en los asuntos de las tablas*/
+.asuntoPropiedad {
+	color: #000066;
+	font-weight: 900;
+}
+/*Estilo para los valores de las propiedades en los asuntos de las tablas*/
+.asuntoValor {
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+/*Arbol en Resumen de Actividades*/
+.ui-tree {
+	width: 100% !important;
+}
+
+.ui-tree .image-inbox-full {
+	background-image: url('inbox_full.png.jsf?ln=img');
+	border-radius: 0 !important;
+}
+
+.ui-tree .image-inbox-empty {
+	background-image: url('inbox_empty.png.jsf?ln=img');
+	border-radius: 0 !important;
+}
+
+/* Picklist de requisitos*/
+.pickListAncho .ui-picklist .ui-picklist-list {
+	width: 400px !important;
+}
+
+.pickListAncho .ui-picklist .ui-picklist-filter {
+	width: 95% !important;
+}
+
+.pickListAncho .ui-picklist .ui-picklist-list li {
+	border: 1px solid #999;
+}
+
+.tablaFedatarios .ui-datatable-empty-message {
+	color: red;
+}
+
+.mayuscula {
+	text-transform: uppercase;
+}
+
+.arbolFedatarios .ui-widget-content {
+	border: none;
+}
+
+.formularioNegrita {
+	color: black;
+	text-align: left;
+	width: 5em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+	font-weight: bold;
+}
+
+.formularioDatos {
+	text-align: left;
+	width: 14em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.tablaSinBordes {
+	border: none !important;
+}
+
+.tablaSinBordes td {
+	border: none !important;
+}
+
+.alinearCentro {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.multiLinea {
+	white-space: normal;
+	text-align: justify;
+}
+
+.checkboxRequisitoTabla {
+	text-align: center !important;
+	width: 60px !important;
+	vertical-align: middle !important;
+}
+
+.checkboxRequisitoTabla td {
+	border: 1px solid #A8A8A8 !important;
+}
+
+.ui-datatable.borderless .ui-datatable-data tr,.ui-datatable.borderless .ui-datatable-data-empty tr,.ui-datatable.borderless .ui-datatable-data td,.ui-datatable.borderless .ui-datatable-data-empty td
+	{
+	border-color: white;
+	white-space: normal;
+	text-align: justify;
+}
+
+.negritaGrid {
+	font-weight: bold;
+	width: 35px !important;
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+.noNegritaGrid {
+	font-weight: normal;
+}
+
+.comprobantesRci {
+	max-height: 400px !important;
+	overflow: auto;
+}
+
+/*Clase controles prime deshabilitados mas oscuros*/
+.ui-state-disabled.deshabilitadoVisible {
+	opacity: .60 !important;
+	filter: Alpha(Opacity = 60);
+}
+
+.msgPanelCerrar {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.camposExcel {
+	font-size: 9px;
+	font-weight: bold;
+	background-color: #D2EBFF;
+	color: #306995;
+}
+
+.boton .ui-datatable-header.ui-widget-header.ui-corner-top {
+	text-align: left !important;
+}
+
+.modalConfirmationPrime {
+	background-color: #FFF;
+	box-shadow: none !important;
+	border: 1px solid #000 !important;
+}
+
+.modalConfirmationPrime .ui-dialog-titlebar {
+	background-color: #003366 !important;
+	background-image: none !important;
+	border-width: 0px !important;
+	padding: 8px 8px 2px !important;
+}
+
+.modalConfirmationPrime .ui-dialog-title {
+	font-size: medium !important;
+	color: #FFF !important;
+	font-weight: bold !important;
+	padding: 0px 2px 2px 10px;
+	margin: 0px !important;
+}
+
+.modalConfirmationPrime .ui-widget-header {
+	text-shadow: none !important;
+}
+
+.modalConfirmationPrime .ui-dialog-content {
+	background: none repeat scroll 0 0 transparent;
+	border-left: 6px solid #003366 !important;
+	border-top: 6px solid #003366 !important;
+	border-right: 6px solid #003366 !important;
+	padding: 10px 10px 0px 10px !important;
+}
+
+.modalConfirmationPrime .ui-dialog-buttonpane {
+	background: none repeat scroll 0 0 transparent;
+	border-left: 6px solid #003366 !important;
+	border-bottom: 6px solid #003366 !important;
+	border-right: 6px solid #003366 !important;
+	border-top: 1px solid #CCCCCC !important;
+	/*padding: 10px 10px 0px 10px !important;*/
+	padding: 5px 0px 5px 0px !important;
+	margin: 0px !important;
+	text-align: center !important;
+}
+
+.modalConfirmationPrime .ui-icon-closethick {
+	
+}
+
+.modalConfirmationPrime .ui-dialog-content .ui-icon {
+	height: 32px;
+	width: 32px;
+}
+
+.modalConfirmationPrime .ui-dialog-content .ui-icon-alert {
+	background-image: url('advertencia.gif.jsf?ln=img');
+	background-position: 0 !important;
+}
+
+.error-mensaje,.info-mensaje,.fatal-mensaje,.warn-mensaje {
+	display: inline-block;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+.formatoLink {
+	color: blue !important;
+	text-decoration: underline;
+}
+
+.formatoLinkRojo {
+	color: red !important;
+	text-decoration: underline;
+}
+
+#msgGlobales {
+	white-space: pre-line;
+}
+
+.sinBorde {
+	border: 0 solid white !important;
+	padding: 0px !important;
+}
+
+.sinBorde td {
+	border: inherit !important;
+	padding: 0px !important;
+}
+
+.celdaWrap {
+	white-space: normal !important;
+	text-align: justify;
+}
+
+.celdaWrapSinJustificar {
+	white-space: normal !important;
+	text-align: left;
+}
+
+.comboRci {
+	min-width: 100px !important;
+	/*padding-right: 28px;*/
+}
+
+/* POPUP INFORMATION */
+.modalInformationPrime {
+	background-color: #FFF;
+	box-shadow: none !important;
+	border: 1px solid #000 !important;
+}
+
+.modalInformationPrime .ui-dialog-titlebar {
+	background-color: #003366 !important;
+	background-image: none !important;
+	border-width: 0px !important;
+	padding: 8px 8px 2px !important;
+}
+
+.modalInformationPrime .ui-dialog-title {
+	font-size: medium !important;
+	color: #FFF !important;
+	font-weight: bold !important;
+	padding: 0px 2px 2px 10px;
+	margin: 0px !important;
+}
+
+.modalInformationPrime .ui-widget-header {
+	text-shadow: none !important;
+}
+
+.modalInformationPrime .ui-dialog-content {
+	background: none repeat scroll 0 0 transparent;
+	border-left: 6px solid #003366 !important;
+	border-top: 6px solid #003366 !important;
+	border-right: 6px solid #003366 !important;
+	padding: 10px 10px 0px 10px !important;
+}
+
+.modalInformationPrime .ui-dialog-buttonpane {
+	background: none repeat scroll 0 0 transparent;
+	border-left: 6px solid #003366 !important;
+	border-bottom: 6px solid #003366 !important;
+	border-right: 6px solid #003366 !important;
+	border-top: 1px solid #CCCCCC !important;
+	/*padding: 10px 10px 0px 10px !important;*/
+	padding: 5px 0px 5px 0px !important;
+	margin: 0px !important;
+	text-align: center !important;
+}
+
+.modalInformationPrime .ui-icon-closethick {
+	background-image: url('informacion.png.jsf?ln=img');
+}
+
+.modalInformationPrime .ui-dialog-content .ui-icon {
+	height: 32px;
+	width: 32px;
+}
+
+.modalInformationPrime .ui-dialog-content .ui-icon-alert {
+	background-image: url('informacion.png.jsf?ln=img');
+	background-position: 0 !important;
+}
+
+.formularioAnchoFijo {
+	text-align: left;
+	width: 16em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.formularioAnchoFijoGrande {
+	text-align: left;
+	width: 30em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.formularioAnchoFijoMuyGrande {
+	text-align: left;
+	width: 60em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.cellCarousel {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.formularioAnchoFijoTabla {
+	text-align: left;
+	width: 40em;
+	vertical-align: middle;
+	font-size: 5pt;
+	padding: 1px;
+}
+
+.prueba {
+	max-height: 100px;
+}
+
+.columnasCheckBox tr {
+   float: left;
+    width: 33%;
+} 
+
+#WindowLoad
+{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:3200;
+    filter:alpha(opacity=55);
+   -moz-opacity:55;
+    opacity:0.55;
+    background:#999;
+}
+
+#wait
+{
+    position: absolute;
+    width: 350;
+    heigth: 100;
+    margin-left: 300;
+    margin-top: 150;
+    background-color: #FFF000;
+    text-align: center;
+    border: solid 1px #FFFFFF;
+}
+
+.template-upload .error{
+	border: 1px solid;
+	margin: 5px 5px;
+	padding:5px 10px 10px 45px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('error.png.jsf?ln=img');
+	text-align: left;
+}
+
+.template-upload .info{
+	border: 1px solid;
+	margin: 5px 5px;
+	padding: 5px 10px 10px 45px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('informacion.png.jsf?ln=img');
+	text-align: left;
+}
+
+.template-upload .warning{
+	border: 1px solid;
+	margin: 5px 5px;
+	padding: 5px 10px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('advertencia.gif.jsf?ln=img');
+	text-align: left;
+}
+
+.template-upload td{
+	vertical-align: middle;
+	width: 20%;
+}
+
+.fileupload-content .files{
+	width: 100%;
+}
+
+.ui-fileupload .error{
+	width: 100%;
+}
+
+/********************** TABLAS.CSS ************************/
+table.reporte {
+	border-style: none;
+	width: 100%;
+	float: left;
+}
+
+table.reporte tr th{
+	background: #bbb;
+	font-size: 8pt;
+	text-align: center;
+}
+
+table.reporte tr.impar{
+	background: #ddd;
+} 
+table.reporte tr.par{
+	background: #efefef;
+}
+table.reporte td{
+	font-size: 8pt;
+}
+
+
+/*********************** ALERTAS.CSS **************************/
+.errormessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.errormessage .icono{ 
+	float: left;
+	background-image: url('errorGrande.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/errorGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+ 
+.errormessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}	
+
+.warningmessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #c60;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.warningmessage .icono{
+	float: left;
+	background-image: url('advertenciaGrande.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/advertenciaGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.warningmessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}	
+
+.donemessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #090;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.donemessage .icono{
+	float: left;
+	background-image: url('exitoGrande.gif.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/img/exitoGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.donemessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}
+
+.infomessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #069;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.infomessage .icono{
+	float: left;
+	background-image: url('infoGrande.gif.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/img/infoGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.infomessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}
+
+.campoObligatorio{
+	color:#FF0000;
+	font-weight: bold;
+}
+
+.campoSeleccionado{
+	color:#191970;
+	font-weight: bold;
+}
+
+
+/************************* FORMULARIOS.CSS *************************/
+.formulario th {
+	color: black; 
+	background-color: #ddd;
+	text-align: right;
+	width: 20%;
+	vertical-align: top;
+	font-size: 8pt;
+}
+
+.formulario td {
+	vertical-align: top;
+	font-size: 8pt; 
+}
+
+
+/*************************** NOTIFICACIONES.CSS *****************************/
+.centered {
+	text-align: center;
+}
+
+.righted {
+	text-align: right;
+}
+
+.topped {
+	vertical-align: top;
+}
+
+.rich-calendar-exterior {
+	background-color: #EEEEEE;
+}
+ 
+.dr-tbpnl-tb-act {
+	border-style: none;
+	background-color: #ddd;
+	color: #555;
+}
+
+.dr-tbpnl-tb-inact {
+	border-style: none;
+	background-color: #999;
+	color: #fff;
+}
+
+.dr-tbpnl-tb-dsbl {
+	border-style: none;
+	background-color: #eee;
+	color: #ddd;
+}
+
+.dr-pnl-h {
+	border-style: none;
+}
+
+.input-uppercase {
+	text-transform: uppercase;
+}
+
+.tree-selected-node {
+	background-color: #CCCCCC;
+	border: 1px solid #000000;
+	font-weight: bold;
+}
+
+.tree-highlighted-node {
+	background-color: #EEEEEE;
+}
+
+.grid-subtitle-text {
+	font-weight: bold;
+	display: block;
+	width: 100%;
+	background-color: #CCCCCC;
+	padding: 3px
+}
+
+.required-field {
+	border: 1px solid red;
+}
+
+.formulario-label {
+	color: black;
+	background-color: #ddd;
+	text-align: right !important;
+	width: 14em;
+	vertical-align: top;
+	font-size: 8pt;
+	padding: 3px;
+	font-weight: bold;
+}
+
+.rich-calendar-time-layout-container {
+	background-color: white;
+}
+
+.boton-activo {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#titulo {
+	margin-right: 5px;
+}
+
+table.reporte {
+	margin-left: 1px;
+}
+
+.rich-tabpanel {
+	float: right;
+}
+
+.dr-tbpnl-tbcell-act,.dr-tbpnl-tbbrdr,.dr-tbpnl-tbtopbrdr {
+	border-style: none;
+}
+
+.dr-tbpnl-tb {
+	background-image: url('esquinaRedondaIzqSuperior.gif.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/esquinaRedondaIzqSuperior.gif');*/
+	background-position: left top;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	padding: 3px 9px 3px 9px;
+}
+
+.dr-bottom-line {
+	border-style: none;
+}
+
+.dr-tbpnl-cntnt {
+	border: 1px solid #999;
+}
+
+.panel-3D {
+	border-right: 1px solid #666666;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #EEEEEE;
+	border-top: 1px solid #EEEEEE;
+	padding: 5px;
+	background-color: #CCCCCC;
+}
+
+.messages-hidden {
+	display: none;
+}
+
+.messages-icon {
+	padding: 5px;
+	vertical-align: top;
+}
+
+.messages-text {
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-right: 10px;
+	min-height: 50px;
+	vertical-align: top;
+}
+
+.rich-messages-marker {
+	margin: 5px;
+}
+
+.rich-mpnl-panel {
+	border-top: #999 1px solid;
+	padding: 0px;
+	margin: 0px;
+}
+
+.rich-mpnl-body {
+	padding: 0px;
+	margin: 0px;
+}
+
+.rich-mpnl-header {
+	background-image:  url('Proinman1.png.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/logoPop.gif');*/
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #fff;
+	background-color: #036;
+	border-top: #369 1px solid;
+	height: 28px;
+	padding-left: 55px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.rich-mpnl-shadow {
+	border-style: none;
+}
+
+.rich-mpnl-contenido {
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.rich-mpnl-titulo-pagina-actual-cntr {
+	font-size: 13pt;
+	font-weight: bold;
+	margin-top: 0.3em;
+	margin-bottom: 0.5em;
+	margin-left: 10px;;
+}
+
+.rich-mpnl-titulo-pagina-actual-txt {
+	color: #777;
+}
+
+.rich-mpnl-pie {
+	border-bottom: 6px solid #036;
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+.dr-mpnl-panel {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	background-color: #EEEEEE;
+}
+
+.rich-calendar-time-layout {
+	background-color: #FFFFFF;
+}
+
+.rich-calendar-select {
+	background-color: #FFA905;
+}
+
+
+/*Formularios*/
+.formulario th {
+	color: black; 
+	background-color: #ddd;
+	text-align: right;
+	width: 20%;
+	vertical-align: top;
+	font-size: 8pt;
+}
+
+.formulario td {
+	vertical-align: top;
+	font-size: 8pt;
+}
+
+/*Tablas*/
+table.reporte {
+	border-style: none;
+	width: 100%;
+	float: left;
+}
+
+table.reporte tr th{
+	background: #9EA5B5;
+	font-size: 8pt;
+	text-align: center;
+	
+}
+
+table.reporte tr.impar{
+	background: #ddd;
+}
+table.reporte tr.par{
+	background: #efefef;
+}
+table.reporte td{
+	font-size: 8pt;
+}
+/*Alertas*/
+.errormessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.errormessage .icono{
+	float: left;
+	background-image: url('errorGrande.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/errorGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.errormessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}	
+
+.warningmessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #c60;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.warningmessage .icono{
+	float: left;
+	background-image: url('advertenciaGrande.gif.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/advertenciaGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.warningmessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}	
+
+.donemessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #090;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.donemessage .icono{
+	float: left;
+	background-image: url('exitoGrande.gif.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/exitoGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.donemessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}
+
+.infomessage {
+	border-top: #900 5px solid;
+	border-left: #900 1px solid;
+	border-color: #069;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.infomessage .icono{
+	float: left;
+	background-image: url('infoGrande.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/imagenes/infoGrande.gif');*/
+	background-repeat: no-repeat;
+	height: 40px;
+	width: 32px;
+	margin: 5px;
+}
+
+.infomessage .mensaje{
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-right: 10px;
+	min-height: 50px;
+}
+
+/*Estilos para mensajes de alerta e informativos*/
+
+.alerta{
+	color: #FA5858;
+	font-size: 8.5pt;
+	font-weight: bold;
+	}
+	
+.informativo{
+	color: black;
+	font-size: 8.5pt;
+	font-weight: bold;
+	}	
+	
+.activa{
+	color: #04B404;
+	font-size: 8.5pt;
+	font-weight: bold;
+	}
+	
+/*FieldSet*/
+
+fieldset {
+	border: 1px solid #C6BBBA;
+	padding: 10px 10px 10px 10px;
+
+}
+
+legend {
+	font-size: 11px;
+	font-weight: bold;
+	color: #486A83;	
+}
+
+
+/***************************** THEME.CSS ***************************/
+/* Distributed as part of The Coolest DHTML Calendar
+   Author: Mihai Bazon, www.bazon.net/mishoo
+   Copyright Dynarch.com 2005, www.dynarch.com
+*/
+
+/* The main calendar widget.  DIV containing a table. */
+
+div.calendar { position: relative; }
+
+.calendar, .calendar table {
+  border: 1px solid #bdb2bf;
+  font-size: 12px;
+  color: #000;
+  cursor: default;
+  background-color:#F9F9F9;
+  font-family: "trebuchet ms",verdana,tahoma,sans-serif;
+}
+
+.calendar {
+  border-color: #797979;
+  font-size: 12px;
+}
+
+/* Header part -- contains navigation buttons and day names. */
+
+.calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
+  text-align: center;    /* They are the navigation buttons */
+  padding: 2px;          /* Make the buttons seem like they're pressing */
+  background: #000066;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.calendar .nav {
+  font-family: verdana,tahoma,sans-serif;
+  font-size: 12px;
+}
+
+.calendar .nav div {
+  background: transparent url("") no-repeat 100% 100%;
+  font-size: 12px;
+}
+
+.calendar thead tr { background-color:#C8C8C8; color: #000;  font-size: 10px }
+
+.calendar thead .title { /* This holds the current "month, year" */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 1px;
+  border: 1px solid #000;
+  background-color:#DDDDDD; color: #000;
+  text-align: center;
+  
+}
+
+.calendar thead .headrow {font-size: 12px; /* Row <TR> containing navigation buttons */
+}
+
+.calendar thead .daynames {font-size: 12px;/* Row <TR> containing the day names */
+}
+
+.calendar thead .name { /* Cells <TD> containing the day names */
+  border-bottom: 1px solid ButtonShadow;
+  padding: 2px;
+  text-align: center;
+  background-color:#DDDDDD;
+  color: ButtonText;
+  font-size: 12px;
+}
+
+.calendar thead .weekend { /* How a weekend day name shows in header */
+  color: #f00;
+  font-size: 12px;
+}
+
+.calendar thead .hilite { /* How do the buttons in header appear when hover */
+  border: 2px solid;
+  padding: 0px;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+  font-size: 12px;
+}
+
+.calendar thead .active { /* Active (pressed) buttons in header */
+  border-width: 1px;
+  padding: 2px 0px 0px 2px;
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+  font-size: 12px;
+}
+
+/* The body part -- contains all the days in month. */
+
+.calendar tbody .day { /* Cells <TD> containing month days dates */
+  width: 2em;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+  font-size: 12px;
+}
+.calendar tbody .day.othermonth {
+  font-size: 12px;
+  color: #aaa;
+}
+.calendar tbody .day.othermonth.oweekend {
+  color: #faa;
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid ButtonShadow;
+  background: #DDDDDD;
+  color: ButtonText;
+  font-size: 12px;
+}
+
+.calendar tbody .rowhilite td {
+  background: Highlight;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.calendar tbody td.hilite { /* Hovered cells <TD> */
+  padding: 1px 3px 1px 1px;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+  font-size: 12px;
+}
+
+.calendar tbody td.active { /* Active (pressed) cells <TD> */
+  padding: 2px 2px 0px 2px;
+  border: 1px solid;
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+  font-size: 12px;
+}
+
+.calendar tbody td.selected { /* Cell showing selected date */
+  font-weight: bold;
+  border: 1px solid;
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+  padding: 2px 2px 0px 2px;
+  background: #DDDDDD;
+  color: ButtonText;
+  font-size: 12px;
+}
+
+.calendar tbody td.weekend { /* Cells showing weekend days */
+  color: #f00;
+  font-size: 12px;
+}
+
+.calendar tbody td.today { /* Cell showing today date */
+  font-weight: bold;
+  color: #00f;
+  font-size: 12px;
+}
+
+.calendar tbody td.disabled { color: GrayText;font-size: 10px;}
+
+.calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
+  visibility: hidden;
+}
+
+.calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
+  display: none;
+}
+
+/* The footer part -- status bar and "Close" button */
+
+.calendar tfoot .footrow { /* The <TR> in footer (only one right now) */
+}
+
+.calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
+  background: #DDDDDD;
+  padding: 1px;
+  border: 1px solid;
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+  color: ButtonText;
+  text-align: center;
+  font-size: 12px;
+}
+
+.calendar tfoot .hilite { /* Hover style for buttons in footer */
+  border-top: 1px solid #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+  padding: 1px;
+  background: #e4e0d8;
+  font-size: 12px;
+}
+
+.calendar tfoot .active { /* Active (pressed) style for buttons in footer */
+  padding: 2px 0px 0px 2px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #000;
+  font-size: 12px;
+}
+
+/* Combo boxes (menus that display months/years for direct selection) */
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  width: 4em;
+  top: 0px;
+  left: 0px;
+  cursor: default;
+  border: 1px solid;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+  background: Menu;
+  color: MenuText;
+  font-size: 90%;
+  padding: 1px;
+  z-index: 100;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+  font-size: 12px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar .combo .active {
+  padding: 0px;
+  border: 1px solid #000;
+}
+
+.calendar .combo .hilite {
+  background: Highlight;
+  color: #FFFFFF;
+}
+
+.calendar td.time {
+  border-top: 1px solid ButtonShadow;
+  padding: 1px 0px;
+  text-align: center;
+  background-color: #DDDDDD;
+  font-size: 12px;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 3px 0px 4px;
+  border: 1px solid #889;
+  font-weight: bold;
+  background-color: #FFFFFF;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  border-color: #000;
+  background-color: #316AC5;
+  color: #FFFFFF;
+}
+
+.calendar td.time span.active {
+  border-color: #f00;
+  background-color: #000;
+  color: #0f0;
+}
+
+
+/************************* SRI.CSS **************************/
+body, td.general {
+	background-color: #fff;
+	color: #000;
+	margin: 0px;
+	font-family: Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	font-size: 8.5pt;
+	padding: 0px;
+}
+
+/* tabla que define el ancho de la pag.*/
+#anchoDoc { 
+	width:100%;
+	border:none; 
+	padding: 0px;
+	margin: 0px;
+}
+
+#anchoMinimo{
+	border:none;
+	width:630px;
+	height:1px;
+}
+
+a {
+   text-decoration: none;	
+}
+
+#cabecera {
+	color: #fff; 
+	background-color: #e3b90f;
+	border-top: #369 1px solid;
+	height: 130px;
+	width: 100%;
+	
+}
+
+#cabecera #logoCabecera{
+	float: left;
+	background-image: url('Proinman1.png.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/logo.gif');*/
+	background-repeat: no-repeat;
+	background-position: left top;
+	width: 520px;
+	height: 110px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#cabecera #nombreSistema{
+	margin-top: 5px;
+	margin-left: 120px;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+#cabecera #finCabecera{
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+	text-align: right;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+#cabecera a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#cabecera a:hover {
+	color: #FFFFCC;
+}
+
+/*----------------- Pestañas ----------------*/
+
+.tabs {
+	border-bottom: #ddd 6px solid;
+	margin-top: 0.67em; 
+	padding-left: 8px;  
+	margin-left: 2px; 
+	margin-right: 2px;
+}
+
+.tabs label {
+	background-image: url('esquinaRedondaIzqSuperior.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/esquinaRedondaIzqSuperior.gif');*/
+	background-repeat: no-repeat;
+	border-right: #fff 1px solid; 
+	border-left: #fff 1px solid;
+	border-bottom: #fff 1px solid; 
+	background-color: #999;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px 9px 3px 9px;
+}
+
+.tabs .actual {
+	border-right: #333 1px solid; 
+	background-color: #ddd;
+	color: #555; 
+}
+
+.tabs label a:link {
+	color: #fff;
+}
+
+.tabs label a:visited {
+	color: #fff;
+}
+
+.tabs label a:hover {
+	color: red;
+}
+
+.tabs label.actual a:link {
+	color: #555;
+}
+
+.tabs label.actual a:visited {
+	color: #555;
+}
+
+.tabs label.actual a:hover {
+	color: red;
+}
+
+
+
+#toptabs {
+	color: #fff; 
+	background-color: #666;
+	margin: 0px; 
+	padding-top: 0.67em;
+}
+
+#toptabs label {
+	background-image: url('esquinaTabulador.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/esquinaTabulador.gif');*/
+	border-right: #333 1px solid; 
+	border-left: #036 1px solid; 
+	border-bottom: #666 1px solid;
+}
+
+#toptabs .actual {
+	background-image: url('esquinaTabulador.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/esquinaTabulador.gif');*/
+	border-left: #036 1px solid;
+}
+
+/*---------- Migas de Pan ---------------*/
+#breadcrumbs {
+	border-top: #fff 1px solid; 
+	background-color: #ccc;
+	padding: 2px 8px 2px 8px;
+	height:  12px;
+	font-size: 8pt;
+}
+
+/*--------- Seccion central --------*/
+.contenedorPrincipal{
+	/*border-top: #999 1px solid;*/
+}
+
+/*--------- Contenedor del Menu y Aplicacion -------*/
+#contenedorBase{
+	/*margin-left: 170px;*/
+	display: table;
+	width: 100%;
+}
+
+/*-------- Menu de la Aplicacion --------*/
+
+#menuAplicacion{
+	/*float:left;*/
+	width: 160px;
+	padding-top: 5px;
+	/*display:inline;*/	
+	display: table-cell
+}
+
+#menuAplicacion A:visited {
+	color: blue;
+}
+
+.toolgroup {
+	background: #efefef;
+	font-size: 7.5pt;
+}
+.toolgroup .label {
+	border-right: #666 1px solid; 
+	background: #ddd; 
+	color: #555; 
+	border-bottom: #666 1px solid;
+	padding: 4px 4px 4px 4px;
+}
+.toolgroup .body {
+	border-right: #aaa 1px solid; 
+	border-bottom: #aaa 1px solid;
+	padding: 4px 4px 4px 0px;
+}
+
+.toolgroup .body div {
+	padding-left: 1em; 
+	padding-bottom: 0.3em;
+}
+.toolgroup .body div div {
+	margin-top: 0.3em; 
+	padding-bottom: 0px;
+}
+
+#projecttools {
+	padding: 0px 6px 6px 6px;
+	margin: -4px 0px 6px -4px; 
+	border-right: #666 1px solid; 
+	border-bottom: #666 1px solid; 
+	background-color: #ddd;
+}
+
+#projecttools .label {
+	border-style: none;
+	background-color: #ddd;
+	padding-left: 2px;
+}
+#projecttools .body {
+	border-top: #999 1px solid;
+	border-right-style: none; 
+	border-bottom-style: none;
+	background-color: #fff; 
+	padding-top: 0.33em;
+}
+
+/*------------------ Contenido Central ---------------*/
+#contenedorCentro{
+	/*margin-left: 170px;*/
+	display: table-cell;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+#topmodule {
+	border-top: #fff 1px solid; 
+	border-bottom: #aaa 1px solid; 
+	background-color: #ddd;
+	margin-left: -10px;
+	padding-left: 10px;
+}
+
+.tituloPrincipalPagina{
+		font-size: 13pt;
+		font-weight: bold;
+		margin-top: 0.3em; 
+		margin-bottom: 0.5em;
+		color:#000;
+}
+
+.tituloSecundarioPagina{
+		color:#777;
+}
+
+.tituloSecundarioPaginaCapitalizado{
+		color:#777;
+		text-transform: capitalize;
+}
+
+#contenido{
+	margin-top: 20px;
+	padding: 0px;
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.barraSuperior {
+	background-image: url('esquinaRedondaIzqSuperior.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/esquinaRedondaIzqSuperior.gif')*/ 
+	background-repeat: no-repeat;
+	background-color: #333;
+	font-size: 10pt;
+	font-weight: bold;
+	color: white;
+	padding: 5px;
+	margin: 0px 0px 0px 2px; 
+}
+
+.barraSuperior a{
+	color: #fff;
+	text-decoration: underline;	
+}
+
+.barraInferior {
+	background-position: left bottom; 
+	background-image: url('esquinaRedondaIzqInferior.gif.jsf?ln=img');/*url('#{facesContext.externalContext.requestContextPath}/resources/img/esquinaRedondaIzqInferior.gif');*/ 
+	background-repeat: no-repeat; 
+	background-color: #ddd;
+	color: #000;
+	padding: 5px;
+	margin: 0px 0px 0px 2px; 
+}
+
+.barraInferior a {
+	color: #000; 
+	text-decoration: underline;
+}
+
+/* Footer */
+#pie{
+	clear:both;
+	border-top: 6px solid #666;
+	margin-top: 5px;
+	width: 100%;
+}
+
+#copyright {
+	float: left;
+	color: #036;
+	padding-top: 5px;
+}
+#logoInferior {
+	float: right;
+	background-image: url('Proinman_pie.png.jsf?ln=img'); /*url('#{facesContext.externalContext.requestContextPath}/resources/img/logo_pie.gif');*/
+	background-repeat: no-repeat;
+	background-position: right top;
+	margin-top: 0px;
+	margin-right: 0px;
+	width: 152px;
+	height: 31px;
+	font-size: 16px;
+}
+
+legend{
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.ui-fieldset-toggleable .ui-fieldset-legend {
+    cursor: pointer;
+    font-size: 12px;
+    height: 15px;
+    padding: 0.5em 1em 0.5em 0.5em;
+}
+

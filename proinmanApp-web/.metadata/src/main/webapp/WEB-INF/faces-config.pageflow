@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15309889189780" configfile="/proinmanApp-web/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="370" id="pf15313506359821" referenceLink="//@navigationRule.0/@fromViewId|" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/inicio.jsf" x="338" y="178" id="pf15313506359824" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="/pages/inicio.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/principal/principal.jsf" x="338" y="562" id="pf15313506359825" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="/pages/principal/principal.jsf"/>
+</pageflow:Pageflow>
