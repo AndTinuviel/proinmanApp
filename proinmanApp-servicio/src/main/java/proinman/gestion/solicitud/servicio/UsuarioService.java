@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import proinman.gestion.solicitud.dao.UsuarioDao;
 import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
-import proinman.gestion.solicitud.utilitarios.Estado;
+import proinman.gestion.solicitud.utilitarios.EstadoEnum;
 
 @Stateless
 @LocalBean
@@ -33,7 +33,7 @@ public class UsuarioService {
 
 	public Usuario crearUsuario(Usuario usuario) throws EntidadNoGuardadaException {
 		usuario.setPassword(convertirMD5(usuario.getCedula()));
-		usuario.setEstado(Estado.ACT);
+		usuario.setEstado(EstadoEnum.ACT.DESCRIPCION);
 		System.out.println("antes del guardar");
 		System.out.println("*************************** usuario getNombre : "+usuario.getNombre());
 		System.out.println("*************************** usuarioDao : "+usuarioDao);
@@ -50,7 +50,8 @@ public class UsuarioService {
 	}
 
 	public void desactivarUsuario(Usuario usuarioaEliminar) throws EntidadNoGuardadaException {
-		usuarioaEliminar.setEstado(Estado.INA);
+		usuarioaEliminar.setEstado(EstadoEnum.INA.DESCRIPCION);
+		System.out.println("*****************"+usuarioaEliminar.getNombre() + " estado DESCRIPCION: "+usuarioaEliminar.getEstado()+ " estado: "+usuarioaEliminar.getEstado());
 		actualizarUsuario(usuarioaEliminar);
 	}
 

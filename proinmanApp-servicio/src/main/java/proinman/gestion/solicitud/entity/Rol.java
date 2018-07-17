@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import proinman.gestion.solicitud.utilitarios.EstadoEnum;
+
 @Entity
 @Table(name = "pss_rol", schema = "proinman_movil")
 @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
@@ -24,7 +26,7 @@ public class Rol implements Serializable {
 	private Integer codigoRol;
 
 	@Column(name = "estado")
-	private String estado;
+	private EstadoEnum estado;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -38,14 +40,6 @@ public class Rol implements Serializable {
 
 	public void setCodigoRol(Integer codigoRol) {
 		this.codigoRol = codigoRol;
-	}
-
-	public String getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getNombre() {
@@ -62,5 +56,13 @@ public class Rol implements Serializable {
 
 	public void setListaUsuarioRol(List<UsuarioRol> listaUsuarioRol) {
 		this.listaUsuarioRol = listaUsuarioRol;
+	}
+
+	public EstadoEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoEnum estado) {
+		this.estado = estado;
 	}
 }

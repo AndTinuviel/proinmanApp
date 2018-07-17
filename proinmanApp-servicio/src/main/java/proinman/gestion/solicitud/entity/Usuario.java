@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import proinman.gestion.solicitud.utilitarios.Estado;
+import proinman.gestion.solicitud.utilitarios.EstadoEnum;
 
 @Entity
 @Table(name = "pss_usuario", schema = "proinman_movil")
@@ -32,8 +34,9 @@ public class Usuario implements Serializable {
 	@Column(name = "cedula")
 	private String cedula;
 	
-	@Column(name = "estado")
-	private Estado estado;
+	@Column(name = "estado" )//, columnDefinition = "VARCHAR2(3)")
+//	@Enumerated(EnumType.STRING)
+	private String estado;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -77,14 +80,6 @@ public class Usuario implements Serializable {
 		this.cedula = cedula;
 	}
 
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -115,5 +110,21 @@ public class Usuario implements Serializable {
 
 	public void setListaUsuarioRol(List<UsuarioRol> listaUsuarioRol) {
 		this.listaUsuarioRol = listaUsuarioRol;
+	}
+//
+//	public EstadoEnum getEstado() {
+//		return estado;
+//	}
+//
+//	public void setEstado(EstadoEnum estado) {
+//		this.estado = estado;
+//	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 }
