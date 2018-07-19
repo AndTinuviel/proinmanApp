@@ -17,11 +17,11 @@ public class UbicacionGeograficaDao extends BaseDaoGenerico<UbicacionGeografica,
 		super(UbicacionGeografica.class);
 	}
 
-	public List<UbicacionGeografica> consultarUbicacionesPorNivelYPadre(Integer nivel, Integer padre) {
-		String consulta = "select u from UbicacionGeografica u where u.nivel = :nivel and ubicacionGeograficaPadre = :padre and estado = 'ACT' ";
+	public List<UbicacionGeografica> consultarUbicacionesPorNivelYPadre(Integer nivel, Integer codigoPadre) {
+		String consulta = "select u from UbicacionGeografica u where u.nivel = :nivel and ubicacionGeograficaPadre.codigoUbicacionGeografica = :codigoPadre and estado = 'ACT' ";
 
 		List<UbicacionGeografica> listaUbicacionGeografica = this.em.createQuery(consulta, UbicacionGeografica.class)
-				.setParameter("nivel", nivel).setParameter("padre", padre).getResultList();
+				.setParameter("nivel", nivel).setParameter("codigoPadre", codigoPadre).getResultList();
 		return listaUbicacionGeografica;
 	}
 

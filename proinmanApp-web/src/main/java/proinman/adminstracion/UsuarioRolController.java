@@ -12,7 +12,6 @@ import org.primefaces.model.DualListModel;
 
 import proinman.gestion.solicitud.entity.Rol;
 import proinman.gestion.solicitud.entity.Usuario;
-import proinman.gestion.solicitud.entity.UsuarioRol;
 import proinman.gestion.solicitud.filtros.ControladorBase;
 import proinman.gestion.solicitud.servicio.UsuarioRolService;
 import proinman.gestion.solicitud.servicio.UsuarioService;

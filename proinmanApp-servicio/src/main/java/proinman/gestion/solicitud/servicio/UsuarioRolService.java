@@ -12,7 +12,6 @@ import proinman.gestion.solicitud.entity.Rol;
 import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.entity.UsuarioRol;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
-import proinman.gestion.solicitud.utilitarios.EstadoEnum;
 
 @Stateless
 public class UsuarioRolService {
@@ -30,7 +29,7 @@ public class UsuarioRolService {
 		UsuarioRol nuevaAsignacionRolAUsuario = new UsuarioRol();
 		nuevaAsignacionRolAUsuario.setRol(rol);
 		nuevaAsignacionRolAUsuario.setUsuario(usuario);
-		nuevaAsignacionRolAUsuario.setEstado(EstadoEnum.ACT);
+		nuevaAsignacionRolAUsuario.setEstado("ACT");
 		try {
 			this.usuarioRolDao.guardar(nuevaAsignacionRolAUsuario);
 			return nuevaAsignacionRolAUsuario;

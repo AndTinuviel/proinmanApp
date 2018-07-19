@@ -19,33 +19,33 @@
 			 
 			        <h:panelGrid columns="3" cellpadding="5">
 			            <p:outputLabel for="nombre" value="Nombre:" />
-			            <p:inputText id="nombre" value="#{usuarioController.usuario.nombre}" required="true" label="Nombre">
+			            <p:inputText id="nombre" value="#{usuarioAdministracionController.usuarioSeleccionado.nombre}" required="true" label="Nombre">
 			                <f:validateLength minimum="3" />
 			            </p:inputText>
 			            <p:message for="nombre" display="icon" />
 			 
 			            <p:outputLabel for="apellido" value="Apellido:" />
-			            <p:inputText id="apellido" value="#{usuarioController.usuario.apellido}" label="Apellido" required="true">
+			            <p:inputText id="apellido" value="#{usuarioAdministracionController.usuarioSeleccionado.apellido}" label="Apellido" required="true">
 			                <f:validateLength minimum="3" />
 			                <p:ajax update="msgLastname" event="keyup" />
 			            </p:inputText>
 			            <p:message for="apellido" id="msgLastname" display="icon" />
 			            
 			            <p:outputLabel for="cedula" value="Cédula:" />
-			            <p:inputText id="cedula" value="#{usuarioController.usuario.cedula}" required="true" label="Cédula">
+			            <p:inputText id="cedula" value="#{usuarioAdministracionController.usuarioSeleccionado.cedula}" required="true" label="Cédula">
 			                <f:validateLength minimum="3" />
 			            </p:inputText>
 			            <p:message for="cedula" display="icon" />
 			            
 			            <p:outputLabel for="username" value="Username:" />
-			            <p:inputText id="username" value="#{usuarioController.usuario.username}" required="true" label="Username">
+			            <p:inputText id="username" value="#{usuarioAdministracionController.usuarioSeleccionado.username}" required="true" label="Username">
 			                <f:validateLength minimum="8" />
 			            </p:inputText>
 			            <p:message for="username" display="icon" />
 			 
 			        </h:panelGrid>
 			 
-			        <p:commandButton value="Guardar" update="panel" action="#{usuarioController.guardar}" icon="ui-icon-check" />
+			        <p:commandButton value="Guardar" update="panel" action="#{usuarioAdministracionController.guardar}" icon="ui-icon-check" />
 			    </p:panel>
 			</h:form>
 			

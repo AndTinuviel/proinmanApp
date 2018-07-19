@@ -1,7 +1,6 @@
 proinman\gestion\solicitud\dao\GenericoDao.class
 proinman\gestion\solicitud\entity\CotizacionItem.class
 proinman\gestion\solicitud\dao\BaseDaoGenerico.class
-proinman\gestion\solicitud\utilitarios\EstadoEnum.class
 proinman\gestion\solicitud\servicio\SolicitudService.class
 org\proinman\ec\servicio\NewSessionBean.class
 proinman\gestion\solicitud\ws\Test.class
@@ -10,6 +9,7 @@ proinman\gestion\solicitud\entity\Solicitud.class
 proinman\gestion\solicitud\entity\ClienteSecuencial.class
 proinman\gestion\solicitud\servicio\UsuarioService.class
 proinman\gestion\solicitud\dao\RolDao.class
+proinman\gestion\solicitud\servicio\ClienteService.class
 proinman\gestion\solicitud\entity\MotorFlujo.class
 proinman\gestion\solicitud\entity\ReporteFotografia.class
 proinman\gestion\solicitud\entity\SecuencialSolicitud.class
@@ -36,6 +36,7 @@ proinman\gestion\solicitud\entity\MotorActividad.class
 proinman\gestion\solicitud\dao\UsuarioRolDao.class
 proinman\gestion\solicitud\ws\UbicacionGeograficaRest.class
 proinman\gestion\solicitud\entity\MotorTarea.class
+proinman\gestion\solicitud\dao\ClienteDao.class
 proinman\gestion\solicitud\entity\UsuarioRol.class
 proinman\gestion\solicitud\ws\SolicitudRest.class
 proinman\gestion\solicitud\entity\ReporteTrabajo.class

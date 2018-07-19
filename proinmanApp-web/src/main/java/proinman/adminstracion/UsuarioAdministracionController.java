@@ -22,10 +22,12 @@ public class UsuarioAdministracionController extends ControladorBase {
 	@EJB
 	private UsuarioService usuarioService;
 	private List<Usuario> listaUsuarios;
+	private Usuario usuarioSeleccionado;
 
 	@PostConstruct
 	public void inicializar() {
 		listaUsuarios = new ArrayList<>();
+		usuarioSeleccionado = new Usuario();
 		consultar();
 	}
 
@@ -45,16 +47,31 @@ public class UsuarioAdministracionController extends ControladorBase {
 		}
 	}
 
-	public void actualizarUsuario(Usuario usuarioActualizar) {
-		FacesMessage msg = null;
+	public String actualizarUsuario(Usuario usuarioActualizar) {
+		usuarioSeleccionado = usuarioActualizar;
+		return "/pages/administracion/administracionUsuarioNuevo.jsf?jsf-redirect=true";
+		
+//		FacesMessage msg = null;
+//		try {
+//			usuarioService.actualizarUsuario(usuarioActualizar);
+//			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro actualizado correctamente", null);
+//		} catch (EntidadNoGuardadaException e) {
+//			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error al actualizar el registro", null);
+//		} finally {
+//			FacesContext.getCurrentInstance().addMessage(null, msg);
+//		}
+	}
+	
+	public void guardar(){
 		try {
-			usuarioService.actualizarUsuario(usuarioActualizar);
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro actualizado correctamente", null);
+			System.out.println("***************** guardar");
+			System.out.println("***************** usuarioService "+usuarioService);
+			usuarioService.crearUsuario(usuarioSeleccionado);
 		} catch (EntidadNoGuardadaException e) {
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error al actualizar el registro", null);
-		} finally {
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	public List<Usuario> getListaUsuarios() {
@@ -63,6 +80,22 @@ public class UsuarioAdministracionController extends ControladorBase {
 
 	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
+	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	public Usuario getUsuarioSeleccionado() {
+		return usuarioSeleccionado;
+	}
+
+	public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+		this.usuarioSeleccionado = usuarioSeleccionado;
 	}
 
 }

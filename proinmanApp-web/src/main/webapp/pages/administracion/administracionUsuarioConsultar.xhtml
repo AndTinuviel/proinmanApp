@@ -35,12 +35,10 @@
 						<h:outputText value="#{usuario.username}" />
 					</p:column>
 					<p:column headerText="Editar" style="text-align: center">
-						<h:commandLink id="btnEditar">
-							<h:graphicImage value="/resources/img/eventos/modificar.gif" />
-							<p:ajax immediate="true" event="click"
-								listener="#{usuarioAdministracionController.actualizarUsuario(usuario)}"
-								update=":#{p:component('dtbUsuarios')}" />
-						</h:commandLink>
+						<h:graphicImage value="/resources/img/eventos/modificar.gif" />
+						<p:commandButton id="btnEditar2"
+							action="#{usuarioAdministracionController.actualizarUsuario(usuario)}"
+							process="@form" value="Editar" />
 					</p:column>
 					<p:column headerText="Eliminar" style="text-align: center">
 						<h:commandLink id="btnEliminar">

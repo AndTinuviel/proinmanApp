@@ -1,8 +1,7 @@
 proinman\adminstracion\UsuarioAdministracionController.class
 proinman\adminstracion\UsuarioRolController.class
-proinman\adminstracion\UsuarioController.class
 proinman\gestion\solicitud\filtros\FiltroLogin.class
 LoginBean.class
 proinman\gestion\solicitud\filtros\LoginBean.class
-proinman\menu\MenuView.class
+proinman\gestion\solicitud\ec\GestionSolicitudController.class
 proinman\gestion\solicitud\filtros\ControladorBase.class

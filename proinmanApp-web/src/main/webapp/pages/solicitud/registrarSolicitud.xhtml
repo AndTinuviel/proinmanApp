@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="elementosDocumentReady">
+
+	</ui:define>
+	<ui:define name="body">
+		<!-- TITULO -->
+		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
+			<h:outputText value="Solicitud   " />
+			<h:outputText styleClass="tituloSecundarioPagina"
+				value="Registrar Solicitud" />
+		</h:panelGroup>
+
+		<div class="barraSuperior">&#160;</div>
+
+		<h:form id="frmRegistro">
+			<h:inputHidden id="hidValidador" value="NO" />
+
+			<h:panelGrid id="pngCaracteristicasEstablecimiento" columns="6"
+				styleClass="formulario"
+				columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
+
+				<h:panelGroup>
+					<h:outputText id="lblCliente" value="Cliente" />
+					<h:outputText id="lblObligatorioCliente"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:selectOneMenu id="cmbCliente"
+					value="#{gestionSolicitudController.codigoCliente}">
+					<f:selectItem itemValue="0"
+						itemLabel="#{msg.opcionSeleccionarCombo}" />
+					<f:selectItems value="#{gestionSolicitudController.listaClientes}"
+						var="cliente" itemLabel="#{cliente.nombreRazonSocial}"
+						itemValue="#{cliente.codigoCliente}">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+				<h:panelGroup>
+					<h:outputText id="lblProvincia" value="Provincia" />
+					<h:outputText id="lblObligatorioProvincia"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:selectOneMenu id="cmbProvincia"
+					value="#{gestionSolicitudController.codigoProvincia}">
+					<f:selectItem itemValue="0"
+						itemLabel="#{msg.opcionSeleccionarCombo}" />
+					<f:selectItems
+						value="#{gestionSolicitudController.listaProvincias}"
+						var="provincia" itemLabel="#{provincia.descripcion}"
+						itemValue="#{provincia.codigoUbicacionGeografica}">
+					</f:selectItems>
+					<p:ajax update="pnlCiudadCombo"
+						event="change" process="cmbProvincia"
+						listener="#{gestionSolicitudController.consultarCiudades()}"></p:ajax>
+				</p:selectOneMenu>
+				
+				<h:panelGroup>
+					<h:outputText id="lblCiudad" value="Ciudad" />
+					<h:outputText id="lblObligatorioCiudad"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>				
+				<h:panelGroup id="pnlCiudadCombo">
+					<p:selectOneMenu id="cmbCiudad"
+						value="#{gestionSolicitudController.codigoCiudad}">
+						<f:selectItem itemValue="0"
+							itemLabel="#{msg.opcionSeleccionarCombo}" />
+						<f:selectItems
+							value="#{gestionSolicitudController.listaCiudades}"
+							var="ciudad" itemLabel="#{ciudad.descripcion}"
+							itemValue="#{ciudad.codigoUbicacionGeografica}">
+						</f:selectItems>
+					</p:selectOneMenu>
+				</h:panelGroup>
+			</h:panelGrid>
+
+		</h:form>
+		<div class="barraInferior">&#160;</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

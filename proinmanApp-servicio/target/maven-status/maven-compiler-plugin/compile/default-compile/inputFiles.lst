@@ -14,7 +14,6 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\ReporteTrabajo.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\SolicitudService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\CotizacionItem.java
-E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\utilitarios\EstadoEnum.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\org\proinman\ec\servicio\NewSessionBean.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\EntidadNoGuardadaException.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UsuarioDao.java
@@ -34,8 +33,10 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\EntidadNoExisteException.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UsuarioRolDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\MotorFlujo.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\ClienteDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\Solicitud.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\UbicacionGeografica.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UbicacionGeograficaDao.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\ClienteService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\UbicacionGeograficaService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\UsuarioRest.java
