@@ -16,50 +16,42 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="pss_trazabilidad_solicitud", schema="proinman_movil")
-@NamedQuery(name="TrazabilidadSolicitud.findAll", query="SELECT t FROM TrazabilidadSolicitud t")
-public class TrazabilidadSolicitud
-  implements Serializable
-{
-  private static final long serialVersionUID = 1L;
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="codigo_trazabilidad")
-  private Integer codigoTrazabilidad;
-  @Temporal(TemporalType.DATE)
-  @Column(name="fecha_cambio_estado")
-  private Date fechaCambioEstado;
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinColumn(name="codigo_usuario")
-  private Usuario pssUsuario;
-  
-  public Integer getCodigoTrazabilidad()
-  {
-    return this.codigoTrazabilidad;
-  }
-  
-  public void setCodigoTrazabilidad(Integer codigoTrazabilidad)
-  {
-    this.codigoTrazabilidad = codigoTrazabilidad;
-  }
-  
-  public Date getFechaCambioEstado()
-  {
-    return this.fechaCambioEstado;
-  }
-  
-  public void setFechaCambioEstado(Date fechaCambioEstado)
-  {
-    this.fechaCambioEstado = fechaCambioEstado;
-  }
-  
-  public Usuario getPssUsuario()
-  {
-    return this.pssUsuario;
-  }
-  
-  public void setPssUsuario(Usuario pssUsuario)
-  {
-    this.pssUsuario = pssUsuario;
-  }
+@Table(name = "pss_trazabilidad_solicitud", schema = "proinman_movil")
+@NamedQuery(name = "TrazabilidadSolicitud.findAll", query = "SELECT t FROM TrazabilidadSolicitud t")
+public class TrazabilidadSolicitud implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo_trazabilidad")
+	private Integer codigoTrazabilidad;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_cambio_estado")
+	private Date fechaCambioEstado;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigo_usuario")
+	private Usuario pssUsuario;
+
+	public Integer getCodigoTrazabilidad() {
+		return this.codigoTrazabilidad;
+	}
+
+	public void setCodigoTrazabilidad(Integer codigoTrazabilidad) {
+		this.codigoTrazabilidad = codigoTrazabilidad;
+	}
+
+	public Date getFechaCambioEstado() {
+		return this.fechaCambioEstado;
+	}
+
+	public void setFechaCambioEstado(Date fechaCambioEstado) {
+		this.fechaCambioEstado = fechaCambioEstado;
+	}
+
+	public Usuario getPssUsuario() {
+		return this.pssUsuario;
+	}
+
+	public void setPssUsuario(Usuario pssUsuario) {
+		this.pssUsuario = pssUsuario;
+	}
 }

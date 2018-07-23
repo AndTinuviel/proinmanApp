@@ -47,6 +47,10 @@ public class UsuarioService {
 	public Usuario consultarUsuarioPorId(Integer codigoUsuario){
 		return usuarioDao.obtenerPorCodigo(codigoUsuario);
 	}
+	
+	public Usuario consultarUsuarioPorUsername(String username){
+		return usuarioDao.consultarUsuarioPorUsername(username);
+	}
 
 	public void desactivarUsuario(Usuario usuarioaEliminar) throws EntidadNoGuardadaException {
 		usuarioaEliminar.setEstado("INA");

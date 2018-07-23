@@ -21,9 +21,10 @@
 		<div class="barraSuperior">&#160;</div>
 
 		<h:form id="frmRegistro">
+			<p:growl id="msgs" showDetail="true" />
 			<h:inputHidden id="hidValidador" value="NO" />
 
-			<h:panelGrid id="pngCaracteristicasEstablecimiento" columns="6"
+			<h:panelGrid id="pngRegistroSolicitud" columns="6"
 				styleClass="formulario"
 				columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
 
@@ -32,7 +33,7 @@
 					<h:outputText id="lblObligatorioCliente"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
 				</h:panelGroup>
-				<p:selectOneMenu id="cmbCliente"
+				<p:selectOneMenu id="cmbCliente" required="true"
 					value="#{gestionSolicitudController.codigoCliente}">
 					<f:selectItem itemValue="0"
 						itemLabel="#{msg.opcionSeleccionarCombo}" />
@@ -47,7 +48,7 @@
 					<h:outputText id="lblObligatorioProvincia"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
 				</h:panelGroup>
-				<p:selectOneMenu id="cmbProvincia"
+				<p:selectOneMenu id="cmbProvincia" required="true"
 					value="#{gestionSolicitudController.codigoProvincia}">
 					<f:selectItem itemValue="0"
 						itemLabel="#{msg.opcionSeleccionarCombo}" />
@@ -56,32 +57,76 @@
 						var="provincia" itemLabel="#{provincia.descripcion}"
 						itemValue="#{provincia.codigoUbicacionGeografica}">
 					</f:selectItems>
-					<p:ajax update="pnlCiudadCombo"
-						event="change" process="cmbProvincia"
+					<p:ajax update="pnlCiudadCombo" event="change"
+						process="cmbProvincia"
 						listener="#{gestionSolicitudController.consultarCiudades()}"></p:ajax>
 				</p:selectOneMenu>
-				
+
 				<h:panelGroup>
 					<h:outputText id="lblCiudad" value="Ciudad" />
 					<h:outputText id="lblObligatorioCiudad"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
-				</h:panelGroup>				
+				</h:panelGroup>
 				<h:panelGroup id="pnlCiudadCombo">
-					<p:selectOneMenu id="cmbCiudad"
+					<p:selectOneMenu id="cmbCiudad" required="true"
 						value="#{gestionSolicitudController.codigoCiudad}">
 						<f:selectItem itemValue="0"
 							itemLabel="#{msg.opcionSeleccionarCombo}" />
-						<f:selectItems
-							value="#{gestionSolicitudController.listaCiudades}"
+						<f:selectItems value="#{gestionSolicitudController.listaCiudades}"
 							var="ciudad" itemLabel="#{ciudad.descripcion}"
 							itemValue="#{ciudad.codigoUbicacionGeografica}">
 						</f:selectItems>
 					</p:selectOneMenu>
 				</h:panelGroup>
+
+				<h:panelGroup>
+					<h:outputText id="lblDireccion" value="Direccion" />
+					<h:outputText id="lblObligatorioDireccion"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputTextarea id="txtDireccion" rows="6" cols="33" required="true"
+					value="#{gestionSolicitudController.solicitud.direccion}" />
+
+				<h:panelGroup>
+					<h:outputText id="lblSolicitud"
+						value="Ingrese la descripción del requerimiento o solicitud" />
+					<h:outputText id="lblObligatorioSolicitud"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputTextarea id="txtSolicitud" rows="6" cols="33" required="true"
+					value="#{gestionSolicitudController.solicitud.descipcion}" />
+
+				<h:panelGroup>
+					<h:outputText id="lblCotizarPregunta" value="Desea Cotizar?" />
+					<h:outputText id="lblObligatorioCotizarPregunta"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:selectOneRadio id="rbtcotizar" required="true"
+					value="#{gestionSolicitudController.deseaCotizar}">
+					<f:selectItems
+						value="#{gestionSolicitudController.enumeracionSiNo}" var="enum"
+						itemValue="#{enum}" itemLabel="#{enum}">
+					</f:selectItems>
+				</p:selectOneRadio>
+
+				<h:panelGroup>
+					<h:outputText id="lblFechaRecepcion"
+						value="Fecha de recepcion de requerimiento" />
+					<h:outputText id="lblObligatorioCotizarFechaRecepcion"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:calendar id="txtFechaRepecion" value="#{gestionSolicitudController.solicitud.fechaRecepcion}"
+					pattern="dd-MM-yyyy" mask="true"  required="true"/>
+
 			</h:panelGrid>
 
+			<div class="barraInferior">
+				<p:commandButton id="btnGuardar"
+					action="#{gestionSolicitudController.guardar()}" update="@form"
+					process="@form" value="Guardar" />
+			</div>
+
 		</h:form>
-		<div class="barraInferior">&#160;</div>
 
 	</ui:define>
 

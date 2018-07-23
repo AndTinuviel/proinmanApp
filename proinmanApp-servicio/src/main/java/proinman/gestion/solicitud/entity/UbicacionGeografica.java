@@ -3,6 +3,7 @@ package proinman.gestion.solicitud.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,24 +16,24 @@ import javax.persistence.Table;
 @Table(name = "pss_ubicacion_geografica", schema = "proinman_movil")
 @NamedQuery(name = "UbicacionGeografica.findAll", query = "SELECT u FROM UbicacionGeografica u")
 public class UbicacionGeografica implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_ubicacion_geografica")
 	private Integer codigoUbicacionGeografica;
-	
+
 	@Column(name = "descripcion")
 	private String descripcion;
-	
+
 	@Column(name = "estado")
 	private String estado;
-	
+
 	@Column(name = "nivel")
 	private Integer nivel;
-	
-	@ManyToOne(optional = true)
+
+	@ManyToOne(optional = true,fetch=FetchType.EAGER)
 	@JoinColumn(name = "codigo_padre", referencedColumnName = "codigo_ubicacion_geografica")
 	private UbicacionGeografica ubicacionGeograficaPadre;
 

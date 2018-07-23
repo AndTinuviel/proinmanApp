@@ -17,22 +17,36 @@ import javax.persistence.Table;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_cliente")
 	private Integer codigoCliente;
+	
+	@Column(name = "celular")
 	private String celular;
+	
+	@Column(name = "ciudad")
 	private String ciudad;
+	
 	@Column(name = "giro_negocio")
 	private String giroNegocio;
+	
+	@Column(name = "identificacion")
 	private String identificacion;
+	
+	@Column(name = "mail")
 	private String mail;
+	
 	@Column(name = "nombre_razon_social")
 	private String nombreRazonSocial;
+	
+	@Column(name = "telefono")
 	private String telefono;
+	
 	@OneToMany(mappedBy = "pssCliente")
-	private List<ClienteSecuencial> pssClienteSecuencials;
-	@OneToMany(mappedBy = "pssCliente")
-	private List<Solicitud> pssSolicituds;
+	private List<ClienteSecuencial> listaClienteSecuencial;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Solicitud> listaSolicitudes;
 
 	public Integer getCodigoCliente() {
 		return this.codigoCliente;
@@ -98,47 +112,20 @@ public class Cliente implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public List<ClienteSecuencial> getPssClienteSecuencials() {
-		return this.pssClienteSecuencials;
+	public List<ClienteSecuencial> getListaClienteSecuencial() {
+		return listaClienteSecuencial;
 	}
 
-	public void setPssClienteSecuencials(List<ClienteSecuencial> pssClienteSecuencials) {
-		this.pssClienteSecuencials = pssClienteSecuencials;
+	public void setListaClienteSecuencial(List<ClienteSecuencial> listaClienteSecuencial) {
+		this.listaClienteSecuencial = listaClienteSecuencial;
 	}
 
-	public ClienteSecuencial addPssClienteSecuencial(ClienteSecuencial pssClienteSecuencial) {
-		getPssClienteSecuencials().add(pssClienteSecuencial);
-		pssClienteSecuencial.setPssCliente(this);
-
-		return pssClienteSecuencial;
+	public List<Solicitud> getListaSolicitudes() {
+		return listaSolicitudes;
 	}
 
-	public ClienteSecuencial removePssClienteSecuencial(ClienteSecuencial pssClienteSecuencial) {
-		getPssClienteSecuencials().remove(pssClienteSecuencial);
-		pssClienteSecuencial.setPssCliente(null);
-
-		return pssClienteSecuencial;
+	public void setListaSolicitudes(List<Solicitud> listaSolicitudes) {
+		this.listaSolicitudes = listaSolicitudes;
 	}
 
-	public List<Solicitud> getPssSolicituds() {
-		return this.pssSolicituds;
-	}
-
-	public void setPssSolicituds(List<Solicitud> pssSolicituds) {
-		this.pssSolicituds = pssSolicituds;
-	}
-
-	public Solicitud addPssSolicitud(Solicitud pssSolicitud) {
-		getPssSolicituds().add(pssSolicitud);
-		pssSolicitud.setPssCliente(this);
-
-		return pssSolicitud;
-	}
-
-	public Solicitud removePssSolicitud(Solicitud pssSolicitud) {
-		getPssSolicituds().remove(pssSolicitud);
-		pssSolicitud.setPssCliente(null);
-
-		return pssSolicitud;
-	}
 }

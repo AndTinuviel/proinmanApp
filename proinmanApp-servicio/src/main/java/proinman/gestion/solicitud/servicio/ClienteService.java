@@ -20,4 +20,7 @@ public class ClienteService {
 		return clientreDao.obtenerTodos();
 	}
 	
+	public Cliente consultarClientePorID(Integer codigoCliente){
+		return clientreDao.obtenerPorCodigo(codigoCliente);
+	}
 }

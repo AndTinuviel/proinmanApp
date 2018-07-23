@@ -22,5 +22,6 @@ public class UsuarioDao extends BaseDaoGenerico<Usuario, Serializable> {
 						.getSingleResult();
 		return usuario;
 	}
+
 	
 }

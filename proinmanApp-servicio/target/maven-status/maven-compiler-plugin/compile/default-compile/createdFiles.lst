@@ -3,6 +3,7 @@ proinman\gestion\solicitud\entity\CotizacionItem.class
 proinman\gestion\solicitud\dao\BaseDaoGenerico.class
 proinman\gestion\solicitud\servicio\SolicitudService.class
 org\proinman\ec\servicio\NewSessionBean.class
+proinman\gestion\solicitud\servicio\CotizacionService.class
 proinman\gestion\solicitud\ws\Test.class
 proinman\gestion\solicitud\dao\UsuarioDao.class
 proinman\gestion\solicitud\entity\Solicitud.class
@@ -32,6 +33,7 @@ proinman\gestion\solicitud\ws\UsuarioRest.class
 proinman\gestion\solicitud\util\exception\EntidadNoEliminadaException.class
 proinman\gestion\solicitud\servicio\UsuarioRolService.class
 proinman\gestion\solicitud\entity\UbicacionGeografica.class
+proinman\gestion\solicitud\utilitarios\SiNoEnum.class
 proinman\gestion\solicitud\entity\MotorActividad.class
 proinman\gestion\solicitud\dao\UsuarioRolDao.class
 proinman\gestion\solicitud\ws\UbicacionGeograficaRest.class

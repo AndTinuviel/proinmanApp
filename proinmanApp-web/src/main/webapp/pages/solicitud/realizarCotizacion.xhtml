@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="elementosDocumentReady">
+
+	</ui:define>
+	<ui:define name="body">
+		<!-- TITULO -->
+		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
+			<h:outputText value="Solicitud   " />
+			<h:outputText styleClass="tituloSecundarioPagina"
+				value="Registrar Solicitud" />
+		</h:panelGroup>
+
+		<div class="barraSuperior">&#160;</div>
+		<br />
+		<br />
+
+		<h:panelGrid id="pngSolicitud" columns="6" styleClass="formulario"
+			columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
+
+			<h:outputText id="lblCliente" value="Cliente" />
+			<h:outputText id="txtCliente"
+				value="#{cotizacionController.solicitud.cliente.nombreRazonSocial}" />
+
+
+			<h:outputText id="lblProvincia" value="Provincia" />
+			<h:outputText id="txtProvincia"
+				value="#{cotizacionController.solicitud.ciudad.ubicacionGeograficaPadre.descripcion}" />
+
+
+			<h:outputText id="lblCiudad" value="Ciudad" />
+			<h:outputText id="txtCiudad"
+				value="#{cotizacionController.solicitud.ciudad.descripcion}" />
+
+
+			<h:outputText id="lblDireccion" value="Dirección" />
+			<p:inputTextarea id="txtDirección"
+				value="#{cotizacionController.solicitud.direccion}" readonly="true" />
+
+
+			<h:outputText id="lblDescipcion" value="Descipción" />
+			<p:inputTextarea id="txtDescipcion"
+				value="#{cotizacionController.solicitud.descipcion}" readonly="true" />
+
+
+			<h:outputText id="lblFechaRecepcion" value="Fecha Recepcion" />
+			<h:outputText id="txtFechaRecepcion"
+				value="#{cotizacionController.solicitud.fechaRecepcion}" />
+
+
+			<h:outputText id="lblFechaRegistro"
+				value="Fecha Registro en el Sistema" />
+			<h:outputText id="txtFechaRegistro"
+				value="#{cotizacionController.solicitud.fechaRegistro}" />
+
+		</h:panelGrid>
+
+
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:commandButton value="Add new row"
+						styleClass="ui-priority-primary" process="@this"
+						update=":form:msgs"
+						actionListener="#{cotizacionController.onAddNew()}"
+						oncomplete="PF('dtbCotizacionItem').addRow();" />
+				</div>
+			</div>
+
+			<p:dataTable id="dtbCotizacionItem" widgetVar="dtbCotizacionItem"
+				var="cotizacionItem"
+				value="#{cotizacionController.listaCotizacionItem}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+		           Items de la cotización
+		       </f:facet>
+
+				<p:ajax event="rowEdit" listener="#{cotizacionController.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{cotizacionController.onRowCancel}" update=":form:msgs" />
+
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cotizacionItem.codigoItem}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="modelInput" value="#{cotizacionItem.codigoItem}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Year">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cotizacionItem.cantidad}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{cotizacionItem.cantidad}"
+								style="width:100%" label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Brand">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cotizacionItem.costo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{cotizacionItem.costo}" style="width:100%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Color">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cotizacionItem.descripcion}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{cotizacionItem.descripcion}"
+								style="width:100%" label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

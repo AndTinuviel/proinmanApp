@@ -27,7 +27,7 @@ public class SolicitudRest
   {
     try
     {
-      return this.solicitudService.crearSolicitud();
+      return this.solicitudService.crearSolicitudTestRest();
     }
     catch (EntidadNoGuardadaException e)
     {

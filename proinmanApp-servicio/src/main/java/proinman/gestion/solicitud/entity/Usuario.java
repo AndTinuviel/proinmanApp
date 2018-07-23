@@ -20,29 +20,29 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_usuario")
 	private Integer codigoUsuario;
-	
+
 	@Column(name = "apellido")
 	private String apellido;
-	
+
 	@Column(name = "cedula")
 	private String cedula;
-	
-	@Column(name = "estado" )//, columnDefinition = "VARCHAR2(3)")
-//	@Enumerated(EnumType.STRING)
+
+	@Column(name = "estado") // , columnDefinition = "VARCHAR2(3)")
+	// @Enumerated(EnumType.STRING)
 	private String estado;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "username")
 	private String username;
-	
+
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<UsuarioRol> listaUsuarioRol;
 
@@ -107,14 +107,14 @@ public class Usuario implements Serializable {
 	public void setListaUsuarioRol(List<UsuarioRol> listaUsuarioRol) {
 		this.listaUsuarioRol = listaUsuarioRol;
 	}
-//
-//	public EstadoEnum getEstado() {
-//		return estado;
-//	}
-//
-//	public void setEstado(EstadoEnum estado) {
-//		this.estado = estado;
-//	}
+	//
+	// public EstadoEnum getEstado() {
+	// return estado;
+	// }
+	//
+	// public void setEstado(EstadoEnum estado) {
+	// this.estado = estado;
+	// }
 
 	public String getEstado() {
 		return estado;

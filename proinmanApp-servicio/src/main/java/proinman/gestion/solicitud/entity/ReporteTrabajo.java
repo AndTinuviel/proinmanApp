@@ -25,7 +25,7 @@ public class ReporteTrabajo
 {
   private static final long serialVersionUID = 1L;
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name="codigo_reporte_trabajo")
   private Integer codigoReporteTrabajo;
   @Column(name="calificacion_trabajo")

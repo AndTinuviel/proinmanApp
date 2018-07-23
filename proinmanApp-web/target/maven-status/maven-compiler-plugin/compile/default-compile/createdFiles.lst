@@ -5,3 +5,4 @@ LoginBean.class
 proinman\gestion\solicitud\filtros\LoginBean.class
 proinman\gestion\solicitud\ec\GestionSolicitudController.class
 proinman\gestion\solicitud\filtros\ControladorBase.class
+proinman\gestion\solicitud\ec\CotizacionController.class
