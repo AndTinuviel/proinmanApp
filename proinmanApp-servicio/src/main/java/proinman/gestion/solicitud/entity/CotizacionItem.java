@@ -31,8 +31,9 @@ public class CotizacionItem implements Serializable {
 	@Column(name = "costo")
 	private BigDecimal costo;
 	
-	@Column(name = "descripcion")
-	private String descripcion;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "codigo_catalogo_item")
+	private CatalogoItem catalogoItem;
 	
 	@Column(name = "precio")
 	private BigDecimal precio;
@@ -43,11 +44,10 @@ public class CotizacionItem implements Serializable {
 	@Column(name = "total_precio_item")
 	private BigDecimal totalPrecioItem;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_cotizacion")
-	private Cotizacion pssCotizacion;
+	private Cotizacion cotizacion;
 	
-
 	public Integer getCodigoItem() {
 		return this.codigoItem;
 	}
@@ -70,14 +70,6 @@ public class CotizacionItem implements Serializable {
 
 	public void setCosto(BigDecimal costo) {
 		this.costo = costo;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public BigDecimal getPrecio() {
@@ -104,11 +96,19 @@ public class CotizacionItem implements Serializable {
 		this.totalPrecioItem = totalPrecioItem;
 	}
 
-	public Cotizacion getPssCotizacion() {
-		return this.pssCotizacion;
+	public Cotizacion getCotizacion() {
+		return cotizacion;
 	}
 
-	public void setPssCotizacion(Cotizacion pssCotizacion) {
-		this.pssCotizacion = pssCotizacion;
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
+
+	public CatalogoItem getCatalogoItem() {
+		return catalogoItem;
+	}
+
+	public void setCatalogoItem(CatalogoItem catalogoItem) {
+		this.catalogoItem = catalogoItem;
 	}
 }

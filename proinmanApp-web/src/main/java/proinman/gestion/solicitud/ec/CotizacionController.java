@@ -1,5 +1,6 @@
 package proinman.gestion.solicitud.ec;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,13 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
+import proinman.gestion.solicitud.entity.CatalogoItem;
 import proinman.gestion.solicitud.entity.CotizacionItem;
 import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.filtros.ControladorBase;
 import proinman.gestion.solicitud.servicio.CotizacionService;
 import proinman.gestion.solicitud.servicio.SolicitudService;
+import proinman.gestion.solicitud.utilitarios.TipoItemEnum;
 
 @ManagedBean
 @ViewScoped
@@ -24,6 +27,9 @@ public class CotizacionController extends ControladorBase{
 
 	private List<CotizacionItem> listaCotizacionItem;
 	private Solicitud solicitud;
+	private List<CatalogoItem> listaCatalogoItems;
+	private TipoItemEnum tipoItemEnum;
+	private Integer codigoTipoItem; 
 	
 	@EJB
 	private SolicitudService solicitudService;
@@ -34,10 +40,9 @@ public class CotizacionController extends ControladorBase{
 	 
     @PostConstruct
     public void inicializar() {
-    	System.out.println("*********************  anntes de consultar cliente ");
     	solicitud = solicitudService.consultarSolicitud(2);
-    	System.out.println("*********************  cliente "+solicitud);
     	listaCotizacionItem = new ArrayList<>();
+    	listaCatalogoItems = new ArrayList<>();
     }
  
  
@@ -54,8 +59,14 @@ public class CotizacionController extends ControladorBase{
     public void onAddNew() {
         // Add one new car to the table:
         CotizacionItem cotizacionItem = new CotizacionItem();
+        cotizacionItem.setCosto(new BigDecimal("0.15"));
+        cotizacionItem.setCantidad(new BigDecimal("5"));
+        cotizacionItem.setPrecio(new BigDecimal("0.10"));
+        CatalogoItem catalogoItem = new CatalogoItem();
+        catalogoItem.setDescripcion("cemento");
+        cotizacionItem.setCatalogoItem(catalogoItem);
      	listaCotizacionItem.add(cotizacionItem);
-        FacesMessage msg = new FacesMessage("New cotizacionItem added", cotizacionItem.getCodigoItem().toString());
+        FacesMessage msg = new FacesMessage("New cotizacionItem added", cotizacionItem.getCantidad().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
@@ -78,5 +89,37 @@ public class CotizacionController extends ControladorBase{
 	public void setSolicitud(Solicitud solicitud) {
 		this.solicitud = solicitud;
 	}
+
+	public TipoItemEnum getTipoItemEnum() {
+		return tipoItemEnum;
+	}
+
+
+	public void setTipoItemEnum(TipoItemEnum tipoItemEnum) {
+		this.tipoItemEnum = tipoItemEnum;
+	}
 	
+	public TipoItemEnum[] getTipoItemEnumMatMan() {
+		return TipoItemEnum.values();
+	}
+
+
+	public List<CatalogoItem> getListaCatalogoItems() {
+		return listaCatalogoItems;
+	}
+
+
+	public void setListaCatalogoItems(List<CatalogoItem> listaCatalogoItems) {
+		this.listaCatalogoItems = listaCatalogoItems;
+	}
+
+
+	public Integer getCodigoTipoItem() {
+		return codigoTipoItem;
+	}
+
+
+	public void setCodigoTipoItem(Integer codigoTipoItem) {
+		this.codigoTipoItem = codigoTipoItem;
+	}
 }

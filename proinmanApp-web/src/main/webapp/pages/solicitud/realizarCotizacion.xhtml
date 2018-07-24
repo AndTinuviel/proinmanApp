@@ -13,14 +13,16 @@
 	<ui:define name="body">
 		<!-- TITULO -->
 		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
-			<h:outputText value="Solicitud   " />
+			<h:outputText value="Cotización   " />
 			<h:outputText styleClass="tituloSecundarioPagina"
-				value="Registrar Solicitud" />
+				value="   .: Crear cotización" />
 		</h:panelGroup>
 
-		<div class="barraSuperior">&#160;</div>
-		<br />
-		<br />
+		<div class="barraSuperior">
+			&#160;
+			<h:outputText id="lblDatosSolicitud" value="Datos de la solicitud" />
+		</div>
+
 
 		<h:panelGrid id="pngSolicitud" columns="6" styleClass="formulario"
 			columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
@@ -65,12 +67,47 @@
 
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
+			<div class="barraSuperior">
+				&#160;
+				<h:outputText id="lblItem" value="Agreagar Item" />
+			</div>
+			<h:panelGrid id="pngRegistrarItem" columns="6"
+				styleClass="formulario"
+				columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
+
+				<h:outputText id="lblTipoItem" value="Tipo ítem" />
+				<p:selectOneRadio id="rbtTipoItem" required="true"
+					requiredMessage="#{msgVal.VW700} #{msgVal.VW703}"
+					value="#{cotizacionController.tipoItemEnum}">
+					<f:selectItems value="#{cotizacionController.tipoItemEnumMatMan}"
+						var="enum" itemValue="#{enum}" itemLabel="#{enum}">
+					</f:selectItems>
+				</p:selectOneRadio>
+
+				<h:panelGroup>
+					<h:outputText id="lblSeleccionItem" value="Selección de ítem" />
+					<h:outputText id="lblCampoObligatorioSeleccionItem"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:selectOneMenu id="cmbTipoItem" required="true"
+					value="#{cotizacionController.codigoTipoItem}">
+					<f:selectItem itemValue="0"
+						itemLabel="#{msg.opcionSeleccionarCombo}" />
+					<f:selectItems value="#{cotizacionController.listaCatalogoItems}"
+						var="item" itemLabel="#{item.descripcion}"
+						itemValue="#{item.codigoItem}">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+
+
+			</h:panelGrid>
 
 			<div class="ui-g">
 				<div class="ui-g-12">
-					<p:commandButton value="Add new row"
+					<p:commandButton value="Agregar Item"
 						styleClass="ui-priority-primary" process="@this"
-						update=":form:msgs"
+						update=":form:msgs,dtbCotizacionItem"
 						actionListener="#{cotizacionController.onAddNew()}"
 						oncomplete="PF('dtbCotizacionItem').addRow();" />
 				</div>
@@ -83,25 +120,27 @@
 				<f:facet name="header">
 		           Items de la cotización
 		       </f:facet>
-
 				<p:ajax event="rowEdit" listener="#{cotizacionController.onRowEdit}"
 					update=":form:msgs" />
 				<p:ajax event="rowEditCancel"
 					listener="#{cotizacionController.onRowCancel}" update=":form:msgs" />
 
-				<p:column headerText="Id">
+
+				<p:column headerText="Descripción">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.codigoItem}" />
+							<h:outputText value="#{cotizacionItem.catalogoItem.descripcion}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText id="modelInput" value="#{cotizacionItem.codigoItem}"
-								style="width:100%" />
+							<p:inputText value="#{cotizacionItem.catalogoItem.descripcion}"
+								style="width:100%" label="Year" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Year">
+
+
+				<p:column headerText="Cantidad">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{cotizacionItem.cantidad}" />
@@ -113,7 +152,7 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Brand">
+				<p:column headerText="Costo">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{cotizacionItem.costo}" />
@@ -125,14 +164,26 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Color">
+
+				<p:column headerText="Precio">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.descripcion}" />
+							<h:outputText value="#{cotizacionItem.precio}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.descripcion}"
-								style="width:100%" label="Year" />
+							<p:inputText value="#{cotizacionItem.precio}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Total">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cotizacionItem.totalPrecioItem}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{cotizacionItem.totalPrecioItem}"
+								style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>

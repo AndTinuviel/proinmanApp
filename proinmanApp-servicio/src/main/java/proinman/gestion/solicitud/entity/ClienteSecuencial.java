@@ -18,18 +18,24 @@ import javax.persistence.Table;
 @Table(name = "pss_cliente_secuencial", schema = "proinman_movil")
 @NamedQuery(name = "ClienteSecuencial.findAll", query = "SELECT c FROM ClienteSecuencial c")
 public class ClienteSecuencial implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_secuencial")
 	private Integer codigoSecuencial;
+	
 	private String descripcion;
+	
 	private String secuencial;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_cliente")
 	private Cliente pssCliente;
-	@OneToMany(mappedBy = "pssClienteSecuencial")
-	private List<SecuencialSolicitud> pssSecuencialSolicituds;
+	
+	@OneToMany(mappedBy = "clienteSecuencial")
+	private List<SecuencialSolicitud> listaSecuencialSolicitud;
 
 	public Integer getCodigoSecuencial() {
 		return this.codigoSecuencial;
@@ -63,25 +69,12 @@ public class ClienteSecuencial implements Serializable {
 		this.pssCliente = pssCliente;
 	}
 
-	public List<SecuencialSolicitud> getPssSecuencialSolicituds() {
-		return this.pssSecuencialSolicituds;
+	public List<SecuencialSolicitud> getListaSecuencialSolicitud() {
+		return listaSecuencialSolicitud;
 	}
 
-	public void setPssSecuencialSolicituds(List<SecuencialSolicitud> pssSecuencialSolicituds) {
-		this.pssSecuencialSolicituds = pssSecuencialSolicituds;
+	public void setListaSecuencialSolicitud(List<SecuencialSolicitud> listaSecuencialSolicitud) {
+		this.listaSecuencialSolicitud = listaSecuencialSolicitud;
 	}
 
-	public SecuencialSolicitud addPssSecuencialSolicitud(SecuencialSolicitud pssSecuencialSolicitud) {
-		getPssSecuencialSolicituds().add(pssSecuencialSolicitud);
-		pssSecuencialSolicitud.setPssClienteSecuencial(this);
-
-		return pssSecuencialSolicitud;
-	}
-
-	public SecuencialSolicitud removePssSecuencialSolicitud(SecuencialSolicitud pssSecuencialSolicitud) {
-		getPssSecuencialSolicituds().remove(pssSecuencialSolicitud);
-		pssSecuencialSolicitud.setPssClienteSecuencial(null);
-
-		return pssSecuencialSolicitud;
-	}
 }

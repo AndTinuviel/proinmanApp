@@ -37,11 +37,11 @@ public class Cotizacion implements Serializable {
 	@JoinColumn(name = "codigo_solicitud")
 	private Solicitud pssSolicitud;
 	
-	@OneToMany(mappedBy = "pssCotizacion")
-	private List<CotizacionItem> pssCotizacionItems;
+	@OneToMany(mappedBy = "cotizacion")
+	private List<CotizacionItem> listaCotizacionItems;
 	
-	@OneToMany(mappedBy = "pssCotizacion")
-	private List<SecuencialSolicitud> pssSecuencialSolicituds;
+	@OneToMany(mappedBy = "cotizacion")
+	private List<SecuencialSolicitud> listaSecuencialSolicituds;
 
 	public Integer getCodigoCotizacion() {
 		return this.codigoCotizacion;
@@ -75,47 +75,20 @@ public class Cotizacion implements Serializable {
 		this.pssSolicitud = pssSolicitud;
 	}
 
-	public List<CotizacionItem> getPssCotizacionItems() {
-		return this.pssCotizacionItems;
+	public List<CotizacionItem> getListaCotizacionItems() {
+		return listaCotizacionItems;
 	}
 
-	public void setPssCotizacionItems(List<CotizacionItem> pssCotizacionItems) {
-		this.pssCotizacionItems = pssCotizacionItems;
+	public void setListaCotizacionItems(List<CotizacionItem> listaCotizacionItems) {
+		this.listaCotizacionItems = listaCotizacionItems;
 	}
 
-	public CotizacionItem addPssCotizacionItem(CotizacionItem pssCotizacionItem) {
-		getPssCotizacionItems().add(pssCotizacionItem);
-		pssCotizacionItem.setPssCotizacion(this);
-
-		return pssCotizacionItem;
+	public List<SecuencialSolicitud> getListaSecuencialSolicituds() {
+		return listaSecuencialSolicituds;
 	}
 
-	public CotizacionItem removePssCotizacionItem(CotizacionItem pssCotizacionItem) {
-		getPssCotizacionItems().remove(pssCotizacionItem);
-		pssCotizacionItem.setPssCotizacion(null);
-
-		return pssCotizacionItem;
+	public void setListaSecuencialSolicituds(List<SecuencialSolicitud> listaSecuencialSolicituds) {
+		this.listaSecuencialSolicituds = listaSecuencialSolicituds;
 	}
 
-	public List<SecuencialSolicitud> getPssSecuencialSolicituds() {
-		return this.pssSecuencialSolicituds;
-	}
-
-	public void setPssSecuencialSolicituds(List<SecuencialSolicitud> pssSecuencialSolicituds) {
-		this.pssSecuencialSolicituds = pssSecuencialSolicituds;
-	}
-
-	public SecuencialSolicitud addPssSecuencialSolicitud(SecuencialSolicitud pssSecuencialSolicitud) {
-		getPssSecuencialSolicituds().add(pssSecuencialSolicitud);
-		pssSecuencialSolicitud.setPssCotizacion(this);
-
-		return pssSecuencialSolicitud;
-	}
-
-	public SecuencialSolicitud removePssSecuencialSolicitud(SecuencialSolicitud pssSecuencialSolicitud) {
-		getPssSecuencialSolicituds().remove(pssSecuencialSolicitud);
-		pssSecuencialSolicitud.setPssCotizacion(null);
-
-		return pssSecuencialSolicitud;
-	}
 }

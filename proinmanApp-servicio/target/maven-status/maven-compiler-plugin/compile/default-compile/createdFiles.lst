@@ -9,6 +9,7 @@ proinman\gestion\solicitud\dao\UsuarioDao.class
 proinman\gestion\solicitud\entity\Solicitud.class
 proinman\gestion\solicitud\entity\ClienteSecuencial.class
 proinman\gestion\solicitud\servicio\UsuarioService.class
+proinman\gestion\solicitud\utilitarios\TipoItemEnum.class
 proinman\gestion\solicitud\dao\RolDao.class
 proinman\gestion\solicitud\servicio\ClienteService.class
 proinman\gestion\solicitud\entity\MotorFlujo.class
@@ -41,4 +42,5 @@ proinman\gestion\solicitud\entity\MotorTarea.class
 proinman\gestion\solicitud\dao\ClienteDao.class
 proinman\gestion\solicitud\entity\UsuarioRol.class
 proinman\gestion\solicitud\ws\SolicitudRest.class
+proinman\gestion\solicitud\entity\CatalogoItem.class
 proinman\gestion\solicitud\entity\ReporteTrabajo.class
