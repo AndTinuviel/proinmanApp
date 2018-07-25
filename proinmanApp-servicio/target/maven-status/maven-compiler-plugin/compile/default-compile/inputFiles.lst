@@ -2,6 +2,7 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\EntidadNoEliminadaException.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\utilitarios\TipoItemEnum.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\SolicitudRest.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\CatalogoItemService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\RolDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\UsuarioRolService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\SecuencialSolicitud.java
@@ -40,6 +41,7 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\CatalogoItem.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\UbicacionGeografica.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\utilitarios\SiNoEnum.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\CatalogoItemDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UbicacionGeograficaDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\ClienteService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\UbicacionGeograficaService.java

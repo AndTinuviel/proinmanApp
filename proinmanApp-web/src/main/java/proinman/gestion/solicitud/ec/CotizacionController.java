@@ -1,6 +1,5 @@
 package proinman.gestion.solicitud.ec;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,11 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 import proinman.gestion.solicitud.entity.CatalogoItem;
+import proinman.gestion.solicitud.entity.Cotizacion;
 import proinman.gestion.solicitud.entity.CotizacionItem;
 import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.filtros.ControladorBase;
+import proinman.gestion.solicitud.servicio.CatalogoItemService;
 import proinman.gestion.solicitud.servicio.CotizacionService;
 import proinman.gestion.solicitud.servicio.SolicitudService;
 import proinman.gestion.solicitud.utilitarios.TipoItemEnum;
@@ -27,24 +28,40 @@ public class CotizacionController extends ControladorBase{
 
 	private List<CotizacionItem> listaCotizacionItem;
 	private Solicitud solicitud;
-	private List<CatalogoItem> listaCatalogoItems;
+	private List<CatalogoItem> listaCatalogoMateriales;
+	private List<CatalogoItem> listaCatalogoManoDeObra;
 	private TipoItemEnum tipoItemEnum;
 	private Integer codigoTipoItem; 
+	private Cotizacion cotizacionNueva;
+	private CotizacionItem itemNuevo;
 	
 	@EJB
 	private SolicitudService solicitudService;
 	@EJB
 	private CotizacionService cotizacionService;
+	@EJB
+	private CatalogoItemService catalogoItemService;
 	
 	
 	 
     @PostConstruct
     public void inicializar() {
     	solicitud = solicitudService.consultarSolicitud(2);
+    	cotizacionNueva = new Cotizacion();
+    	itemNuevo = new CotizacionItem();
+    	cotizacionNueva.setSolicitud(solicitud);
     	listaCotizacionItem = new ArrayList<>();
-    	listaCatalogoItems = new ArrayList<>();
+    	listaCatalogoMateriales = catalogoItemService.buscarMateriales();
+    	listaCatalogoManoDeObra = catalogoItemService.buscarManoDeObra();
     }
  
+    public void eliminarItem(CotizacionItem itemAEliminar){
+    	listaCotizacionItem.remove(itemAEliminar);
+    }
+    
+    public void modificarItem(CotizacionItem itemAmodificar){
+    	itemNuevo = itemAmodificar;
+    }
  
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Car Edited", ((CotizacionItem) event.getObject()).getCodigoItem().toString());
@@ -57,20 +74,25 @@ public class CotizacionController extends ControladorBase{
     }
  
     public void onAddNew() {
-        // Add one new car to the table:
-        CotizacionItem cotizacionItem = new CotizacionItem();
-        cotizacionItem.setCosto(new BigDecimal("0.15"));
-        cotizacionItem.setCantidad(new BigDecimal("5"));
-        cotizacionItem.setPrecio(new BigDecimal("0.10"));
-        CatalogoItem catalogoItem = new CatalogoItem();
-        catalogoItem.setDescripcion("cemento");
-        cotizacionItem.setCatalogoItem(catalogoItem);
-     	listaCotizacionItem.add(cotizacionItem);
-        FacesMessage msg = new FacesMessage("New cotizacionItem added", cotizacionItem.getCantidad().toString());
+    	CotizacionItem itemAAgregar = new CotizacionItem();
+    	itemAAgregar.setCantidad(itemNuevo.getCantidad());
+    	itemAAgregar.setCosto(itemNuevo.getCosto());
+    	itemAAgregar.setPrecio(itemNuevo.getPrecio());
+    	itemAAgregar.setTotalCostoItem(itemNuevo.getTotalCostoItem());
+    	itemAAgregar.setTotalPrecioItem(itemNuevo.getTotalPrecioItem());
+     	listaCotizacionItem.add(itemAAgregar);
+        FacesMessage msg = new FacesMessage("Nuevo item agregado", "nombre material o mano de obra");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-
+    public void calcularTotales(){
+    	System.out.println("***************** itemNuevo.getCantidad()"+itemNuevo.getCantidad());
+    	System.out.println("***************** itemNuevo.getCosto()"+itemNuevo.getCosto());
+    	System.out.println("***************** itemNuevo.getPrecio()"+itemNuevo.getPrecio());
+    	itemNuevo.setTotalCostoItem(itemNuevo.getCantidad().multiply(itemNuevo.getCosto()));
+    	itemNuevo.setTotalPrecioItem(itemNuevo.getCantidad().multiply(itemNuevo.getPrecio()));
+    }
+    
 	public List<CotizacionItem> getListaCotizacionItem() {
 		return listaCotizacionItem;
 	}
@@ -104,16 +126,6 @@ public class CotizacionController extends ControladorBase{
 	}
 
 
-	public List<CatalogoItem> getListaCatalogoItems() {
-		return listaCatalogoItems;
-	}
-
-
-	public void setListaCatalogoItems(List<CatalogoItem> listaCatalogoItems) {
-		this.listaCatalogoItems = listaCatalogoItems;
-	}
-
-
 	public Integer getCodigoTipoItem() {
 		return codigoTipoItem;
 	}
@@ -121,5 +133,45 @@ public class CotizacionController extends ControladorBase{
 
 	public void setCodigoTipoItem(Integer codigoTipoItem) {
 		this.codigoTipoItem = codigoTipoItem;
+	}
+
+
+	public Cotizacion getCotizacionNueva() {
+		return cotizacionNueva;
+	}
+
+
+	public void setCotizacionNueva(Cotizacion cotizacionNueva) {
+		this.cotizacionNueva = cotizacionNueva;
+	}
+
+
+	public List<CatalogoItem> getListaCatalogoMateriales() {
+		return listaCatalogoMateriales;
+	}
+
+
+	public void setListaCatalogoMateriales(List<CatalogoItem> listaCatalogoMateriales) {
+		this.listaCatalogoMateriales = listaCatalogoMateriales;
+	}
+
+
+	public List<CatalogoItem> getListaCatalogoManoDeObra() {
+		return listaCatalogoManoDeObra;
+	}
+
+
+	public void setListaCatalogoManoDeObra(List<CatalogoItem> listaCatalogoManoDeObra) {
+		this.listaCatalogoManoDeObra = listaCatalogoManoDeObra;
+	}
+
+
+	public CotizacionItem getItemNuevo() {
+		return itemNuevo;
+	}
+
+
+	public void setItemNuevo(CotizacionItem itemNuevo) {
+		this.itemNuevo = itemNuevo;
 	}
 }

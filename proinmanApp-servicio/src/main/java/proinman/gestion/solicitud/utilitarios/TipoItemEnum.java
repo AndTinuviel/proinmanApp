@@ -16,14 +16,14 @@ public enum TipoItemEnum implements Serializable {
 	 * Campo con valor SI : SI
 	 * </p>
 	 */
-	MATERIAL("MAT"),
+	MATERIAL("MATERIAL"),
 
 	/**
 	 * <p>
 	 * Campo con valor NO : NO
 	 * </p>
 	 */
-	MANO_DE_OBRA("MANO");
+	MANO_DE_OBRA("MANO_DE_OBRA");
 
 	/**
      *  

@@ -35,7 +35,7 @@ public class Cotizacion implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_solicitud")
-	private Solicitud pssSolicitud;
+	private Solicitud solicitud;
 	
 	@OneToMany(mappedBy = "cotizacion")
 	private List<CotizacionItem> listaCotizacionItems;
@@ -67,14 +67,6 @@ public class Cotizacion implements Serializable {
 		this.precioTotal = precioTotal;
 	}
 
-	public Solicitud getPssSolicitud() {
-		return this.pssSolicitud;
-	}
-
-	public void setPssSolicitud(Solicitud pssSolicitud) {
-		this.pssSolicitud = pssSolicitud;
-	}
-
 	public List<CotizacionItem> getListaCotizacionItems() {
 		return listaCotizacionItems;
 	}
@@ -89,6 +81,14 @@ public class Cotizacion implements Serializable {
 
 	public void setListaSecuencialSolicituds(List<SecuencialSolicitud> listaSecuencialSolicituds) {
 		this.listaSecuencialSolicituds = listaSecuencialSolicituds;
+	}
+
+	public Solicitud getSolicitud() {
+		return solicitud;
+	}
+
+	public void setSolicitud(Solicitud solicitud) {
+		this.solicitud = solicitud;
 	}
 
 }

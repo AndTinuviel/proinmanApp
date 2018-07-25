@@ -69,11 +69,11 @@
 			<p:growl id="msgs" showDetail="true" />
 			<div class="barraSuperior">
 				&#160;
-				<h:outputText id="lblItem" value="Agreagar Item" />
+				<h:outputText id="lblItem" value="Item" />
 			</div>
-			<h:panelGrid id="pngRegistrarItem" columns="6"
+			<h:panelGrid id="pngRegistrarItem" columns="2"
 				styleClass="formulario"
-				columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
+				columnClasses="formulario-label, formularioAnchoFijo">
 
 				<h:outputText id="lblTipoItem" value="Tipo ítem" />
 				<p:selectOneRadio id="rbtTipoItem" required="true"
@@ -93,23 +93,77 @@
 					value="#{cotizacionController.codigoTipoItem}">
 					<f:selectItem itemValue="0"
 						itemLabel="#{msg.opcionSeleccionarCombo}" />
-					<f:selectItems value="#{cotizacionController.listaCatalogoItems}"
-						var="item" itemLabel="#{item.descripcion}"
-						itemValue="#{item.codigoItem}">
+					<f:selectItems
+						value="#{cotizacionController.listaCatalogoMateriales}" var="item"
+						itemLabel="#{item.material}" itemValue="#{item.codigoItem}">
 					</f:selectItems>
 				</p:selectOneMenu>
 
+				<h:panelGroup>
+					<h:outputText id="lblCantidad" value="Cantidad" />
+					<h:outputText id="lblCampoObligatorioCantidad"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText id="txtCantidad"
+					value="#{cotizacionController.itemNuevo.cantidad}">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
 
+				<h:panelGroup id="pnlCosto">
+					<h:outputText id="lblCosto" value="Costo" />
+					<h:outputText id="lblCampoObligatorioCosto"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText value="#{cotizacionController.itemNuevo.costo}">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
+
+
+				<h:panelGroup id="pnlPrecio">
+					<h:outputText id="lblPrecio" value="Precio" />
+					<h:outputText id="lblCampoObligatorioPrecio"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText value="#{cotizacionController.itemNuevo.precio}">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalC" value="Total Costo Item" />
+					<h:outputText id="lblCampoObligatorioTotalC"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<h:panelGroup id="pnlTotalC">
+					<p:inputText
+						value="#{cotizacionController.itemNuevo.totalCostoItem}"
+						readonly="true"></p:inputText>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalP" value="Total Precio Item" />
+					<h:outputText id="lblCampoObligatorioTotalP"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<h:panelGroup id="pnlTotalP">
+					<p:inputText
+						value="#{cotizacionController.itemNuevo.totalPrecioItem}"
+						readonly="true"></p:inputText>
+				</h:panelGroup>
 
 			</h:panelGrid>
 
 			<div class="ui-g">
 				<div class="ui-g-12">
 					<p:commandButton value="Agregar Item"
-						styleClass="ui-priority-primary" process="@this"
+						styleClass="ui-priority-primary" process="@this,pngRegistrarItem"
 						update=":form:msgs,dtbCotizacionItem"
-						actionListener="#{cotizacionController.onAddNew()}"
-						oncomplete="PF('dtbCotizacionItem').addRow();" />
+						action="#{cotizacionController.onAddNew()}" />
 				</div>
 			</div>
 
@@ -127,69 +181,49 @@
 
 
 				<p:column headerText="Descripción">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.catalogoItem.descripcion}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.catalogoItem.descripcion}"
-								style="width:100%" label="Year" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{cotizacionItem.catalogoItem.descripcion}" />
 				</p:column>
 
-
-
 				<p:column headerText="Cantidad">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.cantidad}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.cantidad}"
-								style="width:100%" label="Year" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{cotizacionItem.cantidad}" />
 				</p:column>
 
 				<p:column headerText="Costo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.costo}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.costo}" style="width:100%"
-								label="Year" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{cotizacionItem.costo}" />
 				</p:column>
-
 
 				<p:column headerText="Precio">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.precio}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.precio}" style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{cotizacionItem.precio}" />
 				</p:column>
 
-				<p:column headerText="Total">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cotizacionItem.totalPrecioItem}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{cotizacionItem.totalPrecioItem}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Total Costo">
+					<h:outputText value="#{cotizacionItem.totalCostoItem}" />
 				</p:column>
 
-				<p:column style="width:32px">
-					<p:rowEditor />
+				<p:column headerText="Total Precio">
+					<h:outputText value="#{cotizacionItem.totalPrecioItem}" />
+				</p:column>
+
+				<p:column style="width:32px" headerText="Editar">
+					<h:commandLink id="btnEditar">
+						<h:graphicImage id="clkEditar"
+							value="../../resources/img/eventos/modificar.gif" />
+						<p:ajax immediate="true" event="click"
+							update=":form:pngRegistrarItem"
+							listener="#{cotizacionController.modificarItem(cotizacionItem)}">
+						</p:ajax>
+					</h:commandLink>
+				</p:column>
+
+				<p:column style="width:32px" headerText="Eliminar">
+					<h:commandLink id="btnEliminar">
+						<h:graphicImage id="clkELiminar"
+							value="../../resources/img/eventos/eliminar.gif" />
+						<p:ajax immediate="true" event="click"
+							update=":form:dtbCotizacionItem"
+							listener="#{cotizacionController.eliminarItem(cotizacionItem)}">
+						</p:ajax>
+					</h:commandLink>
 				</p:column>
 			</p:dataTable>
 

@@ -41,7 +41,7 @@ public class Solicitud implements Serializable {
 	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
 	
-	@OneToMany(mappedBy = "pssSolicitud")
+	@OneToMany(mappedBy = "solicitud")
 	private List<Cotizacion> listaCotizaciones;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
