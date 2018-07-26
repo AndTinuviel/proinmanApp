@@ -1,5 +1,6 @@
 package proinman.gestion.solicitud.ec;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,12 @@ public class CotizacionController extends ControladorBase{
     }
  
     public void onAddNew() {
-    	CotizacionItem itemAAgregar = new CotizacionItem();
+    	crearNuevoitem();
+        calcularTotalesCotizacion();
+    }
+
+	private void crearNuevoitem() {
+		CotizacionItem itemAAgregar = new CotizacionItem();
     	itemAAgregar.setCantidad(itemNuevo.getCantidad());
     	itemAAgregar.setCosto(itemNuevo.getCosto());
     	itemAAgregar.setPrecio(itemNuevo.getPrecio());
@@ -83,14 +89,28 @@ public class CotizacionController extends ControladorBase{
      	listaCotizacionItem.add(itemAAgregar);
         FacesMessage msg = new FacesMessage("Nuevo item agregado", "nombre material o mano de obra");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+	}
 
     public void calcularTotales(){
-    	System.out.println("***************** itemNuevo.getCantidad()"+itemNuevo.getCantidad());
-    	System.out.println("***************** itemNuevo.getCosto()"+itemNuevo.getCosto());
-    	System.out.println("***************** itemNuevo.getPrecio()"+itemNuevo.getPrecio());
-    	itemNuevo.setTotalCostoItem(itemNuevo.getCantidad().multiply(itemNuevo.getCosto()));
-    	itemNuevo.setTotalPrecioItem(itemNuevo.getCantidad().multiply(itemNuevo.getPrecio()));
+    	if(itemNuevo.getCantidad()== null || itemNuevo.getCosto() == null || itemNuevo.getPrecio() == null ){
+    		System.out.println("No se calcula con valores null");
+    	}else{
+        	itemNuevo.setTotalCostoItem(itemNuevo.getCantidad().multiply(itemNuevo.getCosto()));
+        	itemNuevo.setTotalPrecioItem(itemNuevo.getCantidad().multiply(itemNuevo.getPrecio()));
+    	}
+
+    }
+    
+    private void calcularTotalesCotizacion(){
+    	Double totalPrecioCotizacion = 0.0;
+    	Double totalCostoCotizacion = 0.0;
+    	for ( CotizacionItem  item: listaCotizacionItem) {
+    		totalPrecioCotizacion = totalPrecioCotizacion + item.getTotalPrecioItem().doubleValue();
+    		totalCostoCotizacion = totalCostoCotizacion + item.getTotalCostoItem().doubleValue();
+    		
+		}
+    	cotizacionNueva.setCostoTotal(BigDecimal.valueOf(totalCostoCotizacion));
+    	cotizacionNueva.setPrecioTotal(BigDecimal.valueOf(totalPrecioCotizacion));
     }
     
 	public List<CotizacionItem> getListaCotizacionItem() {

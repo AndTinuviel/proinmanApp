@@ -1805,21 +1805,21 @@ Calendar._TT = {};
 Calendar._TT["INFO"] = "Acerca del calendario";
 Calendar._TT["ABOUT"] = "Selector DHTML de Fecha/Hora\n"
 		+ "(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n"
-		+ "Para conseguir la última versión visite: http://www.dynarch.com/projects/calendar/\n"
-		+ "Distribuido bajo licencia GNU LGPL. Visite http://gnu.org/licenses/lgpl.html para más detalles."
+		+ "Para conseguir la ï¿½ltima versiï¿½n visite: http://www.dynarch.com/projects/calendar/\n"
+		+ "Distribuido bajo licencia GNU LGPL. Visite http://gnu.org/licenses/lgpl.html para mï¿½s detalles."
 		+ "\n\n"
-		+ "Selección de fecha:\n"
-		+ "- Use los botones \xab, \xbb para seleccionar el año\n"
+		+ "Selecciï¿½n de fecha:\n"
+		+ "- Use los botones \xab, \xbb para seleccionar el aï¿½o\n"
 		+ "- Use los botones "
 		+ String.fromCharCode(0x2039)
 		+ ", "
 		+ String.fromCharCode(0x203a)
 		+ " para seleccionar el mes\n"
-		+ "- Mantenga pulsado el ratón en cualquiera de estos botones para una selecci&#243;n r&#225;pida.";
+		+ "- Mantenga pulsado el ratï¿½n en cualquiera de estos botones para una selecci&#243;n r&#225;pida.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" + "Selecci&#243;n de hora:\n"
 		+ "- Pulse en cualquiera de las partes de la hora para incrementarla\n"
 		+ "- o pulse las may&#250;sculas mientras hace clic para decrementarla\n"
-		+ "- o haga clic y arrastre el ratón para una selección m&#225;s r&#225;pida.";
+		+ "- o haga clic y arrastre el ratï¿½n para una selecciï¿½n m&#225;s r&#225;pida.";
 Calendar._TT["PREV_YEAR"] = "A&#241;o anterior (mantener para men&#250;)";
 Calendar._TT["PREV_MONTH"] = "Mes anterior (mantener para men&#250;)";
 Calendar._TT["GO_TODAY"] = "Ir a hoy";
@@ -2247,7 +2247,7 @@ function ismaxlength(obj, MaxLen){
 function permite(elEvento, permitidos) {
     var numeros = "0123456789";
     var monetario = "0123456789.";
-    var caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    var caracteres = " abcdefghijklmnï¿½opqrstuvwxyzABCDEFGHIJKLMNï¿½OPQRSTUVWXYZ";
     var numeros_caracteres = numeros + caracteres;
     var teclas_especiales = [8];
     

@@ -162,7 +162,7 @@
 				<div class="ui-g-12">
 					<p:commandButton value="Agregar Item"
 						styleClass="ui-priority-primary" process="@this,pngRegistrarItem"
-						update=":form:msgs,dtbCotizacionItem"
+						update=":form:msgs,dtbCotizacionItem,:form:pngTotalCotizacion"
 						action="#{cotizacionController.onAddNew()}" />
 				</div>
 			</div>
@@ -220,13 +220,49 @@
 						<h:graphicImage id="clkELiminar"
 							value="../../resources/img/eventos/eliminar.gif" />
 						<p:ajax immediate="true" event="click"
-							update=":form:dtbCotizacionItem"
+							update=":form:dtbCotizacionItem,:form:pngTotalCotizacion"
 							listener="#{cotizacionController.eliminarItem(cotizacionItem)}">
 						</p:ajax>
 					</h:commandLink>
 				</p:column>
 			</p:dataTable>
 
+
+
+			<h:panelGrid id="pngTotalCotizacion" columns="2"
+				styleClass="formulario"
+				columnClasses="formulario-label, formularioAnchoFijo">
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalCostoCotizacion" value="Costo Total" />
+				</h:panelGroup>
+				<p:inputText
+					value="#{cotizacionController.cotizacionNueva.costoTotal}"
+					readonly="true"></p:inputText>
+
+
+				<h:panelGroup>
+					<h:outputText id="lblPrecioTotalCotizacion"
+						value="Precio Total Sin IVA" />
+				</h:panelGroup>
+				<p:inputText
+					value="#{cotizacionController.cotizacionNueva.precioTotal}">
+				</p:inputText>
+
+
+				<h:panelGroup>
+					<h:outputText id="lblIVA" value="IVA" />
+				</h:panelGroup>
+				<p:inputText value="" readonly="true"></p:inputText>
+
+				<h:panelGroup>
+					<h:outputText id="lblPrecioTotalCotizacionConIVA"
+						value="Precio Total con IVA" />
+				</h:panelGroup>
+				<p:inputText value="" readonly="true">
+				</p:inputText>
+
+			</h:panelGrid>
 
 
 		</h:form>
