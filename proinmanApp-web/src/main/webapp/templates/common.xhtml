@@ -75,9 +75,9 @@
 								 
 								    <p:panelMenu style="width:300px">
 								        <p:submenu label="Solicitud">
-								            <p:menuitem value="Registrar" actionListener="#{menuView.save}" icon="ui-icon-disk" />
-								            <p:menuitem value="Cotizar" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
-								            <p:menuitem value="Aprobar" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
+								            <p:menuitem value="Registrar" url="/pages/solicitud/registrarSolicitud.jsf" icon="ui-icon-disk" />
+								            <p:menuitem value="Cotizar" url="/pages/solicitud/realizarCotizacion.jsf"  icon="ui-icon-arrowrefresh-1-w" />
+								            <p:menuitem value="Aprobar" url="/pages/solicitud/aprobarCotizacion.jsf"  icon="ui-icon-arrowrefresh-1-w" />
 								        </p:submenu>
 								        <p:submenu label="Orden de Trabajo">
 								            <p:menuitem value="Consultar" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>

@@ -264,6 +264,11 @@
 
 			</h:panelGrid>
 
+			<div class="barraInferior">
+				<p:commandButton id="btnGuardar"
+					action="#{cotizacionController.guardar()}" update="@form"
+					process="@form" value="Guardar" />
+			</div>
 
 		</h:form>
 
