@@ -1,5 +1,6 @@
 proinman\adminstracion\UsuarioAdministracionController.class
 proinman\adminstracion\UsuarioRolController.class
+proinman\principal\ListaTrabajoController.class
 proinman\gestion\solicitud\filtros\FiltroLogin.class
 LoginBean.class
 proinman\gestion\solicitud\filtros\LoginBean.class

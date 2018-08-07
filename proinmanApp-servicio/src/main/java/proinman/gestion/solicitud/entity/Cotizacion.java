@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "pss_cotizacion", schema = "proinman_movil")
@@ -33,11 +34,17 @@ public class Cotizacion implements Serializable {
 	@Column(name = "precio_total")
 	private BigDecimal precioTotal;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@Transient
+	private BigDecimal precioTotalIva;
+	
+	@Transient
+	private BigDecimal iva;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_solicitud")
 	private Solicitud solicitud;
 	
-	@OneToMany(mappedBy = "cotizacion")
+	@OneToMany(mappedBy = "cotizacion" ,fetch = FetchType.EAGER)
 	private List<CotizacionItem> listaCotizacionItems;
 	
 	@OneToMany(mappedBy = "cotizacion")
@@ -89,6 +96,22 @@ public class Cotizacion implements Serializable {
 
 	public void setSolicitud(Solicitud solicitud) {
 		this.solicitud = solicitud;
+	}
+
+	public BigDecimal getPrecioTotalIva() {
+		return precioTotalIva;
+	}
+
+	public void setPrecioTotalIva(BigDecimal precioTotalIva) {
+		this.precioTotalIva = precioTotalIva;
+	}
+
+	public BigDecimal getIva() {
+		return iva;
+	}
+
+	public void setIva(BigDecimal iva) {
+		this.iva = iva;
 	}
 
 }

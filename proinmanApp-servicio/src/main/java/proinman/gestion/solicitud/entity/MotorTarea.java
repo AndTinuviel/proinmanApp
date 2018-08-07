@@ -19,30 +19,39 @@ import javax.persistence.TemporalType;
 @Table(name = "pss_motor_tarea", schema = "proinman_movil")
 @NamedQuery(name = "MotorTarea.findAll", query = "SELECT m FROM MotorTarea m")
 public class MotorTarea implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_tarea")
 	private Integer codigoTarea;
+	
+	
 	private String estado;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_asignacion")
 	private Date fechaAsignacion;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_finalizacion")
 	private Date fechaFinalizacion;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_vencimiento")
 	private Date fechaVencimiento;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_actividad")
-	private MotorActividad pssMotorActividad;
+	private MotorActividad motorActividad;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_solicitud")
-	private Solicitud pssSolicitud;
+	private Solicitud solicitud;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_usuario")
-	private Usuario pssUsuario;
+	private Usuario usuario;
 
 	public Integer getCodigoTarea() {
 		return this.codigoTarea;
@@ -84,27 +93,28 @@ public class MotorTarea implements Serializable {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public MotorActividad getPssMotorActividad() {
-		return this.pssMotorActividad;
+	public MotorActividad getMotorActividad() {
+		return motorActividad;
 	}
 
-	public void setPssMotorActividad(MotorActividad pssMotorActividad) {
-		this.pssMotorActividad = pssMotorActividad;
+	public void setMotorActividad(MotorActividad motorActividad) {
+		this.motorActividad = motorActividad;
 	}
 
-	public Solicitud getPssSolicitud() {
-		return this.pssSolicitud;
+	public Solicitud getSolicitud() {
+		return solicitud;
 	}
 
-	public void setPssSolicitud(Solicitud pssSolicitud) {
-		this.pssSolicitud = pssSolicitud;
+	public void setSolicitud(Solicitud solicitud) {
+		this.solicitud = solicitud;
 	}
 
-	public Usuario getPssUsuario() {
-		return this.pssUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setPssUsuario(Usuario pssUsuario) {
-		this.pssUsuario = pssUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
 }

@@ -1,6 +1,5 @@
 proinman\gestion\solicitud\dao\GenericoDao.class
 proinman\gestion\solicitud\entity\CotizacionItem.class
-org\proinman\ec\servicio\NewSessionBean.class
 proinman\gestion\solicitud\utilitarios\TipoItemEnum.class
 proinman\gestion\solicitud\entity\MotorFlujo.class
 proinman\gestion\solicitud\entity\ReporteFotografia.class
@@ -30,6 +29,8 @@ proinman\gestion\solicitud\servicio\UsuarioService.class
 proinman\gestion\solicitud\dao\CatalogoItemDao.class
 proinman\gestion\solicitud\dao\RolDao.class
 proinman\gestion\solicitud\servicio\ClienteService.class
+proinman\gestion\solicitud\servicio\MotorTareaService.class
+proinman\gestion\solicitud\dao\MotorActividadDao.class
 proinman\gestion\solicitud\entity\HistoricoTarea.class
 proinman\gestion\solicitud\dao\CotizacionDao.class
 proinman\gestion\solicitud\util\exception\EntidadNoExisteException.class
@@ -39,11 +40,13 @@ proinman\gestion\solicitud\entity\Usuario.class
 proinman\gestion\solicitud\servicio\UbicacionGeograficaService.class
 proinman\gestion\solicitud\dao\UbicacionGeograficaDao.class
 proinman\gestion\solicitud\ws\UsuarioRest.class
+proinman\gestion\solicitud\dao\CotizacionItemDao.class
 proinman\gestion\solicitud\util\exception\EntidadNoEliminadaException.class
 proinman\gestion\solicitud\entity\UbicacionGeografica.class
 proinman\gestion\solicitud\utilitarios\SiNoEnum.class
 proinman\gestion\solicitud\dao\UsuarioRolDao.class
 proinman\gestion\solicitud\ws\UbicacionGeograficaRest.class
 proinman\gestion\solicitud\entity\MotorTarea.class
+proinman\gestion\solicitud\dao\MotorTareaDao.class
 proinman\gestion\solicitud\entity\UsuarioRol.class
 proinman\gestion\solicitud\ws\SolicitudRest.class

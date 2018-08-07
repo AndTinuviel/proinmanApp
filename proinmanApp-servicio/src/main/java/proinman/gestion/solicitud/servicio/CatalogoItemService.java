@@ -27,6 +27,10 @@ public class CatalogoItemService {
 	public List<CatalogoItem> buscarManoDeObra(){
 		return catalogoItemDao.obtenerCatalogoManoDeObra();
 	}
+
+	public CatalogoItem buscarPorCodigo(Integer codigoTipoItem) {
+		return catalogoItemDao.obtenerPorCodigo(codigoTipoItem);
+	}
 	
 	
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:param name="sinMensajesGlobales" value="true" />
+	<ui:define name="elementosDocumentReady" />
+	<ui:define name="body">
+		<h:form id="frmListaTrabajo">
+			<p:remoteCommand name="refreshSections" update="pgpContenido" action="#{listaTrabajoController.submitPagina()}"/>
+			<h:panelGroup id="pgpContenido" widgetVar="pgpContenido">
+
+				<div class="barraSuperior">
+					<h:outputText value="#{msg.listaTrabajoDetalleListaTareas}" />
+				</div>
+
+				<h:panelGroup id="pnlListaTareas">
+					<div class="tablaFedatarios campoNegrilla">
+						<p:dataTable id="tblListaTareas"
+							widgetVar="tblListaTareas"
+							value="#{listaTrabajoController.listaTrabajoVo.listaTareasPendientes}"
+							rowClasses="impar,par" tableStyleClass="reporte" var="item"
+							paginator="true" rows="10" paginatorPosition="bottom"
+							emptyMessage="#{msg.mensajeTablaVacia}">
+							<p:column headerText="Estado" sortBy="#{item.tareaBloqueda}">
+								<h:graphicImage value="/resources/img/icon_blocked_large.gif"
+									rendered="#{item.tareaBloqueda}" width="15" height="15" />
+							</p:column>
+							<p:column styleClass="celdaWrap"
+								headerText="#{msg.descripcionTarea}" width="25%"
+								sortBy="#{item.actividadRelacionada.nombre}">
+								<p:tooltip for="lnkTarea"
+									value="No se puede acceder porque la tarea est&aacute; bloqueada"
+									rendered="#{item.tareaBloqueda}" />
+								<h:link id="lnkTarea"
+									outcome="#{listaTrabajoController.seleccionarTarea(item)}"
+									disabled="#{item.tareaBloqueda}">
+									<h:outputText value="#{item.actividadRelacionada.nombre}" />
+									<f:param name="valorObjetoNegocio"
+										value="#{listaTrabajoController.tareaSeleccionada.valorObjetoNegocio}" />
+									<f:param name="objetoNegocioRelacionado"
+										value="#{listaTrabajoController.tareaSeleccionada.objetoNegocioRelacionado.codigo}" />
+									<f:param name="numeroTarea"
+										value="#{listaTrabajoController.tareaSeleccionada.codigo}" />
+								</h:link>
+							</p:column>
+							<p:column styleClass="celdaWrap"
+								headerText="#{msg.listaTrabajoAsunto}" width="70%">
+								<h:commandLink>
+									<ui:repeat value="#{item.listaPropiedades}" var="propiedades">
+										<h:outputText
+											value="#{propiedades.motorCatalogoPropiedad.aliasPropiedad}: "
+											styleClass="asuntoPropiedad"
+											rendered="#{propiedades.motorCatalogoPropiedad.tipoPropiedad == 'PRI'?true:false}" />
+										<h:outputText
+											value="#{propiedades.valorPropiedad eq 'null'?'':propiedades.valorPropiedad} "
+											styleClass="asuntoValor"
+											rendered="#{propiedades.motorCatalogoPropiedad.tipoPropiedad == 'PRI'?true:false}" />
+									</ui:repeat>
+									<p:ajax immediate="true" event="click"
+										oncomplete="wvrInformacionAdicional.show(),wInformacionAdicional.getPaginator().setPage(0)"
+										listener="#{listaTrabajoController.informacionAdicional(item)}"
+										update=":#{p:component('tblInformacionAdicional')}, :#{p:component('pnlListaTareas')}">
+									</p:ajax>
+								</h:commandLink>
+							</p:column>
+							<p:column headerText="#{msg.listaTrabajoFechaAsignacionTarea}"
+								width="3%" styleClass="celdaWrap"
+								sortBy="#{item.fechaAsignacion}">
+								<h:outputText value="#{item.fechaAsignacion}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="#{msg.listaTrabajoFechaVencimientoTarea}"
+								width="3%" styleClass="celdaWrap"
+								sortBy="#{item.fechaVencimiento}">
+								<h:outputText value="#{item.fechaVencimiento}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

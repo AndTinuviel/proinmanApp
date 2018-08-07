@@ -36,6 +36,7 @@ public class CotizacionController extends ControladorBase {
 	private Integer codigoTipoItem;
 	private Cotizacion cotizacionNueva;
 	private CotizacionItem itemNuevo;
+	private Boolean verCatalogoTipoItem;
 
 	@EJB
 	private SolicitudService solicitudService;
@@ -46,6 +47,7 @@ public class CotizacionController extends ControladorBase {
 
 	@PostConstruct
 	public void inicializar() {
+		verCatalogoTipoItem = true;
 		solicitud = solicitudService.consultarSolicitud(2);
 		cotizacionNueva = new Cotizacion();
 		itemNuevo = new CotizacionItem();
@@ -53,6 +55,13 @@ public class CotizacionController extends ControladorBase {
 		listaCotizacionItem = new ArrayList<>();
 		listaCatalogoMateriales = catalogoItemService.buscarMateriales();
 		listaCatalogoManoDeObra = catalogoItemService.buscarManoDeObra();
+	}
+
+	public void cambiarCatalogo() {
+		if (verCatalogoTipoItem)
+			verCatalogoTipoItem = false;
+		else
+			verCatalogoTipoItem = true;
 	}
 
 	public void eliminarItem(CotizacionItem itemAEliminar) {
@@ -87,6 +96,8 @@ public class CotizacionController extends ControladorBase {
 		itemAAgregar.setPrecio(itemNuevo.getPrecio());
 		itemAAgregar.setTotalCostoItem(itemNuevo.getTotalCostoItem());
 		itemAAgregar.setTotalPrecioItem(itemNuevo.getTotalPrecioItem());
+		CatalogoItem catalogoItem = catalogoItemService.buscarPorCodigo(codigoTipoItem);
+		itemAAgregar.setCatalogoItem(catalogoItem);
 		listaCotizacionItem.add(itemAAgregar);
 		FacesMessage msg = new FacesMessage("Nuevo item agregado", "nombre material o mano de obra");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -106,7 +117,7 @@ public class CotizacionController extends ControladorBase {
 		FacesMessage msg = null;
 		try {
 			cotizacionNueva.setListaCotizacionItems(listaCotizacionItem);
-			cotizacionService.guardar(cotizacionNueva);
+			cotizacionService.guardarCotizacionCompleta(cotizacionNueva);
 			msg = new FacesMessage("Cotización", "Se guardó la cotización correctamente");
 		} catch (EntidadNoGuardadaException e) {
 			msg = new FacesMessage("Cotización", "No se pudo guardar la cotización");
@@ -123,6 +134,8 @@ public class CotizacionController extends ControladorBase {
 			totalCostoCotizacion = totalCostoCotizacion + item.getTotalCostoItem().doubleValue();
 
 		}
+		cotizacionNueva.setIva(BigDecimal.valueOf(totalCostoCotizacion * 0.12));
+		cotizacionNueva.setPrecioTotalIva(cotizacionNueva.getIva().add(BigDecimal.valueOf(totalPrecioCotizacion)));
 		cotizacionNueva.setCostoTotal(BigDecimal.valueOf(totalCostoCotizacion));
 		cotizacionNueva.setPrecioTotal(BigDecimal.valueOf(totalPrecioCotizacion));
 	}
@@ -193,5 +206,13 @@ public class CotizacionController extends ControladorBase {
 
 	public void setItemNuevo(CotizacionItem itemNuevo) {
 		this.itemNuevo = itemNuevo;
+	}
+
+	public Boolean getVerCatalogoTipoItem() {
+		return verCatalogoTipoItem;
+	}
+
+	public void setVerCatalogoTipoItem(Boolean verCatalogoTipoItem) {
+		this.verCatalogoTipoItem = verCatalogoTipoItem;
 	}
 }

@@ -2,6 +2,7 @@ package proinman.gestion.solicitud.servicio;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
 import proinman.gestion.solicitud.dao.SolicitudDao;
 import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
@@ -10,6 +11,8 @@ import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 public class SolicitudService {
 	@EJB
 	private SolicitudDao solicitudDao;
+	@EJB
+	private MotorTareaService motorTareaService;
 
 	public double crearSolicitudTestRest() throws EntidadNoGuardadaException {
 		Solicitud nuevaSolicitud = new Solicitud();
@@ -23,6 +26,7 @@ public class SolicitudService {
 	
 	public Solicitud crearSolicitud(Solicitud nuevaSolicitud) throws EntidadNoGuardadaException {
 		solicitudDao.guardar(nuevaSolicitud);
+		motorTareaService.crearTareaCotizarSolicitud(nuevaSolicitud);
 		return nuevaSolicitud;
 	}
 	

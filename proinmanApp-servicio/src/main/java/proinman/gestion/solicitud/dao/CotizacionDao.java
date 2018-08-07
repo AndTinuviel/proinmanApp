@@ -19,5 +19,9 @@ public class CotizacionDao extends BaseDaoGenerico<Cotizacion, Serializable>{
 	public CotizacionDao() {
 		super(Cotizacion.class);
 	}
+	
+	public void flush(){
+		em.flush();
+	}
 
 }
