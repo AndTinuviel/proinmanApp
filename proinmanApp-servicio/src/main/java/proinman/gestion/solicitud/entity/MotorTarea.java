@@ -41,15 +41,15 @@ public class MotorTarea implements Serializable {
 	@Column(name = "fecha_vencimiento")
 	private Date fechaVencimiento;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_actividad")
 	private MotorActividad motorActividad;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_solicitud")
 	private Solicitud solicitud;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
 

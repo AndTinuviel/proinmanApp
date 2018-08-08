@@ -84,7 +84,8 @@
 					<h:outputText id="lblObligatorioDireccion"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
 				</h:panelGroup>
-				<p:inputTextarea id="txtDireccion" rows="6" cols="33" required="true"
+				<p:inputTextarea id="txtDireccion" rows="6" cols="33"
+					required="true"
 					value="#{gestionSolicitudController.solicitud.direccion}" />
 
 				<h:panelGroup>
@@ -93,8 +94,19 @@
 					<h:outputText id="lblObligatorioSolicitud"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
 				</h:panelGroup>
-				<p:inputTextarea id="txtSolicitud" rows="6" cols="33" required="true"
+				<p:inputTextarea id="txtSolicitud" rows="6" cols="33"
+					required="true"
 					value="#{gestionSolicitudController.solicitud.descipcion}" />
+
+				<h:panelGroup>
+					<h:outputText id="lblFechaRecepcion"
+						value="Fecha de recepcion de requerimiento" />
+					<h:outputText id="lblObligatorioCotizarFechaRecepcion"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:calendar id="txtFechaRepecion"
+					value="#{gestionSolicitudController.solicitud.fechaRecepcion}"
+					pattern="dd-MM-yyyy" mask="true" required="true" />
 
 				<h:panelGroup>
 					<h:outputText id="lblCotizarPregunta" value="Desea Cotizar?" />
@@ -110,13 +122,22 @@
 				</p:selectOneRadio>
 
 				<h:panelGroup>
-					<h:outputText id="lblFechaRecepcion"
-						value="Fecha de recepcion de requerimiento" />
-					<h:outputText id="lblObligatorioCotizarFechaRecepcion"
+					<h:outputText id="lblUsuarioCotiza" value="Usuario que debe cotizar" />
+					<h:outputText id="lblObligatorioUsuarioCotiza"
 						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
 				</h:panelGroup>
-				<p:calendar id="txtFechaRepecion" value="#{gestionSolicitudController.solicitud.fechaRecepcion}"
-					pattern="dd-MM-yyyy" mask="true"  required="true"/>
+				<h:panelGroup id="pnlUsuarioCotiza">
+					<p:selectOneMenu id="cmbUsuarioCotiza" required="true"
+						value="#{gestionSolicitudController.codigoUsuarioCotiza}">
+						<f:selectItem itemValue="0"
+							itemLabel="#{msg.opcionSeleccionarCombo}" />
+						<f:selectItems value="#{gestionSolicitudController.listaUsuariosQuePuedenCotizar}"
+							var="usuario" itemLabel="#{usuario.nombre} #{usuario.apellido}"
+							itemValue="#{usuario.codigoUsuario}">
+						</f:selectItems>
+					</p:selectOneMenu>
+				</h:panelGroup>
+
 
 			</h:panelGrid>
 

@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 
 import proinman.gestion.solicitud.dao.SolicitudDao;
 import proinman.gestion.solicitud.entity.Solicitud;
+import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 
 @Stateless
@@ -23,11 +24,13 @@ public class SolicitudService {
 	public Solicitud consultarSolicitud(int codigoSolicitud) {
 		return this.solicitudDao.obtenerPorCodigo(Integer.valueOf(codigoSolicitud));
 	}
-	
-	public Solicitud crearSolicitud(Solicitud nuevaSolicitud) throws EntidadNoGuardadaException {
+
+	public Solicitud crearSolicitud(Solicitud nuevaSolicitud, Usuario usuario) throws EntidadNoGuardadaException {
 		solicitudDao.guardar(nuevaSolicitud);
-		motorTareaService.crearTareaCotizarSolicitud(nuevaSolicitud);
+		if (nuevaSolicitud.getRequiereCotizacion().equals("SI")) {
+			motorTareaService.crearTareaCotizarSolicitud(nuevaSolicitud, usuario);
+		}
 		return nuevaSolicitud;
 	}
-	
+
 }

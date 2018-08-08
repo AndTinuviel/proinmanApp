@@ -56,6 +56,8 @@ public class Solicitud implements Serializable {
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
 	
+	@Column(name = "requiere_cotizacion")
+	private String requiereCotizacion;
 
 	public Integer getCodigoSolicitud() {
 		return this.codigoSolicitud;
@@ -127,6 +129,14 @@ public class Solicitud implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getRequiereCotizacion() {
+		return requiereCotizacion;
+	}
+
+	public void setRequiereCotizacion(String requiereCotizacion) {
+		this.requiereCotizacion = requiereCotizacion;
 	}
 
 }

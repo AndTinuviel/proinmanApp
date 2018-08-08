@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import proinman.gestion.solicitud.entity.Cliente;
 import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.entity.UbicacionGeografica;
+import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.filtros.ControladorBase;
 import proinman.gestion.solicitud.servicio.ClienteService;
 import proinman.gestion.solicitud.servicio.SolicitudService;
@@ -34,6 +35,8 @@ public class GestionSolicitudController extends ControladorBase{
 	private Integer codigoCiudad;
 	private SiNoEnum deseaCotizar;
 	private Solicitud solicitud;
+	private List<Usuario> listaUsuariosQuePuedenCotizar;
+	private Integer codigoUsuarioCotiza;
 	
 	@EJB
 	private ClienteService clienteService;
@@ -50,6 +53,7 @@ public class GestionSolicitudController extends ControladorBase{
 		listaClientes = new ArrayList<>();
 		listaProvincias = new ArrayList<>();
 		listaCiudades = new ArrayList<>();
+		listaUsuariosQuePuedenCotizar  = new ArrayList<>();
 		solicitud =  new Solicitud();
 		carcarDatosIniciales();
 	}
@@ -60,13 +64,14 @@ public class GestionSolicitudController extends ControladorBase{
 		listaProvincias.addAll(ubicacionGeograficaService.consultarProvinciasPorRegion(2));
 		listaProvincias.addAll(ubicacionGeograficaService.consultarProvinciasPorRegion(3));
 		listaProvincias.addAll(ubicacionGeograficaService.consultarProvinciasPorRegion(4));
+		listaUsuariosQuePuedenCotizar.addAll(usuarioService.consultarUsuariosQuePuedenCotizar());
 	}
 	
 	public void guardar(){
 		setearDatos();
 		FacesMessage msg = null;
 		try {
-			solicitudService.crearSolicitud(solicitud);
+			solicitudService.crearSolicitud(solicitud, usuarioService.consultarUsuarioPorId(codigoUsuarioCotiza));
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro guardado correctamente", null);
 		} catch (EntidadNoGuardadaException e) {
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error al guardar la solicitud", null);
@@ -79,7 +84,8 @@ public class GestionSolicitudController extends ControladorBase{
 		solicitud.setCiudad(ubicacionGeograficaService.consultarUbicacionGeograficaPorID(codigoCiudad));
 		solicitud.setCliente(clienteService.consultarClientePorID(codigoCliente));
 		solicitud.setFechaRegistro(new Date());
-		solicitud.setUsuario(usuarioService.consultarUsuarioPorUsername("agutierrez"));
+		solicitud.setUsuario(usuarioService.consultarUsuarioPorUsername("agutierrez"));//getUsuarioConectado()));
+		solicitud.setRequiereCotizacion(deseaCotizar.toString());
 	}
 	
 	private void vaciarCampos(){
@@ -167,6 +173,22 @@ public class GestionSolicitudController extends ControladorBase{
 
 	public void setSolicitud(Solicitud solicitud) {
 		this.solicitud = solicitud;
+	}
+
+	public List<Usuario> getListaUsuariosQuePuedenCotizar() {
+		return listaUsuariosQuePuedenCotizar;
+	}
+
+	public void setListaUsuariosQuePuedenCotizar(List<Usuario> listaUsuariosQuePuedenCotizar) {
+		this.listaUsuariosQuePuedenCotizar = listaUsuariosQuePuedenCotizar;
+	}
+
+	public Integer getCodigoUsuarioCotiza() {
+		return codigoUsuarioCotiza;
+	}
+
+	public void setCodigoUsuarioCotiza(Integer codigoUsuarioCotiza) {
+		this.codigoUsuarioCotiza = codigoUsuarioCotiza;
 	}
 
 }

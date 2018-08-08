@@ -2,6 +2,7 @@ package proinman.gestion.solicitud.servicio;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -15,7 +16,7 @@ import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 @Stateless
 @LocalBean
 public class UsuarioService {
-	
+
 	@EJB
 	private UsuarioDao usuarioDao;
 
@@ -34,34 +35,35 @@ public class UsuarioService {
 		usuario.setPassword(convertirMD5(usuario.getCedula()));
 		usuario.setEstado("ACT");
 		System.out.println("antes del guardar");
-		System.out.println("*************************** usuario getNombre : "+usuario.getNombre());
-		System.out.println("*************************** usuarioDao : "+usuarioDao);
+		System.out.println("*************************** usuario getNombre : " + usuario.getNombre());
+		System.out.println("*************************** usuarioDao : " + usuarioDao);
 		usuarioDao.guardar(usuario);
 		return usuario;
 	}
-	
-	public List<Usuario> consultarUsuarios(){
+
+	public List<Usuario> consultarUsuarios() {
 		return usuarioDao.obtenerTodos();
 	}
-	
-	public Usuario consultarUsuarioPorId(Integer codigoUsuario){
+
+	public Usuario consultarUsuarioPorId(Integer codigoUsuario) {
 		return usuarioDao.obtenerPorCodigo(codigoUsuario);
 	}
-	
-	public Usuario consultarUsuarioPorUsername(String username){
+
+	public Usuario consultarUsuarioPorUsername(String username) {
 		return usuarioDao.consultarUsuarioPorUsername(username);
 	}
 
 	public void desactivarUsuario(Usuario usuarioaEliminar) throws EntidadNoGuardadaException {
 		usuarioaEliminar.setEstado("INA");
-		System.out.println("*****************"+usuarioaEliminar.getNombre() + " estado DESCRIPCION: "+usuarioaEliminar.getEstado()+ " estado: "+usuarioaEliminar.getEstado());
+		System.out.println("*****************" + usuarioaEliminar.getNombre() + " estado DESCRIPCION: "
+				+ usuarioaEliminar.getEstado() + " estado: " + usuarioaEliminar.getEstado());
 		actualizarUsuario(usuarioaEliminar);
 	}
 
 	public void actualizarUsuario(Usuario usuarioActualizar) throws EntidadNoGuardadaException {
 		usuarioDao.guardarOActualizar(usuarioActualizar);
 	}
-	
+
 	public Usuario bloquearUsuario() {
 		return null;
 	}
@@ -87,5 +89,11 @@ public class UsuarioService {
 		} catch (NoSuchAlgorithmException e) {
 		}
 		return null;
+	}
+
+	public List<Usuario> consultarUsuariosQuePuedenCotizar() {
+		List<Usuario> listaUsuariosQuePuedenCotizar= usuarioDao.consultarUsuariosPorCodigoRol(1);
+		listaUsuariosQuePuedenCotizar.addAll(usuarioDao.consultarUsuariosPorCodigoRol(2));
+		return listaUsuariosQuePuedenCotizar;
 	}
 }

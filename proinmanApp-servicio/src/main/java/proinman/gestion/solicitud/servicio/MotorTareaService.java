@@ -1,8 +1,7 @@
 package proinman.gestion.solicitud.servicio;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -12,6 +11,7 @@ import proinman.gestion.solicitud.dao.MotorActividadDao;
 import proinman.gestion.solicitud.dao.MotorTareaDao;
 import proinman.gestion.solicitud.entity.MotorTarea;
 import proinman.gestion.solicitud.entity.Solicitud;
+import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 
 @Stateless
@@ -25,13 +25,13 @@ public class MotorTareaService {
 
 	public static final Integer CONST_REALIZAR_COTIZACION = 1;
 
-	public MotorTarea crearTareaCotizarSolicitud(Solicitud solicitud) throws EntidadNoGuardadaException {
+	public MotorTarea crearTareaCotizarSolicitud(Solicitud solicitud, Usuario usuarioQueCotiza) throws EntidadNoGuardadaException {
 		MotorTarea tarea = new MotorTarea();
 		tarea.setEstado("ACT");
 		tarea.setFechaAsignacion(new Date());
 		tarea.setMotorActividad(motorActividadDao.obtenerPorCodigo(CONST_REALIZAR_COTIZACION));
 		tarea.setSolicitud(solicitud);
-		tarea.setUsuario(solicitud.getUsuario());
+		tarea.setUsuario(usuarioQueCotiza);
 		Date today = new Date();
 		Date fechaFinalizacion = new Date(today.getTime() + (tarea.getMotorActividad().getNumeroDiasVencimiento()*(1000 * 60 * 60 * 24)));
 		Date fechaVencimiento = new Date(today.getTime() + (tarea.getMotorActividad().getNumeroDiasPorVencer()*(1000 * 60 * 60 * 24)));
@@ -40,4 +40,9 @@ public class MotorTareaService {
 		motorTareaDao.guardar(tarea);
 		return tarea;
 	}
+
+	public List<MotorTarea> consultarTareasPorUsuario(String username) {
+		return motorTareaDao.consultarTareasPorUsuario(username);
+	}
+
 }
