@@ -29,9 +29,6 @@ public class Rol implements Serializable {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany(mappedBy = "rol", fetch = FetchType.EAGER)
-	private List<UsuarioRol> listaUsuarioRol;
-
 	public Integer getCodigoRol() {
 		return this.codigoRol;
 	}
@@ -46,14 +43,6 @@ public class Rol implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public List<UsuarioRol> getListaUsuarioRol() {
-		return listaUsuarioRol;
-	}
-
-	public void setListaUsuarioRol(List<UsuarioRol> listaUsuarioRol) {
-		this.listaUsuarioRol = listaUsuarioRol;
 	}
 
 	public String getEstado() {

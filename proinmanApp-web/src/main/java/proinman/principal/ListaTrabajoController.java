@@ -23,7 +23,8 @@ public class ListaTrabajoController extends ControladorBase implements Serializa
 	 */
 	private static final long serialVersionUID = 1126574371398347626L;
 	
-	List<MotorTarea> listaTareas;
+	private List<MotorTarea> listaTareas;
+	private MotorTarea tareaSeleccionada;	
 	
 	@EJB
 	private MotorTareaService motorTareaService;
@@ -38,8 +39,10 @@ public class ListaTrabajoController extends ControladorBase implements Serializa
 		listaTareas = motorTareaService.consultarTareasPorUsuario("rcruz");//getUsuarioConectado()));
 	}
 
-	public void seleccionarTarea(MotorTarea tarea){
-		System.out.println("***************** ingreso  codigoTarea "+tarea.getCodigoTarea());
+	public String seleccionarTarea(MotorTarea tarea){
+		this.tareaSeleccionada = tarea;
+		System.out.println("***************** ingreso  codigoTarea "+tareaSeleccionada);
+		return tarea.getMotorActividad().getDireccionPagina() + "?faces-redirect=true";
 	}
 	
 	public List<MotorTarea> getListaTareas() {
@@ -48,6 +51,14 @@ public class ListaTrabajoController extends ControladorBase implements Serializa
 
 	public void setListaTareas(List<MotorTarea> listaTareas) {
 		this.listaTareas = listaTareas;
+	}
+
+	public MotorTarea getTareaSeleccionada() {
+		return tareaSeleccionada;
+	}
+
+	public void setTareaSeleccionada(MotorTarea tareaSeleccionada) {
+		this.tareaSeleccionada = tareaSeleccionada;
 	}
 
 }

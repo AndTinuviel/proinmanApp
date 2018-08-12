@@ -41,7 +41,7 @@ public class Solicitud implements Serializable {
 	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
 	
-	@OneToMany(mappedBy = "solicitud")
+	@OneToMany(mappedBy = "solicitud" , fetch=FetchType.EAGER)
 	private List<Cotizacion> listaCotizaciones;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -52,7 +52,7 @@ public class Solicitud implements Serializable {
 	@JoinColumn(name = "codigo_ubicacion_geografica")
 	private UbicacionGeografica ciudad;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
 	

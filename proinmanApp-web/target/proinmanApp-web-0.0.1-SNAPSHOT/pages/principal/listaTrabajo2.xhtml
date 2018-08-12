@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:param name="sinMensajesGlobales" value="true" />
+	<ui:define name="elementosDocumentReady" />
+	<ui:define name="body">
+		<h:form id="frmListaTrabajo">
+			<h:panelGroup id="pgpContenido" widgetVar="pgpContenido">
+
+				<div class="barraSuperior">
+					<h:outputText value="#{msg.listaTrabajoDetalleListaTareas}" />
+				</div>
+
+				<h:panelGroup id="pnlListaTareas">
+					<div class="tablaFedatarios campoNegrilla">
+						<p:dataTable id="tblListaTareas" widgetVar="tblListaTareas"
+							value="#{listaTrabajoController.listaTareas}"
+							rowClasses="impar,par" tableStyleClass="reporte" var="item"
+							paginator="true" rows="10" paginatorPosition="bottom"
+							emptyMessage="#{msg.mensajeTablaVacia}">
+							<p:column headerText="Tarea" styleClass="celdaWrap" width="20%">
+
+								<p:link id="lnkTarea"  value="#{item.motorActividad.nombre}"
+									outcome="http://localhost:8080/proinman/pages/principal/listaTrabajo.jsf">
+
+								</p:link>
+
+								<h:outputText value="#{item.motorActividad.nombre}" />
+							</p:column>
+							<p:column headerText="Datos Tarea" styleClass="celdaWrap"
+								width="70%">
+								<h:outputText styleClass="asuntoPropiedad" value="Cliente: " />
+								<h:outputText styleClass="asuntoValor"
+									value="#{item.solicitud.cliente.nombreRazonSocial} " />
+
+								<h:outputText styleClass="asuntoPropiedad" value="Ciudad: " />
+								<h:outputText styleClass="asuntoValor"
+									value="#{item.solicitud.ciudad.descripcion} " />
+
+								<h:outputText styleClass="asuntoPropiedad" value="Dirección: " />
+								<h:outputText styleClass="asuntoValor"
+									value="#{item.solicitud.direccion} " />
+
+								<h:outputText styleClass="asuntoPropiedad"
+									value="Descripción de la Solicitud: " />
+								<h:outputText styleClass="asuntoValor"
+									value="#{item.solicitud.descipcion} " />
+							</p:column>
+							<p:column headerText="Fecha Vencimiento" styleClass="celdaWrap"
+								width="10%">
+								<h:outputText value="#{item.fechaVencimiento}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

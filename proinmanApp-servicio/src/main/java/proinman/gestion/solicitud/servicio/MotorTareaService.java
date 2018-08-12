@@ -42,7 +42,11 @@ public class MotorTareaService {
 	}
 
 	public List<MotorTarea> consultarTareasPorUsuario(String username) {
-		return motorTareaDao.consultarTareasPorUsuario(username);
+		List<MotorTarea> listaTareas = motorTareaDao.consultarTareasPorUsuario(username);
+		for (MotorTarea motorTarea : listaTareas) {
+			motorTarea.getUsuario().getListaUsuarioRol().size();
+		}
+		return listaTareas;
 	}
 
 }

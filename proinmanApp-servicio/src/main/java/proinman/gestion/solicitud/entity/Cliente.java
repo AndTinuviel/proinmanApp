@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,11 +43,9 @@ public class Cliente implements Serializable {
 	@Column(name = "telefono")
 	private String telefono;
 	
-	@OneToMany(mappedBy = "pssCliente")
+	@OneToMany(mappedBy = "pssCliente",fetch=FetchType.EAGER)
 	private List<ClienteSecuencial> listaClienteSecuencial;
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<Solicitud> listaSolicitudes;
 
 	public Integer getCodigoCliente() {
 		return this.codigoCliente;
@@ -118,14 +117,6 @@ public class Cliente implements Serializable {
 
 	public void setListaClienteSecuencial(List<ClienteSecuencial> listaClienteSecuencial) {
 		this.listaClienteSecuencial = listaClienteSecuencial;
-	}
-
-	public List<Solicitud> getListaSolicitudes() {
-		return listaSolicitudes;
-	}
-
-	public void setListaSolicitudes(List<Solicitud> listaSolicitudes) {
-		this.listaSolicitudes = listaSolicitudes;
 	}
 
 }

@@ -30,8 +30,7 @@ public class Usuario implements Serializable {
 	@Column(name = "cedula")
 	private String cedula;
 
-	@Column(name = "estado") // , columnDefinition = "VARCHAR2(3)")
-	// @Enumerated(EnumType.STRING)
+	@Column(name = "estado") 
 	private String estado;
 
 	@Column(name = "nombre")
@@ -43,7 +42,7 @@ public class Usuario implements Serializable {
 	@Column(name = "username")
 	private String username;
 
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private List<UsuarioRol> listaUsuarioRol;
 
 	public Usuario() {

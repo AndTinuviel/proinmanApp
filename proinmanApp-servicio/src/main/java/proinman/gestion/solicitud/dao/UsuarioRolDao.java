@@ -18,7 +18,7 @@ public class UsuarioRolDao extends BaseDaoGenerico<UsuarioRol, Serializable> {
 	}
 	
 	public List<UsuarioRol> consultarUsuarioRolPorCodigoUsuario(Integer codigoUsuario){
-		String consulta = "select ur from UsuarioRol ur INNER JOIN ur.usuario u  "
+		String consulta = "select ur from UsuarioRol ur INNER JOIN FETCH ur.usuario u INNER JOIN FETCH ur.rol r "
 				+ " where ur.usuario.codigoUsuario = :codigoUsuario ";
 
 		List<UsuarioRol> listaUsuarioRol = this.em.createQuery(consulta, UsuarioRol.class)

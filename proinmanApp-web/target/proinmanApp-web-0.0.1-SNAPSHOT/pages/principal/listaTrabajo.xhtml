@@ -25,14 +25,10 @@
 							paginator="true" rows="10" paginatorPosition="bottom"
 							emptyMessage="#{msg.mensajeTablaVacia}">
 							<p:column headerText="Tarea" styleClass="celdaWrap" width="20%">
-
-								<h:link id="lnkTarea"
-									outcome="#{listaTrabajoController.seleccionarTarea(item)}">
+								<p:link id="lnkTarea"  
+									outcome="listaTrabajo2.jsf">
 									<h:outputText value="#{item.motorActividad.nombre}" />
-
-								</h:link>
-
-								<h:outputText value="#{item.motorActividad.nombre}" />
+								</p:link>
 							</p:column>
 							<p:column headerText="Datos Tarea" styleClass="celdaWrap"
 								width="70%">
