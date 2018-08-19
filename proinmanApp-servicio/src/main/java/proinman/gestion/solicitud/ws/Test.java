@@ -8,15 +8,13 @@ import javax.ws.rs.Produces;
 
 @RequestScoped
 @Path("")
-@Produces({"application/xml", "application/json"})
-@Consumes({"application/xml", "application/json"})
-public class Test
-{
-  @GET
-  @Path("/consultar")
-  @Produces({"application/json"})
-  public String consultarJson()
-  {
-    return "Hola mundo";
-  }
+@Produces({ "application/xml", "application/json" })
+@Consumes({ "application/xml", "application/json" })
+public class Test {
+	@GET
+	@Path("/consultar")
+	@Produces({ "application/json" })
+	public String consultarJson() {
+		return "Hola mundo";
+	}
 }
