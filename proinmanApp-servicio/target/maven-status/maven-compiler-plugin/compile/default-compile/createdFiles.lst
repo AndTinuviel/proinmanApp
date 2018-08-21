@@ -11,7 +11,6 @@ proinman\gestion\solicitud\dao\SolicitudDao.class
 proinman\gestion\solicitud\util\exception\ControladaException.class
 proinman\gestion\solicitud\entity\Cotizacion.class
 proinman\gestion\solicitud\ws\RestApplication.class
-proinman\gestion\solicitud\ws\SolicitudWS.class
 proinman\gestion\solicitud\servicio\UsuarioRolService.class
 proinman\gestion\solicitud\entity\MotorActividad.class
 proinman\gestion\solicitud\servicio\CatalogoItemService.class
@@ -21,7 +20,6 @@ proinman\gestion\solicitud\entity\ReporteTrabajo.class
 proinman\gestion\solicitud\dao\BaseDaoGenerico.class
 proinman\gestion\solicitud\servicio\SolicitudService.class
 proinman\gestion\solicitud\servicio\CotizacionService.class
-proinman\gestion\solicitud\ws\Test.class
 proinman\gestion\solicitud\dao\UsuarioDao.class
 proinman\gestion\solicitud\entity\Solicitud.class
 proinman\gestion\solicitud\entity\ClienteSecuencial.class

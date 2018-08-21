@@ -43,6 +43,9 @@ public class Cliente implements Serializable {
 	@Column(name = "telefono")
 	private String telefono;
 	
+	@Column(name = "estado") 
+	private String estado;
+	
 	@OneToMany(mappedBy = "pssCliente",fetch=FetchType.EAGER)
 	private List<ClienteSecuencial> listaClienteSecuencial;
 	
@@ -117,6 +120,14 @@ public class Cliente implements Serializable {
 
 	public void setListaClienteSecuencial(List<ClienteSecuencial> listaClienteSecuencial) {
 		this.listaClienteSecuencial = listaClienteSecuencial;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

@@ -25,6 +25,7 @@ public class ListaTareaRest {
 		for (MotorTarea motorTarea : listaTareas) {
 			motorTarea.getSolicitud().getUsuario().setListaUsuarioRol(null);
 			motorTarea.getUsuario().setListaUsuarioRol(null);
+			motorTarea.getSolicitud().setListaCotizaciones(null);
 		}
 		return listaTareas;
 	}

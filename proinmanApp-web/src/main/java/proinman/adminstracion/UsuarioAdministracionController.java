@@ -64,8 +64,6 @@ public class UsuarioAdministracionController extends ControladorBase {
 	
 	public void guardar(){
 		try {
-			System.out.println("***************** guardar");
-			System.out.println("***************** usuarioService "+usuarioService);
 			usuarioService.crearUsuario(usuarioSeleccionado);
 		} catch (EntidadNoGuardadaException e) {
 			// TODO Auto-generated catch block

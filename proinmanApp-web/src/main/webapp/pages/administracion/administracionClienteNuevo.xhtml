@@ -1,31 +1,125 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/common.xhtml">
-	<ui:define name="elementosDocumentReady">
 
-	</ui:define>
 	<ui:define name="body">
-		<!-- TITULO -->
-		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
-			<h:outputText value="Administracion" />
-			<h:outputText styleClass="tituloSecundarioPagina" value="Usuarios" />
+		<p:outputPanel id="tituloPaginaActual" layout="block">
+			<h:outputText id="titulo" value="Administración de Clientes" />
+		</p:outputPanel>
+		<h:panelGroup id="contenido" layout="block">
+
+			<div class="barraSuperior">&#160;</div>
+
+
+			<h:form>
+				<p:panel id="panel" header="Cliente Nuevo">
+
+					<p:messages id="msgs" />
+
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel for="nombreRazonSocial"
+							value="Nombre o Razón Social:" />
+						<p:inputText id="nombreRazonSocial"
+							value="#{clienteAdministracionController.clienteSeleccionado.nombreRazonSocial}"
+							required="true" label="Nombre o Razón Social:">
+							<f:validateLength minimum="3" />
+						</p:inputText>
+						<p:message for="nombreRazonSocial" display="icon" />
+
+						<p:outputLabel for="identificacion" value="Identificación:" />
+						<p:inputText id="identificacion"
+							value="#{clienteAdministracionController.clienteSeleccionado.identificacion}"
+							label="Identificación:" required="true">
+							<f:validateLength minimum="3" />
+							<p:ajax update="msgLastname" event="keyup" />
+						</p:inputText>
+						<p:message for="identificacion" id="msgLastname" display="icon" />
+
+
+						<h:outputText id="lblProvincia" value="Provincia" />
+						<p:selectOneMenu id="cmbProvincia" required="true"
+							value="#{gestionSolicitudController.codigoProvincia}">
+							<f:selectItem itemValue="0"
+								itemLabel="#{msg.opcionSeleccionarCombo}" />
+							<f:selectItems
+								value="#{gestionSolicitudController.listaProvincias}"
+								var="provincia" itemLabel="#{provincia.descripcion}"
+								itemValue="#{provincia.codigoUbicacionGeografica}">
+							</f:selectItems>
+							<p:ajax update="pnlCiudadCombo" event="change"
+								process="cmbProvincia"
+								listener="#{gestionSolicitudController.consultarCiudades()}"></p:ajax>
+						</p:selectOneMenu>
+						<p:message for="lblProvincia"  display="icon" />
+
+						<h:outputText id="lblCiudad" value="Ciudad" />
+						<h:panelGroup id="pnlCiudadCombo">
+							<p:selectOneMenu id="cmbCiudad" required="true"
+								value="#{gestionSolicitudController.codigoCiudad}">
+								<f:selectItem itemValue="0"
+									itemLabel="#{msg.opcionSeleccionarCombo}" />
+								<f:selectItems
+									value="#{gestionSolicitudController.listaCiudades}"
+									var="ciudad" itemLabel="#{ciudad.descripcion}"
+									itemValue="#{ciudad.codigoUbicacionGeografica}">
+								</f:selectItems>
+							</p:selectOneMenu>
+						</h:panelGroup>
+						<p:message for="lblCiudad"  display="icon" />
+
+
+						<p:outputLabel for="giroNegocio" value="Giro del Negocio:" />
+						<p:inputText id="giroNegocio"
+							value="#{clienteAdministracionController.clienteSeleccionado.giroNegocio}"
+							required="true" label="Giro del Negocio::">
+							<f:validateLength minimum="10" />
+						</p:inputText>
+						<p:message for="giroNegocio" display="icon" />
+
+						<p:outputLabel for="telefono" value="Teléfono:" />
+						<p:inputText id="telefono"
+							value="#{clienteAdministracionController.clienteSeleccionado.telefono}"
+							required="true" label="Teléfono::">
+							<f:validateLength minimum="9" />
+						</p:inputText>
+						<p:message for="telefono" display="icon" />
+
+						<p:outputLabel for="celular" value="Celular:" />
+						<p:inputText id="celular"
+							value="#{clienteAdministracionController.clienteSeleccionado.celular}"
+							required="true" label="Celular:">
+							<f:validateLength minimum="10" />
+						</p:inputText>
+						<p:message for="celular" display="icon" />
+
+						<p:outputLabel for="mail" value="e-mail:" />
+						<p:inputText id="mail"
+							value="#{clienteAdministracionController.clienteSeleccionado.mail}"
+							required="true" label="e-mail:">
+							<f:validateLength minimum="7" />
+						</p:inputText>
+						<p:message for="mail" display="icon" />
+
+
+
+					</h:panelGrid>
+
+					<p:commandButton value="Guardar" update="panel"
+						action="#{clienteAdministracionController.guardar}"
+						icon="ui-icon-check" />
+				</p:panel>
+			</h:form>
+
+
+
+			<div class="barraInferior">&#160;</div>
+
 		</h:panelGroup>
-		<h:form id="frmRegistro">
-			<h:inputHidden id="hidValidador" value="NO" />
-
-
-			<h:outputText value="Hooooola mundo" />
-
-		</h:form>
 
 	</ui:define>
-
 </ui:composition>
-
 </html>

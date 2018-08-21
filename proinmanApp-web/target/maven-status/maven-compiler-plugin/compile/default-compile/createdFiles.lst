@@ -1,9 +1,10 @@
 proinman\adminstracion\UsuarioAdministracionController.class
-proinman\adminstracion\UsuarioRolController.class
+proinman\adminstracion\ClienteAdministracionController.class
 proinman\principal\ListaTrabajoController.class
+proinman\gestion\solicitud\ec\GestionSolicitudController.class
+proinman\gestion\solicitud\filtros\ControladorBase.class
+proinman\adminstracion\UsuarioRolController.class
 proinman\gestion\solicitud\filtros\FiltroLogin.class
 LoginBean.class
 proinman\gestion\solicitud\filtros\LoginBean.class
-proinman\gestion\solicitud\ec\GestionSolicitudController.class
-proinman\gestion\solicitud\filtros\ControladorBase.class
 proinman\gestion\solicitud\ec\CotizacionController.class

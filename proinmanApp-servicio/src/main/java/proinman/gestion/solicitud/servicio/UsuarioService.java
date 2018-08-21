@@ -34,9 +34,6 @@ public class UsuarioService {
 	public Usuario crearUsuario(Usuario usuario) throws EntidadNoGuardadaException {
 		usuario.setPassword(convertirMD5(usuario.getCedula()));
 		usuario.setEstado("ACT");
-		System.out.println("antes del guardar");
-		System.out.println("*************************** usuario getNombre : " + usuario.getNombre());
-		System.out.println("*************************** usuarioDao : " + usuarioDao);
 		usuarioDao.guardar(usuario);
 		return usuario;
 	}
@@ -55,8 +52,6 @@ public class UsuarioService {
 
 	public void desactivarUsuario(Usuario usuarioaEliminar) throws EntidadNoGuardadaException {
 		usuarioaEliminar.setEstado("INA");
-		System.out.println("*****************" + usuarioaEliminar.getNombre() + " estado DESCRIPCION: "
-				+ usuarioaEliminar.getEstado() + " estado: " + usuarioaEliminar.getEstado());
 		actualizarUsuario(usuarioaEliminar);
 	}
 

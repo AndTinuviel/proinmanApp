@@ -15,12 +15,6 @@ public class SolicitudService {
 	@EJB
 	private MotorTareaService motorTareaService;
 
-	public double crearSolicitudTestRest() throws EntidadNoGuardadaException {
-		Solicitud nuevaSolicitud = new Solicitud();
-		this.solicitudDao.guardar(nuevaSolicitud);
-		return 1.0D;
-	}
-
 	public Solicitud consultarSolicitud(int codigoSolicitud) {
 		return this.solicitudDao.obtenerPorCodigo(Integer.valueOf(codigoSolicitud));
 	}
