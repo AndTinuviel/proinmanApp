@@ -40,36 +40,36 @@
 						<p:message for="identificacion" id="msgLastname" display="icon" />
 
 
-						<h:outputText id="lblProvincia" value="Provincia" />
-						<p:selectOneMenu id="cmbProvincia" required="true"
-							value="#{gestionSolicitudController.codigoProvincia}">
+						<h:outputText for="provincia" value="Provincia" />
+						<p:selectOneMenu id="provincia" required="true"
+							value="#{clienteAdministracionController.codigoProvincia}">
 							<f:selectItem itemValue="0"
 								itemLabel="#{msg.opcionSeleccionarCombo}" />
 							<f:selectItems
-								value="#{gestionSolicitudController.listaProvincias}"
+								value="#{clienteAdministracionController.listaProvincias}"
 								var="provincia" itemLabel="#{provincia.descripcion}"
 								itemValue="#{provincia.codigoUbicacionGeografica}">
 							</f:selectItems>
 							<p:ajax update="pnlCiudadCombo" event="change"
-								process="cmbProvincia"
-								listener="#{gestionSolicitudController.consultarCiudades()}"></p:ajax>
+								process="provincia"
+								listener="#{clienteAdministracionController.consultarCiudades()}"></p:ajax>
 						</p:selectOneMenu>
-						<p:message for="lblProvincia"  display="icon" />
+						<p:message for="provincia"  display="icon" />
 
-						<h:outputText id="lblCiudad" value="Ciudad" />
+						<h:outputText for="ciudad" value="Ciudad" />
 						<h:panelGroup id="pnlCiudadCombo">
-							<p:selectOneMenu id="cmbCiudad" required="true"
-								value="#{gestionSolicitudController.codigoCiudad}">
+							<p:selectOneMenu id="ciudad" required="true"
+								value="#{clienteAdministracionController.clienteSeleccionado.ciudad}">
 								<f:selectItem itemValue="0"
 									itemLabel="#{msg.opcionSeleccionarCombo}" />
 								<f:selectItems
-									value="#{gestionSolicitudController.listaCiudades}"
+									value="#{clienteAdministracionController.listaCiudades}"
 									var="ciudad" itemLabel="#{ciudad.descripcion}"
-									itemValue="#{ciudad.codigoUbicacionGeografica}">
+									itemValue="#{ciudad.descripcion}">
 								</f:selectItems>
 							</p:selectOneMenu>
 						</h:panelGroup>
-						<p:message for="lblCiudad"  display="icon" />
+						<p:message for="ciudad"  display="icon" />
 
 
 						<p:outputLabel for="giroNegocio" value="Giro del Negocio:" />

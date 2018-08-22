@@ -11,18 +11,61 @@
 
 	</ui:define>
 	<ui:define name="body">
-		<!-- TITULO -->
-		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
-			<h:outputText value="Administracion" />
-			<h:outputText styleClass="tituloSecundarioPagina" value="Usuarios" />
+		<p:outputPanel id="tituloPaginaActual" layout="block">
+			<h:outputText id="titulo" value="Administración de Usuarios" />
+		</p:outputPanel>
+		<h:panelGroup id="contenido" layout="block">
+
+			<div class="barraSuperior">&#160;</div>
+			<h:form id="frmRegistro">
+				<p:growl id="msgs" showDetail="true" />
+
+				<p:dataTable id="dtbClientes" var="cliente"
+					value="#{clienteAdministracionController.listaClientes}">
+					<p:column headerText="Nombre o Razón Social">
+						<h:outputText value="#{cliente.nombreRazonSocial}" />
+					</p:column>
+					<p:column headerText="Ciudad Oficina Matriz">
+						<h:outputText value="#{cliente.ciudad}" />
+					</p:column>
+					<p:column headerText="Giro del negocio">
+						<h:outputText value="#{cliente.giroNegocio}" />
+					</p:column>
+					<p:column headerText="e-mail">
+						<h:outputText value="#{cliente.mail}" />
+					</p:column>
+					<p:column headerText="Telefono">
+						<h:outputText value="#{cliente.telefono}" />
+					</p:column>
+					<p:column headerText="Celular">
+						<h:outputText value="#{cliente.celular}" />
+					</p:column>
+					<p:column headerText="Estado">
+						<h:outputText value="#{cliente.estado}" />
+					</p:column>
+					<p:column headerText="Editar" style="text-align: center">
+						<h:graphicImage value="/resources/img/eventos/modificar.gif" />
+						<p:commandButton id="btnEditar2"
+							action="#{clienteAdministracionController.actualizarCliente(cliente)}"
+							process="@form" value="Editar" />
+					</p:column>
+					<p:column headerText="Eliminar" style="text-align: center">
+						<h:commandLink id="btnEliminar">
+							<h:graphicImage value="/resources/img/eventos/eliminar.gif" />
+							<p:ajax immediate="true" event="click"
+								listener="#{clienteAdministracionController.eliminarCliente(cliente)}"
+								update=":#{p:component('dtbClientes')}" />
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+
+
+			<div class="barraInferior">&#160;</div>
+
 		</h:panelGroup>
-		<h:form id="frmRegistro">
-			<h:inputHidden id="hidValidador" value="NO" />
-
-
-			<h:outputText value="Hooooola mundo" />
-
-		</h:form>
 
 	</ui:define>
 
