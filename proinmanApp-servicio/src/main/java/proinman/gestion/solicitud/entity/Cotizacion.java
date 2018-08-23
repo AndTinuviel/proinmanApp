@@ -44,6 +44,9 @@ public class Cotizacion implements Serializable {
 	@JoinColumn(name = "codigo_solicitud")
 	private Solicitud solicitud;
 	
+	@Column(name = "estado") 
+	private String estado;
+	
 	@OneToMany(mappedBy = "cotizacion" ,fetch = FetchType.EAGER)
 	private List<CotizacionItem> listaCotizacionItems;
 	
@@ -112,6 +115,14 @@ public class Cotizacion implements Serializable {
 
 	public void setIva(BigDecimal iva) {
 		this.iva = iva;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

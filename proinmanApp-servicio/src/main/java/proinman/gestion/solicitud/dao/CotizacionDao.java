@@ -24,4 +24,13 @@ public class CotizacionDao extends BaseDaoGenerico<Cotizacion, Serializable>{
 		em.flush();
 	}
 
+	public Cotizacion consultarCotizacionPorCodigoSolicitud(Integer codigoSolicitud) {
+			String consulta = "select c from Cotizacion c inner join c.solicitud s "
+					+ " where s.codigoSolicitud = :codigoSolicitud and estado = 'ACT' ";
+
+			Cotizacion cotizacion = this.em.createQuery(consulta, Cotizacion.class)
+					.setParameter("codigoSolicitud", codigoSolicitud).getSingleResult();
+			return cotizacion;
+	}
+
 }

@@ -32,4 +32,8 @@ public class CotizacionService {
 		return cotizacion;
 	}
 	
+	public Cotizacion consultarCotizacionPorCodigoSolicitud(Integer codigoSolicitud) {
+		return cotizacionDao.consultarCotizacionPorCodigoSolicitud(codigoSolicitud);
+	}
+	
 }

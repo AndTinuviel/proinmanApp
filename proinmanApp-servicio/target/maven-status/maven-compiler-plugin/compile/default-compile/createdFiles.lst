@@ -34,6 +34,7 @@ proinman\gestion\solicitud\entity\HistoricoTarea.class
 proinman\gestion\solicitud\dao\CotizacionDao.class
 proinman\gestion\solicitud\util\exception\EntidadNoExisteException.class
 proinman\gestion\solicitud\entity\Rol.class
+proinman\gestion\solicitud\ws\CotizacionRest.class
 proinman\gestion\solicitud\entity\Cliente.class
 proinman\gestion\solicitud\entity\Usuario.class
 proinman\gestion\solicitud\servicio\UbicacionGeograficaService.class
