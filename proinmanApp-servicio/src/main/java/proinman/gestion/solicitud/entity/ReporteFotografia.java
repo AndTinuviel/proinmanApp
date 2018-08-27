@@ -16,16 +16,21 @@ import javax.persistence.Table;
 @Table(name = "pss_reporte_fotografia", schema = "proinman_movil")
 @NamedQuery(name = "ReporteFotografia.findAll", query = "SELECT r FROM ReporteFotografia r")
 public class ReporteFotografia implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_reporete_fotografia")
 	private Integer codigoReporeteFotografia;
+	
 	private byte[] fotografia;
+	
 	private String nombre;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_reporte_trabajo")
-	private ReporteTrabajo pssReporteTrabajo;
+	private ReporteTrabajo reporteTrabajo;
 
 	public Integer getCodigoReporeteFotografia() {
 		return this.codigoReporeteFotografia;
@@ -51,11 +56,12 @@ public class ReporteFotografia implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public ReporteTrabajo getPssReporteTrabajo() {
-		return this.pssReporteTrabajo;
+	public ReporteTrabajo getReporteTrabajo() {
+		return reporteTrabajo;
 	}
 
-	public void setPssReporteTrabajo(ReporteTrabajo pssReporteTrabajo) {
-		this.pssReporteTrabajo = pssReporteTrabajo;
+	public void setReporteTrabajo(ReporteTrabajo reporteTrabajo) {
+		this.reporteTrabajo = reporteTrabajo;
 	}
+
 }
