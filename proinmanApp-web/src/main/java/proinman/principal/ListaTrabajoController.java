@@ -41,7 +41,6 @@ public class ListaTrabajoController extends ControladorBase implements Serializa
 
 	public String seleccionarTarea(MotorTarea tarea){
 		this.tareaSeleccionada = tarea;
-		System.out.println("***************** ingreso  codigoTarea "+tareaSeleccionada);
 		return tarea.getMotorActividad().getDireccionPagina() + "?faces-redirect=true";
 	}
 	

@@ -38,6 +38,8 @@ proinman\gestion\solicitud\ws\CotizacionRest.class
 proinman\gestion\solicitud\entity\Cliente.class
 proinman\gestion\solicitud\entity\Usuario.class
 proinman\gestion\solicitud\servicio\UbicacionGeograficaService.class
+proinman\gestion\solicitud\servicio\ReporteTrabajoService.class
+proinman\gestion\solicitud\ws\ReporteTrabajoRest.class
 proinman\gestion\solicitud\dao\UbicacionGeograficaDao.class
 proinman\gestion\solicitud\ws\UsuarioRest.class
 proinman\gestion\solicitud\dao\CotizacionItemDao.class
@@ -50,3 +52,4 @@ proinman\gestion\solicitud\entity\MotorTarea.class
 proinman\gestion\solicitud\dao\MotorTareaDao.class
 proinman\gestion\solicitud\entity\UsuarioRol.class
 proinman\gestion\solicitud\ws\SolicitudRest.class
+proinman\gestion\solicitud\dao\ReporteTrabajoDao.class

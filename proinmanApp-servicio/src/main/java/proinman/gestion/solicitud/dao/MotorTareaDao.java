@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import javax.persistence.QueryTimeoutException;
+import javax.persistence.TransactionRequiredException;
 
+import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 import proinman.gestion.solicitud.entity.MotorTarea;
-import proinman.gestion.solicitud.entity.UsuarioRol;
 
 @Stateless
 @LocalBean
@@ -30,6 +34,21 @@ public class MotorTareaDao extends BaseDaoGenerico<MotorTarea, Serializable> {
 			motorTarea.getUsuario().getListaUsuarioRol().size();
 		}
 		return listaTareas;
+	}
+
+	public void finalizarTarea(Integer codigoTarea) throws EntidadNoGuardadaException {
+		try {
+			String consulta = "update MotorTarea m set estado = 'INA' where m.codigoTarea = :codigoTarea ";
+			Query query = em.createQuery(consulta);
+			query.setParameter("codigoTarea", codigoTarea);
+			query.executeUpdate();
+		} catch (TransactionRequiredException e) {
+			throw new EntidadNoGuardadaException(e);
+		} catch (QueryTimeoutException e) {
+			throw new EntidadNoGuardadaException(e);
+		} catch (PersistenceException e) {
+			throw new EntidadNoGuardadaException(e);
+		}
 	}
 
 }

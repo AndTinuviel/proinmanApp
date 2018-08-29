@@ -9,6 +9,7 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\GenericoDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\Cotizacion.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\ReporteTrabajo.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\ReporteTrabajoService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\ListaTareaRest.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\CotizacionService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UsuarioDao.java
@@ -17,6 +18,7 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\servicio\MotorTareaService.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\UbicacionGeograficaRest.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\RestApplication.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\ReporteTrabajoDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\ErrorAplicacionException.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\EntidadNoExisteException.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\UsuarioRolDao.java
@@ -39,6 +41,7 @@ E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\s
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\CotizacionItem.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\CotizacionItemDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\util\exception\EntidadNoGuardadaException.java
+E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\ws\ReporteTrabajoRest.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\dao\SolicitudDao.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\ReporteFotografia.java
 E:\ANDREA\5._TFM\desarrollo\maven\proinmanApp\proinmanApp\proinmanApp-servicio\src\main\java\proinman\gestion\solicitud\entity\ClienteSecuencial.java

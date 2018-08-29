@@ -26,8 +26,12 @@
 							emptyMessage="#{msg.mensajeTablaVacia}">
 							<p:column headerText="Tarea" styleClass="celdaWrap" width="20%">
 								<p:link id="lnkTarea"  
-									outcome="listaTrabajo2.jsf">
+									outcome="#{listaTrabajoController.seleccionarTarea(item)}">
 									<h:outputText value="#{item.motorActividad.nombre}" />
+									<f:param name="codigoTarea"
+										value="#{item.codigoTarea}" />
+									<f:param name="codigoSolicitud"
+										value="#{item.solicitud.codigoSolicitud}" />
 								</p:link>
 							</p:column>
 							<p:column headerText="Datos Tarea" styleClass="celdaWrap"

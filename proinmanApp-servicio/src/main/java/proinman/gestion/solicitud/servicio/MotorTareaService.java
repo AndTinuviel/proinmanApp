@@ -48,5 +48,9 @@ public class MotorTareaService {
 		}
 		return listaTareas;
 	}
+	
+	public void finalizarTarea(Integer codigoTarea) throws EntidadNoGuardadaException{
+		motorTareaDao.finalizarTarea(codigoTarea);
+	}
 
 }

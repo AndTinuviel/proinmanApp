@@ -20,6 +20,7 @@ import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.filtros.ControladorBase;
 import proinman.gestion.solicitud.servicio.CatalogoItemService;
 import proinman.gestion.solicitud.servicio.CotizacionService;
+import proinman.gestion.solicitud.servicio.MotorTareaService;
 import proinman.gestion.solicitud.servicio.SolicitudService;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
 import proinman.gestion.solicitud.utilitarios.TipoItemEnum;
@@ -37,6 +38,7 @@ public class CotizacionController extends ControladorBase {
 	private Cotizacion cotizacionNueva;
 	private CotizacionItem itemNuevo;
 	private Boolean verCatalogoTipoItem;
+	private Integer codigoTarea;
 
 	@EJB
 	private SolicitudService solicitudService;
@@ -44,24 +46,32 @@ public class CotizacionController extends ControladorBase {
 	private CotizacionService cotizacionService;
 	@EJB
 	private CatalogoItemService catalogoItemService;
+	@EJB
+	private MotorTareaService motorTareaService;
 
 	@PostConstruct
 	public void inicializar() {
 		verCatalogoTipoItem = true;
-		solicitud = solicitudService.consultarSolicitud(2);
+		solicitud = new Solicitud();
 		cotizacionNueva = new Cotizacion();
 		itemNuevo = new CotizacionItem();
 		cotizacionNueva.setSolicitud(solicitud);
 		listaCotizacionItem = new ArrayList<>();
 		listaCatalogoMateriales = catalogoItemService.buscarMateriales();
 		listaCatalogoManoDeObra = catalogoItemService.buscarManoDeObra();
+		consultarDatosIniciales();
 	}
 
+	private void consultarDatosIniciales(){
+		codigoTarea = Integer.parseInt(getHttpRequest().getParameter("codigoTarea"));
+		solicitud = solicitudService.consultarSolicitud(Integer.parseInt(getHttpRequest().getParameter("codigoSolicitud")));
+	}
+	
 	public void cambiarCatalogo() {
-		if (verCatalogoTipoItem)
-			verCatalogoTipoItem = false;
-		else
+		if (tipoItemEnum.getVALOR().equals("MATERIAL"))
 			verCatalogoTipoItem = true;
+		else
+			verCatalogoTipoItem = false;
 	}
 
 	public void eliminarItem(CotizacionItem itemAEliminar) {
@@ -117,7 +127,10 @@ public class CotizacionController extends ControladorBase {
 		FacesMessage msg = null;
 		try {
 			cotizacionNueva.setListaCotizacionItems(listaCotizacionItem);
+			cotizacionNueva.setEstado("ACT");
+			cotizacionNueva.setSolicitud(solicitud);
 			cotizacionService.guardarCotizacionCompleta(cotizacionNueva);
+			motorTareaService.finalizarTarea(codigoTarea);
 			msg = new FacesMessage("Cotización", "Se guardó la cotización correctamente");
 		} catch (EntidadNoGuardadaException e) {
 			msg = new FacesMessage("Cotización", "No se pudo guardar la cotización");
