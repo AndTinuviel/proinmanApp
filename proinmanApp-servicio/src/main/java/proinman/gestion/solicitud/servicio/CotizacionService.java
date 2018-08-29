@@ -18,18 +18,26 @@ public class CotizacionService {
 	private CotizacionDao cotizacionDao;
 	@EJB
 	private CotizacionItemDao cotizacionItemDao;
+	@EJB
+	private MotorTareaService motorTareaService;
 	
 	public void guardar(Cotizacion cotizacion) throws EntidadNoGuardadaException {
 		cotizacionDao.guardar(cotizacion);
 	}
 
-	public Cotizacion guardarCotizacionCompleta(Cotizacion cotizacion) throws EntidadNoGuardadaException{
+	public Cotizacion guardarCotizacionCompleta(Cotizacion cotizacion, Integer codigoTarea) throws EntidadNoGuardadaException{
+		guardarCotizacion(cotizacion);
+		motorTareaService.finalizarTarea(codigoTarea);
+		motorTareaService.crearTareaAprobarCotizacion(cotizacion.getSolicitud(),cotizacion.getSolicitud().getUsuario());
+		return cotizacion;
+	}
+
+	private void guardarCotizacion(Cotizacion cotizacion) throws EntidadNoGuardadaException {
 		cotizacionDao.guardar(cotizacion);
 		for (CotizacionItem cotizacionItem : cotizacion.getListaCotizacionItems()) {
 			cotizacionItem.setCotizacion(cotizacion);
 			cotizacionItemDao.guardar(cotizacionItem);
 		}
-		return cotizacion;
 	}
 	
 	public Cotizacion consultarCotizacionPorCodigoSolicitud(Integer codigoSolicitud) {

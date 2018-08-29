@@ -15,6 +15,7 @@ proinman\gestion\solicitud\servicio\UsuarioRolService.class
 proinman\gestion\solicitud\entity\MotorActividad.class
 proinman\gestion\solicitud\servicio\CatalogoItemService.class
 proinman\gestion\solicitud\dao\ClienteDao.class
+proinman\gestion\solicitud\utilitarios\Constantes.class
 proinman\gestion\solicitud\entity\CatalogoItem.class
 proinman\gestion\solicitud\entity\ReporteTrabajo.class
 proinman\gestion\solicitud\dao\BaseDaoGenerico.class

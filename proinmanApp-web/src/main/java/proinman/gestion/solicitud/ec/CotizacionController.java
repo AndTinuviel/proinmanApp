@@ -46,8 +46,7 @@ public class CotizacionController extends ControladorBase {
 	private CotizacionService cotizacionService;
 	@EJB
 	private CatalogoItemService catalogoItemService;
-	@EJB
-	private MotorTareaService motorTareaService;
+
 
 	@PostConstruct
 	public void inicializar() {
@@ -126,17 +125,21 @@ public class CotizacionController extends ControladorBase {
 	public void guardar() {
 		FacesMessage msg = null;
 		try {
-			cotizacionNueva.setListaCotizacionItems(listaCotizacionItem);
-			cotizacionNueva.setEstado("ACT");
-			cotizacionNueva.setSolicitud(solicitud);
-			cotizacionService.guardarCotizacionCompleta(cotizacionNueva);
-			motorTareaService.finalizarTarea(codigoTarea);
+			setearDatosDeCotizacion();
+			cotizacionService.guardarCotizacionCompleta(cotizacionNueva, codigoTarea);
+			
 			msg = new FacesMessage("Cotización", "Se guardó la cotización correctamente");
 		} catch (EntidadNoGuardadaException e) {
 			msg = new FacesMessage("Cotización", "No se pudo guardar la cotización");
 		} finally {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+	}
+
+	private void setearDatosDeCotizacion() {
+		cotizacionNueva.setListaCotizacionItems(listaCotizacionItem);
+		cotizacionNueva.setEstado("ACT");
+		cotizacionNueva.setSolicitud(solicitud);
 	}
 
 	private void calcularTotalesCotizacion() {

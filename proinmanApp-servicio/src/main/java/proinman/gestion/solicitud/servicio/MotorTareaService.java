@@ -13,6 +13,7 @@ import proinman.gestion.solicitud.entity.MotorTarea;
 import proinman.gestion.solicitud.entity.Solicitud;
 import proinman.gestion.solicitud.entity.Usuario;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
+import proinman.gestion.solicitud.utilitarios.Constantes;
 
 @Stateless
 @LocalBean
@@ -23,13 +24,24 @@ public class MotorTareaService {
 	@EJB
 	private MotorActividadDao motorActividadDao;
 
-	public static final Integer CONST_REALIZAR_COTIZACION = 1;
-
 	public MotorTarea crearTareaCotizarSolicitud(Solicitud solicitud, Usuario usuarioQueCotiza) throws EntidadNoGuardadaException {
 		MotorTarea tarea = new MotorTarea();
+		tarea.setMotorActividad(motorActividadDao.obtenerPorCodigo(Constantes.CONST_REALIZAR_COTIZACION));
+		crearTareaSolicitudBasica(solicitud, usuarioQueCotiza, tarea);
+		return tarea;
+	}
+	
+	public MotorTarea crearTareaAprobarCotizacion(Solicitud solicitud, Usuario usuarioQueCotiza) throws EntidadNoGuardadaException {
+		MotorTarea tarea = new MotorTarea();
+		tarea.setMotorActividad(motorActividadDao.obtenerPorCodigo(Constantes.CONST_APROBAR_COTIZACION));
+		crearTareaSolicitudBasica(solicitud, usuarioQueCotiza, tarea);
+		return tarea;
+	}
+
+	private void crearTareaSolicitudBasica(Solicitud solicitud, Usuario usuarioQueCotiza, MotorTarea tarea)
+			throws EntidadNoGuardadaException {
 		tarea.setEstado("ACT");
 		tarea.setFechaAsignacion(new Date());
-		tarea.setMotorActividad(motorActividadDao.obtenerPorCodigo(CONST_REALIZAR_COTIZACION));
 		tarea.setSolicitud(solicitud);
 		tarea.setUsuario(usuarioQueCotiza);
 		Date today = new Date();
@@ -38,9 +50,8 @@ public class MotorTareaService {
 		tarea.setFechaFinalizacion(fechaFinalizacion);
 		tarea.setFechaVencimiento(fechaVencimiento);
 		motorTareaDao.guardar(tarea);
-		return tarea;
 	}
-
+	
 	public List<MotorTarea> consultarTareasPorUsuario(String username) {
 		List<MotorTarea> listaTareas = motorTareaDao.consultarTareasPorUsuario(username);
 		for (MotorTarea motorTarea : listaTareas) {

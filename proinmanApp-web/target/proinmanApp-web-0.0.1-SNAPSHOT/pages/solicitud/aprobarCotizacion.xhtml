@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="elementosDocumentReady">
+
+	</ui:define>
+	<ui:define name="body">
+		<!-- TITULO -->
+		<h:panelGroup styleClass="tituloPrincipalPagina" layout="block">
+			<h:outputText value="Cotización   " />
+			<h:outputText styleClass="tituloSecundarioPagina"
+				value="   .: Crear cotización" />
+		</h:panelGroup>
+
+		<div class="barraSuperior">
+			&#160;
+			<h:outputText id="lblDatosSolicitud" value="Datos de la solicitud" />
+		</div>
+
+
+		<h:panelGrid id="pngSolicitud" columns="6" styleClass="formulario"
+			columnClasses="formulario-label, formularioAnchoFijo, formulario-label, formularioAnchoFijo, formulario-label,formularioAnchoFijo, formulario-label,formularioAnchoFijo">
+
+			<h:outputText id="lblCliente" value="Cliente" />
+			<h:outputText id="txtCliente"
+				value="#{cotizacionController.solicitud.cliente.nombreRazonSocial}" />
+
+
+			<h:outputText id="lblProvincia" value="Provincia" />
+			<h:outputText id="txtProvincia"
+				value="#{cotizacionController.solicitud.ciudad.ubicacionGeograficaPadre.descripcion}" />
+
+
+			<h:outputText id="lblCiudad" value="Ciudad" />
+			<h:outputText id="txtCiudad"
+				value="#{cotizacionController.solicitud.ciudad.descripcion}" />
+
+
+			<h:outputText id="lblDireccion" value="Dirección" />
+			<p:inputTextarea id="txtDirección"
+				value="#{cotizacionController.solicitud.direccion}" readonly="true" />
+
+
+			<h:outputText id="lblDescipcion" value="Descipción" />
+			<p:inputTextarea id="txtDescipcion"
+				value="#{cotizacionController.solicitud.descipcion}" readonly="true" />
+
+
+			<h:outputText id="lblFechaRecepcion" value="Fecha Recepcion" />
+			<h:outputText id="txtFechaRecepcion"
+				value="#{cotizacionController.solicitud.fechaRecepcion}" />
+
+
+			<h:outputText id="lblFechaRegistro"
+				value="Fecha Registro en el Sistema" />
+			<h:outputText id="txtFechaRegistro"
+				value="#{cotizacionController.solicitud.fechaRegistro}" />
+
+		</h:panelGrid>
+
+
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<div class="barraSuperior">
+				&#160;
+				<h:outputText id="lblItem" value="Item" />
+			</div>
+			<h:panelGrid id="pngRegistrarItem" columns="2"
+				styleClass="formulario"
+				columnClasses="formulario-label, formularioAnchoFijo">
+
+				<h:outputText id="lblTipoItem" value="Tipo ítem" />
+				<p:selectOneRadio id="rbtTipoItem" required="true"
+					requiredMessage="#{msgVal.VW700} #{msgVal.VW703}"
+					value="#{cotizacionController.tipoItemEnum}">
+					<f:selectItems value="#{cotizacionController.tipoItemEnumMatMan}"
+						var="enum" itemValue="#{enum}" itemLabel="#{enum}">
+					</f:selectItems>
+					<p:ajax update="pnlTipoItem" event="change" process="rbtTipoItem"
+						listener="#{cotizacionController.cambiarCatalogo()}"></p:ajax>
+				</p:selectOneRadio>
+
+				<h:panelGroup>
+					<h:outputText id="lblSeleccionItem" value="Selección de ítem" />
+					<h:outputText id="lblCampoObligatorioSeleccionItem"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<h:panelGroup id="pnlTipoItem">
+					<p:selectOneMenu id="cmbTipoItemMateriales" required="true"
+						rendered="#{cotizacionController.verCatalogoTipoItem}"
+						value="#{cotizacionController.codigoTipoItem}">
+						<f:selectItem itemValue="0"
+							itemLabel="#{msg.opcionSeleccionarCombo}" />
+						<f:selectItems
+							value="#{cotizacionController.listaCatalogoMateriales}"
+							var="item" itemLabel="#{item.material}"
+							itemValue="#{item.codigoItem}">
+						</f:selectItems>
+					</p:selectOneMenu>
+					<p:selectOneMenu id="cmbTipoItemManoObra" required="true"
+						rendered="#{!cotizacionController.verCatalogoTipoItem}"
+						value="#{cotizacionController.codigoTipoItem}">
+						<f:selectItem itemValue="0"
+							itemLabel="#{msg.opcionSeleccionarCombo}" />
+						<f:selectItems
+							value="#{cotizacionController.listaCatalogoManoDeObra}"
+							var="item" itemLabel="#{item.material}"
+							itemValue="#{item.codigoItem}">
+						</f:selectItems>
+					</p:selectOneMenu>
+				</h:panelGroup>
+
+
+				<h:panelGroup>
+					<h:outputText id="lblCantidad" value="Cantidad" />
+					<h:outputText id="lblCampoObligatorioCantidad"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText id="txtCantidad"
+					value="#{cotizacionController.itemNuevo.cantidad}">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
+
+				<h:panelGroup id="pnlCosto">
+					<h:outputText id="lblCosto" value="Costo" />
+					<h:outputText id="lblCampoObligatorioCosto"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText value="#{cotizacionController.itemNuevo.costo}"
+					style="text-align: right;" mask="999.99">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
+
+
+				<h:panelGroup id="pnlPrecio">
+					<h:outputText id="lblPrecio" value="Precio" />
+					<h:outputText id="lblCampoObligatorioPrecio"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<p:inputText value="#{cotizacionController.itemNuevo.precio}"
+					style="text-align: right;" mask="999.99">
+					<p:ajax update="pnlTotalC,pnlTotalP" event="change"
+						process="pngRegistrarItem"
+						listener="#{cotizacionController.calcularTotales}"></p:ajax>
+				</p:inputText>
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalC" value="Total Costo Item" />
+					<h:outputText id="lblCampoObligatorioTotalC"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<h:panelGroup id="pnlTotalC">
+					<p:inputText
+						value="#{cotizacionController.itemNuevo.totalCostoItem}"
+						style="text-align: right;" mask="999.99" readonly="true"></p:inputText>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalP" value="Total Precio Item" />
+					<h:outputText id="lblCampoObligatorioTotalP"
+						value="#{msg.campoObligatorio}" styleClass="campoObligatorio" />
+				</h:panelGroup>
+				<h:panelGroup id="pnlTotalP">
+					<p:inputText
+						value="#{cotizacionController.itemNuevo.totalPrecioItem}"
+						style="text-align: right;" mask="999.99" readonly="true"></p:inputText>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:commandButton value="Agregar Item"
+						styleClass="ui-priority-primary" process="@this,pngRegistrarItem"
+						update=":form:msgs,dtbCotizacionItem,:form:pngTotalCotizacion"
+						action="#{cotizacionController.onAddNew()}" />
+				</div>
+			</div>
+
+			<p:dataTable id="dtbCotizacionItem" widgetVar="dtbCotizacionItem"
+				var="cotizacionItem"
+				value="#{cotizacionController.listaCotizacionItem}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+		           Items de la cotización
+		       </f:facet>
+				<p:ajax event="rowEdit" listener="#{cotizacionController.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{cotizacionController.onRowCancel}" update=":form:msgs" />
+
+
+				<p:column headerText="Descripción">
+					<h:outputText value="#{cotizacionItem.catalogoItem.descripcion}" />
+				</p:column>
+
+				<p:column headerText="Cantidad">
+					<h:outputText value="#{cotizacionItem.cantidad}" />
+				</p:column>
+
+				<p:column headerText="Costo">
+					<h:outputText value="#{cotizacionItem.costo}" />
+				</p:column>
+
+				<p:column headerText="Precio">
+					<h:outputText value="#{cotizacionItem.precio}" />
+				</p:column>
+
+				<p:column headerText="Total Costo">
+					<h:outputText value="#{cotizacionItem.totalCostoItem}" />
+				</p:column>
+
+				<p:column headerText="Total Precio">
+					<h:outputText value="#{cotizacionItem.totalPrecioItem}" />
+				</p:column>
+
+				<p:column style="width:32px" headerText="Editar">
+					<h:commandLink id="btnEditar">
+						<h:graphicImage id="clkEditar"
+							value="../../resources/img/eventos/modificar.gif" />
+						<p:ajax immediate="true" event="click"
+							update=":form:pngRegistrarItem"
+							listener="#{cotizacionController.modificarItem(cotizacionItem)}">
+						</p:ajax>
+					</h:commandLink>
+				</p:column>
+
+				<p:column style="width:32px" headerText="Eliminar">
+					<h:commandLink id="btnEliminar">
+						<h:graphicImage id="clkELiminar"
+							value="../../resources/img/eventos/eliminar.gif" />
+						<p:ajax immediate="true" event="click"
+							update=":form:dtbCotizacionItem,:form:pngTotalCotizacion"
+							listener="#{cotizacionController.eliminarItem(cotizacionItem)}">
+						</p:ajax>
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+
+
+
+			<h:panelGrid id="pngTotalCotizacion" columns="2"
+				styleClass="formulario"
+				columnClasses="formulario-label, formularioAnchoFijo">
+
+				<h:panelGroup>
+					<h:outputText id="lblTotalCostoCotizacion" value="Costo Total" />
+				</h:panelGroup>
+				<p:inputText
+					value="#{cotizacionController.cotizacionNueva.costoTotal}"
+					style="text-align: right;" mask="999.99" readonly="true"></p:inputText>
+
+
+				<h:panelGroup>
+					<h:outputText id="lblPrecioTotalCotizacion"
+						value="Precio Total Sin IVA" />
+				</h:panelGroup>
+				<p:inputText
+					value="#{cotizacionController.cotizacionNueva.precioTotal}"
+					style="text-align: right;" mask="999.99" readonly="true">
+				</p:inputText>
+
+
+				<h:panelGroup>
+					<h:outputText id="lblIVA" value="IVA" />
+				</h:panelGroup>
+				<p:inputText value="#{cotizacionController.cotizacionNueva.iva}"
+					style="text-align: right;" mask="999.99" readonly="true"></p:inputText>
+
+				<h:panelGroup>
+					<h:outputText id="lblPrecioTotalCotizacionConIVA"
+						value="Precio Total con IVA" />
+				</h:panelGroup>
+				<p:inputText
+					value="#{cotizacionController.cotizacionNueva.precioTotalIva}"
+					style="text-align: right;" mask="999.99" readonly="true">
+				</p:inputText>
+
+			</h:panelGrid>
+
+			<div class="barraInferior">
+				<p:commandButton id="btnGuardar"
+					action="#{cotizacionController.guardar()}" update="@form"
+					process="@form" value="Guardar" />
+			</div>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
