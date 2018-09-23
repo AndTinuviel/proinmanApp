@@ -34,6 +34,8 @@ public class MotorActividad implements Serializable {
 	@Column(name = "numero_dias_vencimiento")
 	private Integer numeroDiasVencimiento;
 	
+	@Column(name = "tipo_actividad")
+	private String tipoActividad;
 
 	public Integer getCodigoActividad() {
 		return this.codigoActividad;
@@ -81,6 +83,14 @@ public class MotorActividad implements Serializable {
 
 	public void setNumeroDiasVencimiento(Integer numeroDiasVencimiento) {
 		this.numeroDiasVencimiento = numeroDiasVencimiento;
+	}
+
+	public String getTipoActividad() {
+		return tipoActividad;
+	}
+
+	public void setTipoActividad(String tipoActividad) {
+		this.tipoActividad = tipoActividad;
 	}
 
 }

@@ -23,6 +23,7 @@ import proinman.gestion.solicitud.servicio.CotizacionService;
 import proinman.gestion.solicitud.servicio.MotorTareaService;
 import proinman.gestion.solicitud.servicio.SolicitudService;
 import proinman.gestion.solicitud.util.exception.EntidadNoGuardadaException;
+import proinman.gestion.solicitud.utilitarios.Constantes;
 import proinman.gestion.solicitud.utilitarios.TipoItemEnum;
 
 @ManagedBean
@@ -64,6 +65,12 @@ public class CotizacionController extends ControladorBase {
 	private void consultarDatosIniciales(){
 		codigoTarea = Integer.parseInt(getHttpRequest().getParameter("codigoTarea"));
 		solicitud = solicitudService.consultarSolicitud(Integer.parseInt(getHttpRequest().getParameter("codigoSolicitud")));
+		if (!solicitud.getListaCotizaciones().isEmpty()){
+			cotizacionNueva = solicitud.getListaCotizaciones().get(0);
+			listaCotizacionItem.addAll(solicitud.getListaCotizaciones().get(0).getListaCotizacionItems());
+			cotizacionNueva.setIva(cotizacionNueva.getPrecioTotal().multiply(BigDecimal.valueOf(Constantes.CONST_IVA)));
+			cotizacionNueva.setPrecioTotalIva(cotizacionNueva.getPrecioTotal().multiply(BigDecimal.valueOf(Constantes.CONST_IVA_TOTAL)));
+		}
 	}
 	
 	public void cambiarCatalogo() {
@@ -135,10 +142,39 @@ public class CotizacionController extends ControladorBase {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	
+	
+	public void aprobarCotizacion(){
+		FacesMessage msg = null;
+		try {
+			cotizacionNueva.setEstado("APR");
+			cotizacionService.aprobarCotizacion(cotizacionNueva, codigoTarea); // actualizarEstadoCotizacion(cotizacionNueva);
+			msg = new FacesMessage("Cotización", "Se aprobó la cotización correctamente");
+		} catch (EntidadNoGuardadaException e) {
+			msg = new FacesMessage("Cotización", "No se pudo aprobó la cotización");
+		} finally {
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	public void noAprobarCotizacion(){
+		FacesMessage msg = null;
+		try {
+			cotizacionNueva.setEstado("NO_APR");
+			cotizacionService.actualizarEstadoCotizacion(cotizacionNueva);
+			msg = new FacesMessage("Cotización", "Se finaliza el flujo del requerimiento correctamente");
+		} catch (EntidadNoGuardadaException e) {
+			msg = new FacesMessage("Cotización", "No se pudo finaliza el flujo del requerimiento");
+		} finally {
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	
 
 	private void setearDatosDeCotizacion() {
 		cotizacionNueva.setListaCotizacionItems(listaCotizacionItem);
-		cotizacionNueva.setEstado("ACT");
+		cotizacionNueva.setEstado("CRE");
 		cotizacionNueva.setSolicitud(solicitud);
 	}
 
@@ -150,7 +186,7 @@ public class CotizacionController extends ControladorBase {
 			totalCostoCotizacion = totalCostoCotizacion + item.getTotalCostoItem().doubleValue();
 
 		}
-		cotizacionNueva.setIva(BigDecimal.valueOf(totalCostoCotizacion * 0.12));
+		cotizacionNueva.setIva(BigDecimal.valueOf(totalCostoCotizacion * Constantes.CONST_IVA));
 		cotizacionNueva.setPrecioTotalIva(cotizacionNueva.getIva().add(BigDecimal.valueOf(totalPrecioCotizacion)));
 		cotizacionNueva.setCostoTotal(BigDecimal.valueOf(totalCostoCotizacion));
 		cotizacionNueva.setPrecioTotal(BigDecimal.valueOf(totalPrecioCotizacion));

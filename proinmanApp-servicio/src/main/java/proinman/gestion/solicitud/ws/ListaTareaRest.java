@@ -10,6 +10,7 @@ import javax.ws.rs.QueryParam;
 
 import proinman.gestion.solicitud.entity.MotorTarea;
 import proinman.gestion.solicitud.servicio.MotorTareaService;
+import proinman.gestion.solicitud.utilitarios.Constantes;
 
 @Path("/tareas")
 public class ListaTareaRest {
@@ -21,7 +22,7 @@ public class ListaTareaRest {
 	@Path("/consultarTareasPorUsuario")
 	@Produces({ "application/json" })
 	public List<MotorTarea> consultarTareasPorUsuario(@QueryParam("username") String username) {
-		List<MotorTarea> listaTareas = motorTareaService.consultarTareasPorUsuario(username);
+		List<MotorTarea> listaTareas = motorTareaService.consultarTareasPorUsuarioYTipoAceso(username, Constantes.MOVIL);
 		for (MotorTarea motorTarea : listaTareas) {
 			motorTarea.getSolicitud().getUsuario().setListaUsuarioRol(null);
 			motorTarea.getUsuario().setListaUsuarioRol(null);

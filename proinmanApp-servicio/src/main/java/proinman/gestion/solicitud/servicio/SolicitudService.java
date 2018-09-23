@@ -16,7 +16,8 @@ public class SolicitudService {
 	private MotorTareaService motorTareaService;
 
 	public Solicitud consultarSolicitud(int codigoSolicitud) {
-		return this.solicitudDao.obtenerPorCodigo(Integer.valueOf(codigoSolicitud));
+		Solicitud solicitud = solicitudDao.obtenerPorCodigo(Integer.valueOf(codigoSolicitud));
+		return solicitud;
 	}
 
 	public Solicitud crearSolicitud(Solicitud nuevaSolicitud, Usuario usuario) throws EntidadNoGuardadaException {

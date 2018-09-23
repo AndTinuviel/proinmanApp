@@ -44,4 +44,15 @@ public class CotizacionService {
 		return cotizacionDao.consultarCotizacionPorCodigoSolicitud(codigoSolicitud);
 	}
 	
+	public Cotizacion actualizarEstadoCotizacion(Cotizacion cotizacion) throws EntidadNoGuardadaException{
+		return cotizacionDao.guardarOActualizar(cotizacion);
+	}
+	
+	public Cotizacion  aprobarCotizacion(Cotizacion cotizacion, Integer codigoTarea) throws EntidadNoGuardadaException{
+		actualizarEstadoCotizacion(cotizacion);
+		motorTareaService.finalizarTarea(codigoTarea);
+		motorTareaService.crearTareaGenerarOrdenTrabajo(cotizacion.getSolicitud(),cotizacion.getSolicitud().getUsuario());
+		return cotizacion;
+	}
+	
 }

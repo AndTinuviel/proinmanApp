@@ -32,7 +32,7 @@
 							<h:panelGroup id="logoCabecera" layout="block" />
 							<h:panelGroup id="finCabecera" layout="block">
 								<h:outputText id="usuarioOutputText"
-									value="Usuario: Andrea "
+									value="Usuario: agutierrez "
 									style="display:block" />
 								
 								<h:form>
@@ -71,13 +71,14 @@
 							<!-- inicio menu -->
 							<div id="menuAplicacion">
 								<h:form style="display:inline">
-									<br /><br />
+								
 								 
 								    <p:panelMenu style="width:300px">
+								    	<p:submenu label="Principal">
+								            <p:menuitem value="Lista de Trabajo" url="/pages/principal/listaTrabajo.jsf" icon="ui-icon-disk" />
+								        </p:submenu>
 								        <p:submenu label="Solicitud">
 								            <p:menuitem value="Registrar" url="/pages/solicitud/registrarSolicitud.jsf" icon="ui-icon-disk" />
-								            <p:menuitem value="Cotizar" url="/pages/solicitud/realizarCotizacion.jsf"  icon="ui-icon-arrowrefresh-1-w" />
-								            <p:menuitem value="Aprobar" url="/pages/solicitud/aprobarCotizacion.jsf"  icon="ui-icon-arrowrefresh-1-w" />
 								        </p:submenu>
 								        <p:submenu label="Orden de Trabajo">
 								            <p:menuitem value="Consultar" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
@@ -86,13 +87,16 @@
 								        <p:submenu label="Administracion" >
 								            <p:submenu label="Usuarios" icon="ui-icon-extlink">
 							                    <p:menuitem value="Crear" url="/pages/administracion/administracionUsuarioNuevo.jsf" icon="ui-icon-home" />
-							                    <p:menuitem value="Consultar" url="/pages/administracion/administracionUsuarioConsultar.jsf" icon="ui-icon-document" />							                
+							                    <p:menuitem value="Consultar" url="/pages/administracion/administracionUsuarioConsultar.jsf" icon="ui-icon-document" />	
+							                    <p:menuitem value="Desbloquear" icon="ui-icon-signal" url="/pages/administracion/administracionDesbloquearUsuario.jsf"/>
+							                    <p:menuitem value="Asignar Roles" icon="ui-icon-signal" url="/pages/administracion/administracionUsuarioRol.jsf"/>
+							                    						                
 								            </p:submenu>
 								            <p:submenu label="Clientes" icon="ui-icon-extlink">
 							                    <p:menuitem value="Crear" url="/pages/administracion/administracionClienteNuevo.jsf" icon="ui-icon-home" />
 							                    <p:menuitem value="Consultar" url="/pages/administracion/administracionClienteConsultar.jsf" icon="ui-icon-document" />							                
 								            </p:submenu>
-								            <p:menuitem value="Asignar Roles" icon="ui-icon-signal" url="/pages/administracion/administracionUsuarioRol.jsf"/>
+								            
 								        </p:submenu>
 	   								</p:panelMenu>
 								</h:form>

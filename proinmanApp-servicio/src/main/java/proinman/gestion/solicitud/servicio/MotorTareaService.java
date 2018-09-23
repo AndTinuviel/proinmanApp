@@ -37,6 +37,13 @@ public class MotorTareaService {
 		crearTareaSolicitudBasica(solicitud, usuarioQueCotiza, tarea);
 		return tarea;
 	}
+	
+	public MotorTarea crearTareaGenerarOrdenTrabajo(Solicitud solicitud, Usuario usuario) throws EntidadNoGuardadaException {
+		MotorTarea tarea = new MotorTarea();
+		tarea.setMotorActividad(motorActividadDao.obtenerPorCodigo(Constantes.CONST_GENERAR_OT));
+		crearTareaSolicitudBasica(solicitud, usuario, tarea);
+		return tarea;
+	}
 
 	private void crearTareaSolicitudBasica(Solicitud solicitud, Usuario usuarioQueCotiza, MotorTarea tarea)
 			throws EntidadNoGuardadaException {
@@ -52,8 +59,9 @@ public class MotorTareaService {
 		motorTareaDao.guardar(tarea);
 	}
 	
-	public List<MotorTarea> consultarTareasPorUsuario(String username) {
-		List<MotorTarea> listaTareas = motorTareaDao.consultarTareasPorUsuario(username);
+	//TODO: Tipo acceso se refiere a si es Web o móvil
+	public List<MotorTarea> consultarTareasPorUsuarioYTipoAceso(String username, String tipoAcceso) {
+		List<MotorTarea> listaTareas = motorTareaDao.consultarTareasPorUsuario(username, tipoAcceso);
 		for (MotorTarea motorTarea : listaTareas) {
 			motorTarea.getUsuario().getListaUsuarioRol().size();
 		}

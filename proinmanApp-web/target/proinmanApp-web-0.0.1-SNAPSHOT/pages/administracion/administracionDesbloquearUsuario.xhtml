@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/common.xhtml">
+
+	<ui:define name="body">
+		<p:outputPanel id="tituloPaginaActual" layout="block">
+			<h:outputText id="titulo" styleClass="tituloPrincipalPagina"
+				value="Administración de Roles para los Usuarios" />
+		</p:outputPanel>
+		<h:panelGroup id="contenido" layout="block">
+
+			<div class="barraSuperior">&#160;</div>
+
+
+			<h:form>
+				<p:growl id="msg" showDetail="true" escape="false" />
+				<br />
+
+				<h3 style="margin-top: 0">Usuario</h3>
+
+				<p:selectOneMenu
+					value="#{usuarioRolController.codigoUsuario}">
+					<f:selectItem itemValue="" itemLabel="#{msg.opcionTodos}" />
+					<f:selectItems value="#{usuarioRolController.listaDeUsuarios}"
+						var="usuario" itemLabel="#{usuario.nombre}  #{usuario.apellido}"
+						itemValue="#{usuario.codigoUsuario}" />
+					<p:ajax event="change"
+						update="pickList"
+						process="@this"
+						listener="#{usuarioRolController.seleccionarUsuario()}" />
+				</p:selectOneMenu>
+				
+
+
+				<h3 style="margin-top: 0">Roles</h3>
+				<br />
+
+				<p:pickList id="pickList" value="#{usuarioRolController.listaRoles}"
+					var="roles" itemLabel="#{roles.nombre}"
+					itemValue="#{roles.codigoRol}" />
+
+				<p:commandButton id="btnGuardar" value="Guardar"
+					update="displayRoles" oncomplete="PF('rolDialog').show()"
+					style="margin-top:5px" />
+
+				<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+					widgetVar="rolDialog">
+					<h:panelGrid id="displayRoles" columns="2">
+						<h:outputText value="Source: " style="font-weight:bold" />
+						<ui:repeat value="#{usuarioRolController.listaRoles.source}"
+							var="item">
+							<h:outputText value="#{item}" style="margin-right:5px" />
+						</ui:repeat>
+
+						<h:outputText value="Target: " style="font-weight:bold" />
+						<ui:repeat value="#{usuarioRolController.listaRoles.target}"
+							var="item">
+							<h:outputText value="#{item}" style="margin-right:5px" />
+						</ui:repeat>
+					</h:panelGrid>
+				</p:dialog>
+
+			</h:form>
+
+
+
+			<div class="barraInferior">&#160;</div>
+
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>
+</html>

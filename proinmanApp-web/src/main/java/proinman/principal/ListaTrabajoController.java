@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import proinman.gestion.solicitud.entity.MotorTarea;
 import proinman.gestion.solicitud.filtros.ControladorBase;
 import proinman.gestion.solicitud.servicio.MotorTareaService;
+import proinman.gestion.solicitud.utilitarios.Constantes;
 
 
 @ManagedBean
@@ -36,7 +37,7 @@ public class ListaTrabajoController extends ControladorBase implements Serializa
 	}
 	
 	private void consultarTareas(){
-		listaTareas = motorTareaService.consultarTareasPorUsuario("rcruz");//getUsuarioConectado()));
+		listaTareas = motorTareaService.consultarTareasPorUsuarioYTipoAceso("rcruz", Constantes.WEB);//getUsuarioConectado()));
 	}
 
 	public String seleccionarTarea(MotorTarea tarea){

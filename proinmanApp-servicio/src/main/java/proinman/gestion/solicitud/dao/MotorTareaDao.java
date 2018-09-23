@@ -26,10 +26,13 @@ public class MotorTareaDao extends BaseDaoGenerico<MotorTarea, Serializable> {
 		super(MotorTarea.class);
 	}
 
-	public List<MotorTarea> consultarTareasPorUsuario(String username) {
-		String consulta = "select t from MotorTarea t  where t.usuario.username = :username and t.estado = 'ACT' ";
+	public List<MotorTarea> consultarTareasPorUsuario(String username, String tipoActividad) {
+		String consulta = "select t from MotorTarea t  "
+				+ " where t.usuario.username = :username "
+				+ " and t.estado = 'ACT' "
+				+ " and t.motorActividad.tipoActividad = :tipoActividad";
 		List<MotorTarea> listaTareas = this.em.createQuery(consulta, MotorTarea.class)
-				.setParameter("username", username).getResultList();
+				.setParameter("username", username).setParameter("tipoActividad", tipoActividad) .getResultList();
 		for (MotorTarea motorTarea : listaTareas) {
 			motorTarea.getUsuario().getListaUsuarioRol().size();
 		}
